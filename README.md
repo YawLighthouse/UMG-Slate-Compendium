@@ -1,6 +1,7 @@
 # UMG-Slate-Compendium
 
-**Document version: 0.0.2 **
+#### Document version
+*0.0.2*
 
 <a name="table-of-contents"></a>
 ## Table of Contents
