@@ -98,7 +98,7 @@ already explained.
 At the bottom of the document is a list of helpful links and files for you to refer back to \
 (you can reach them easily using the [Table of Contents](#table-of-contents) at the top of the file).
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="performance-design-considerations"></a>
 ## Performance & Design Considerations
 
@@ -139,7 +139,7 @@ An important gotcha with Unreal Engine is that it does not have a robust method 
 For example; switching from Mobile to PC, you will have to build those systems out yourself so that unused textures are not cooked, loaded, \
 referenced, or even stored on the hard disk on the platform that you do not want them to be on.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="slate-umg-in-unreal"></a>
 ## Slate & UMG in Unreal
 Unreal Engine uses **Slate**; its custom **UI Programming Framework**. It is used \
@@ -190,7 +190,7 @@ Cons of UMG:
 
 ![UMG Designer Example](images/umg_designer.png)
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="slate"></a>
 ## Slate
 
@@ -361,7 +361,7 @@ and build the Test Suite program(which will create the executable in `[EnginePat
 - `SlateDebugger.Invalidate.[Disable/Enable]`: Enables or disables the invalidation debugger visualizer.
 - `Slate.GlobalScrollAmount [float value]` (default = 32.0): The amount used for scrolling for each click of the mouse wheel(in Slate Units).
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="umg"></a>
 ## UMG (Unreal Motion Graphics)
 
@@ -427,7 +427,7 @@ Occurs when focus is given to this User Widget(only this widget). It requires th
 - **On Focus Lost**: Occurs when this User Widget(only this widget) loses focus.
 - **On Removed from Focus Path**: Similar to On Focus Lost except it can occur when a child widget within this User Widget or this widget itself is no longer part of the focus path.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widgets"></a>
 ## Common Widgets
 
@@ -491,7 +491,7 @@ You can also use some helpful debug console commands for simulating the safe zon
     - 1: Display the overlay for the title safe zone
     - 2: Display the overlay for the action safe zone
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widget-functionality"></a>
 ## Common Widget Functionality
 
@@ -547,7 +547,7 @@ Please refer to the [Navigation Section](#unreals-focusing-system) for a more de
 - **Flow Direction**: For localization, allows you to set the flow direction of this widget regarding whether it is from left to right, or right to left. \
 Only certain widgets actually use it but it is in all widgets in case you want to add your own functionality based on flow direction. For example text widgets can flip from left to right/right to left depending on its flow direction and the language that specifies its flow direction to that.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="input-framework"></a>
 ## Input Framework(in relation to UMG/Slate)
 
@@ -642,7 +642,7 @@ Mouse Lock Mode`EMouseLockMode` is how the mouse cursor is locked(meaning the cu
 @TODO
 *[Insert picture visually explaining what values are changed in the game viewport client]*
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="unreals-focusing-system"></a>
 ## Unreal's Focusing System
 
@@ -704,7 +704,7 @@ Navigation can be caused by 3 types, known as **Navigation Genesis**:
 - **Controller**: The navigation event was caused by the gamepad input.
 - **User**: The navigation event is a user generated event that was caused by game code, widgets, etc.
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="split-screen"></a>
 ## Split Screen
 
@@ -736,7 +736,7 @@ If you want to create your own custom viewport shapes; you would have to create 
 @TODO
 *[Insert diagram showing how the Game Layer Framework works with split screen’s viewports]*
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-links"></a>
 ## IMPORTANT LINKS
 
@@ -757,7 +757,7 @@ Some links might have a description of what it is, to help understand why this l
 [Alex Forsythe explaining "The Unreal Engine's Game Framework: From int main() to BeginPlay", Youtube Video](): I also recommend checking out this channel’s other videos as they’re extremely informative. \
 [Elhoussine Mehnik's Mesh Swapper Plugin, Github](): A plugin that creates its own editor viewport and window, a great example for extending the editor. \
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-file-names"></a>
 ## IMPORTANT FILE NAMES
 
@@ -789,4 +789,4 @@ You don’t need to understand it immediately but this helps with knowing helpfu
 | `UUserinterfaceSettings`  | UserinterfaceSettings.h  | UserinterfaceSettings.cpp  | This is also where the render focus rule and a few other data types that you find in those settings are declared.                                                                                                       |
 
 
-**[⬆ Back to Top](#table-of-contents)**
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
