@@ -66,7 +66,7 @@ An important note about the two types of Unreal Engine:
   not intended to be modifiable and not being able to submit code
   changes to Epic to integrate into Unreal Engine.
 - **Source Code Version**: The version of the engine that you would
-  download from GitHub which gives full modifiable access to the Unreal
+  clone/download from GitHub which gives full modifiable access to the Unreal
   Engine as well as being able to submit code changes to Epic for them
   to integrate into Unreal Engine’s future releases.
 
