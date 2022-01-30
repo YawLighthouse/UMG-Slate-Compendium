@@ -171,7 +171,7 @@ Cons of Slate:
 - **Not usable with Blueprints**
 - **Not used with Unreal’s Garbage Collection System**
 
-![Starship Gallery Example](images/img_starship_gallery.png) \
+![Starship Gallery Example](images/starship_gallery.png) \
 *Slate Test Suite (In UE5 its called Starship Gallery)*
 
 **UMG** (**Unreal Motion Graphics**) is derived from the `UObject` hierarchy but aren't `Actor`’s and \
@@ -188,7 +188,7 @@ Cons of UMG:
 - **Restricted to Unreal Engine** (not usable outside the engine for regular OS applications)
 - **Ease of use also can cause developers to cause technical debt and for the UI to get messy**
 
-![UMG Designer Example](images/img_umg_designer.png)
+![UMG Designer Example](images/umg_designer.png)
 
 **[⬆ Back to Top](#table-of-contents)**
 <a name="slate"></a>
@@ -269,7 +269,7 @@ The way a Slate Widgets layout is calculated is done in two passes (listed in or
 this occurs through a *Bottom-Up* approach where it guarantees when this pass happens for a widget, \
 its children have already computed and cached their desired size.
 
-![Cache Desired Size Example](images/img_cache_desired_size.png) \
+![Cache Desired Size Example](images/cache_desired_size.png) \
 *Example of Desired Size for a Horizontal Box with Textblock and Image widget's*
 
 For the desired size example we have a horizontal box holding a text block and an image widget. \
@@ -280,7 +280,7 @@ so for this example 14 slate units + 8 slate units = 22 Slate Units.
 2. **Arrange Children**: This occurs in a *Top-Down* approach where the widget is asked to arrange its children based on \
 their desired sizes and the desired size of this widget (which all occurred in the first pass).
 
-![Arrange Children](images/img_arrange_children.png) \
+![Arrange Children](images/arrange_children.png) \
 *Example of Arranged Children using Allotted Size for a Horizontal Box with Textblock and Image widget’s*
 
 For the arranged children example the horizontal box was allotted 25 slate units by its parent widget (not shown to keep things simple). \
@@ -306,11 +306,11 @@ only accepts 1 child widget meanwhile an Overlay widget can have multiple child 
 
 Widgets usually come in 3 main types:
 - **Leaf Widgets**: Widgets with no child slots. \
-![Leaf Widgets Example](images/img_leaf_widgets.png)
+![Leaf Widgets Example](images/leaf_widgets.png)
 - **Panels Widgets**: with a dynamic number of child slots. \
-![Panel Widgets Example](images/img_panel_widgets.png)
+![Panel Widgets Example](images/panel_widgets.png)
 - **Compound Widgets**: Widgets with a fixed number of explicitly named child slots. \
-![Compound Widgets Example](images/img_compound_widgets.png)
+![Compound Widgets Example](images/compound_widgets.png)
 
 The key elements of any Slate Widget (also known as an SWidget, where every Slate Widget is prefixed with a capital ‘S’ in C++) \
 are a mix of functions and values:
@@ -339,9 +339,9 @@ You can access the test suite within the Unreal Editor by going to:
 1. This is different depending on whether you’re using UE4/UE5 
    - UE4: `Window>Developer Tools>Debug Tools` 
    - UE5: `Tools/Debug/Debug Tools` \
-   ![Slate Widget Examples Step 1](images/img_slate_widget_examples_step1.png)
+   ![Slate Widget Examples Step 1](images/slate_widget_examples_step1.png)
 2. Select `Test Suite` \
-   ![Slate Widget Examples Step 2](images/img_slate_widget_examples_step2.png)
+   ![Slate Widget Examples Step 2](images/slate_widget_examples_step2.png)
 
 You can also run the Test Suite as its own application without the Unreal Editor open if you have the source code version of the engine \
 and build the Test Suite program(which will create the executable in `[EnginePath]/Engine/Binaries/Win64/`).
@@ -352,7 +352,7 @@ and build the Test Suite program(which will create the executable in `[EnginePat
   - `[EnginePath]/Engine/Source/Runtime/AppFramework/Public/Widgets/Testing/SStarshipSuite.h`
   - `[EnginePath]/Engine/Source/Runtime/AppFramework/Private/Widgets/Testing/SStarshipSuite.cpp`
 
-![UE4 Test Suite Example](images/img_ue4_test_suite.png) \
+![UE4 Test Suite Example](images/ue4_test_suite.png) \
 *Test Suite from UE4, currently the UE4 version of the test suite is more feature rich than Starship Suite in UE5.*
 
 <a name="helpful-console-commands-for-slate"></a>
@@ -385,7 +385,7 @@ User Widgets cannot inherit their **Widget Hierarchy** like how Actors do with C
 
 Each **User Widget** is the root `UWidget` by design, so a User Widget can have no widgets inside it and is by default a **Compound Widget** that can only have 1 child, \
 but that child can have other children under it and causes the cascading effect of child widgets within each User Widget's **Tree Hierarchy**. \
-![User Widget Hierarchy Example](images/img_user_widget_hierarchy.png) \
+![User Widget Hierarchy Example](images/user_widget_hierarchy.png) \
 *Example of Hierarchy panel in the UMG Designer window*
 
 <a name="user-widget-animation"></a>
@@ -571,7 +571,7 @@ which handles propagating that input to the rest of the game engine and connecti
 8. **Player Input**: A player input object that Player Controllers have for routing input to pawns and other objects that are on its Input Stack.
 9. **Input Component**: This is the commonly used method to receive input for game code that is also found in Epic's official documentation, it is an object that is on every actor that connects with the Player Controller’s Input Stack to receive input that is routed through the engine for the game code to listen to and receive inputs.
 
-![Input Flow Diagram](images/img_input_flow_diagram.png) \
+![Input Flow Diagram](images/input_flow_diagram.png) \
 *Input Flow Diagram*
 
 <a name="input-event-types"></a>
@@ -670,13 +670,13 @@ navigation is calculated only along the direction specified along a grid(at a re
 there is no reason to change it since it checks if the widget is within that evenly spaced grid in a straight line) \
 made up of the collidable bound boxes of each opted in widget (thus desired size and geometry come into play here) and this grid is populated based on specific widgets that have opted into this hit test grid.
 
-| ![Hit Test Grid Example 1](images/img_hittest_grid_1.png) | ![Hit Test Grid Example 2](images/img_hittest_grid_2.png) |
-|:---------------------------------------------------------:|:---------------------------------------------------------:|
+| ![Hit Test Grid Example 1](images/hittest_grid_1.png) | ![Hit Test Grid Example 2](images/hittest_grid_2.png) |
+|:-----------------------------------------------------:|:-----------------------------------------------------:|
 
 *In this example we show what buttons we can navigate to on navigation direction press. \
 Button 2 in this case will always navigate to the closest widget because it can navigate to any widget below it.*
 
-![Navigation Grid Debug View](images/img_nav_grid_debug.png) \
+![Navigation Grid Debug View](images/nav_grid_debug.png) \
 *This is what the navigation grid actually looks like in the example when using the “Slate.HitTestGridDebugging 1” console command.*
 
 When an **Navigation Genesis** occurs it basically gets the cells that the currently focused widget is at and then based off the navigation direction the hit test grid check in a straight line \
