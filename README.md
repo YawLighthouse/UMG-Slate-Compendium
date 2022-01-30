@@ -6,41 +6,41 @@
 <a name="table-of-contents"></a>
 ## Table of Contents
 
-> 1. [Introduction](#introduction) 
-> 2. [Performance & Design Considerations](#performance--design-considerations) \
->    2.1 [CPU Considerations](#cpu-considerations) \
->    2.1 [GPU Considerations](#gpu-considerations)
-> 3. [Slate & UMG in Unreal](#slate--umg-in-unreal)
-> 4. [Slate](#slate) \
->    4.1 [Slate Units & DPI Scaling](#slate-units--dpi-scaling) \
->    4.2 [Slate Users](#slate-users) \
->    4.3 [Widget Layout](#widget-layout) \
->    4.4 [On Paint](#on-paint) \
->    4.5 [Widget Hierarchy](#widget-hierarchy) \
->    4.6 [Invalidation](#invalidation) \
->    4.7 [Slate Widget Examples(Slate Test Suite/Starship)](#slate-widget-examplesslate-test-suitestarship-suite) \
->    4.8 [Helpful Console Commands for Slate](#helpful-console-commands-for-slate)
-> 5. [UMG (Unreal Motion Graphics)](#umg-unreal-motion-graphics) \
->    5.1 [User Widget Hierarchy](#user-widget-hierarchy) \
->    5.2 [User Widget Animation](#user-widget-animation) \
->    5.3 [User Widget Events](#user-widget-events)
-> 6. [Common Widgets](#common-widgets)
-> 7. [Common Widget Functionality](#common-widget-functionality)
-> 8. [Input Framework(in relation to UMG/Slate)](#input-frameworkin-relation-to-umgslate) \
->    8.1 [Input Flow of Unreal Engine](#input-flow-of-unreal-engine) \
->    8.2 [Input Event Types](#input-event-types) \
->    8.3 [Input Modes](#input-modes)
-> 9. [Unreal's Focusing System](#unreals-focusing-system) \
->    9.1 [Navigation Grid Explanation](#navigation-grid-explanation) \
->    9.2 [Navigation Genesis](#navigation-genesis)
-> 10. [Split Screen](#split-screen) \
->     10.1 [Game Layer Manager](#game-layer-manager) \
->     10.1 [Viewport Layout](#viewport-layout)
-> 11. [Important Links](#important-links)
-> 12. [Important File Names](#important-file-names)
+> 1. [Introduction](#1-introduction) 
+> 2. [Performance & Design Considerations](#2-performance--design-considerations) \
+>    2.1 [CPU Considerations](#21-cpu-considerations) \
+>    2.2 [GPU Considerations](#22-gpu-considerations)
+> 3. [Slate & UMG in Unreal](#3-slate--umg-in-unreal)
+> 4. [Slate](#4-slate) \
+>    4.1 [Slate Units & DPI Scaling](#41-slate-units--dpi-scaling) \
+>    4.2 [Slate Users](#42-slate-users) \
+>    4.3 [Widget Layout](#43-widget-layout) \
+>    4.4 [On Paint](#44-on-paint) \
+>    4.5 [Widget Hierarchy](#45-widget-hierarchy) \
+>    4.6 [Invalidation](#46-invalidation) \
+>    4.7 [Slate Widget Examples(Slate Test Suite/Starship)](#47-slate-widget-examplesslate-test-suitestarship-suite) \
+>    4.8 [Helpful Console Commands for Slate](#48-helpful-console-commands-for-slate)
+> 5. [UMG (Unreal Motion Graphics)](#5-umg-unreal-motion-graphics) \
+>    5.1 [User Widget Hierarchy](#51-user-widget-hierarchy) \
+>    5.2 [User Widget Animation](#52-user-widget-animation) \
+>    5.3 [User Widget Events](#53-user-widget-events)
+> 6. [Common Widgets](#6-common-widgets)
+> 7. [Common Widget Functionality](#7-common-widget-functionality)
+> 8. [Input Framework(in relation to UMG/Slate)](#8-input-frameworkin-relation-to-umgslate) \
+>    8.1 [Input Flow of Unreal Engine](#81-input-flow-of-unreal-engine) \
+>    8.2 [Input Event Types](#82-input-event-types) \
+>    8.3 [Input Modes](#83-input-modes)
+> 9. [Unreal's Focusing System](#9-unreals-focusing-system) \
+>    9.1 [Navigation Grid Explanation](#91-navigation-grid-explanation) \
+>    9.2 [Navigation Genesis](#92-navigation-genesis)
+> 10. [Split Screen](#10-split-screen) \
+>     10.1 [Game Layer Manager](#101-game-layer-manager) \
+>     10.2 [Viewport Layout](#102-viewport-layout)
+> 11. [Important Links](#11-important-links)
+> 12. [Important File Names](#12-important-file-names)
 
 <a name="introduction"></a>
-## Introduction
+## 1. Introduction
 
 This compendium is intended to teach the basics of UMG & Slate and to
 provide a base understanding of how to work with Unreal Engine’s UI
@@ -100,11 +100,11 @@ At the bottom of the document is a list of helpful links and files for you to re
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="performance-design-considerations"></a>
-## Performance & Design Considerations
+## 2. Performance & Design Considerations
 
 **UMG** & **Slate** are extremely performant frameworks for both the rendering (GPU) and computation (CPU) aspects,
 <a name="cpu-considerations"></a>
-#### CPU Considerations
+#### 2.1 CPU Considerations
 Slate/UMG use the concept of **Invalidation** and caching rather than constantly polling the data. \
 The reason for this is because sometimes polling is either not performant or functionally incorrect(for example when using multithreaded code). \
 Typically performant UI in Unreal is intended to be **event based**. \
@@ -126,7 +126,7 @@ failed.
 | A player manager object creates the UI marker widget and manages where to move the troops.<br/>The world position that is chosen by the player is fed into the UI marker’s widget(from the player manager object) and the widget itself handles positioning itself in screen space. | The player picks a world position and feeds that directly to the UI marker, the UI marker then directly tells the troops where to move to and handles their movement. |
 
 <a name="gpu-considerations"></a>
-#### GPU Considerations
+#### 2.2 GPU Considerations
 Most of the general GPU considerations you would have to worry about are
 the same when working in 3D space, such as:
 - **Texture memory sizes**
@@ -141,7 +141,7 @@ referenced, or even stored on the hard disk on the platform that you do not want
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="slate-umg-in-unreal"></a>
-## Slate & UMG in Unreal
+## 3. Slate & UMG in Unreal
 Unreal Engine uses **Slate**; its custom **UI Programming Framework**. It is used \
 for both game and non-game applications (the unreal editor and the Epic Games Launcher were built using Slate) using Widgets. \
 **Slate** is entirely used within C++ using declarative syntax and is **<u>NOT</u>** derived from the `UObject` hierarchy. \
@@ -192,7 +192,7 @@ Cons of UMG:
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="slate"></a>
-## Slate
+## 4. Slate
 
 The Slate Framework has two main parts:
 - **Slate Renderer**
@@ -205,7 +205,7 @@ The Slate Framework has two main parts:
   (creating)/tracking the Slate Users.
 
 <a name="slate-units-dpi-scaling"></a>
-#### Slate Units & DPI Scaling
+#### 4.1 Slate Units & DPI Scaling
 - **Slate Units**: Unreal’s way of making a UI that is independent of pixel density so your application can support multiple platforms easily. \
 This allows for it to be more precise and independent of the pixel density of the user’s monitor. \
 A single slate unit can vary in physical size but by default it is conveniently set to 1 pixel for each slate unit. \
@@ -219,7 +219,7 @@ Epic themselves admits it’s not perfect but it works well for most-all use cas
 [Epic's AnswerHub explaining Slate Units](https://answers.unrealengine.com/questions/190770/what-are-slate-units.html)
 
 <a name="slate-users"></a>
-#### Slate Users
+#### 4.2 Slate Users
 **Slate Users** are classes that represent that a local individual input-providing user \
 (for example; in split screen co-op with 3 players then there are 3 Slate Users, but in an online game with 32 players and no split screen then the only local player is the only Slate User on this device). \
 Each **Platform’s SDK** will tell the **Slate Application** to register (create) a new Slate User when a new connection is added (for example when a new controller is plugged in). \
@@ -262,7 +262,7 @@ if(FSlateApplication::IsInitialized())
 *Code example for how to get the Slate User using the player controller's local player object*
 
 <a name="widget-layout"></a>
-#### Widget Layout
+#### 4.3 Widget Layout
 
 The way a Slate Widgets layout is calculated is done in two passes (listed in order of execution):
 1. **Cache Desired Size**: Calculate how much space each widget wants to occupy, \
@@ -288,7 +288,7 @@ The first horizontal box slot indicates that it wants the desired size of the ch
 while the second slot wants to fill the available width which is 11 slate units remaining for the image widget.
 
 <a name="on-paint"></a>
-#### On Paint
+#### 4.4 On Paint
 
 **Drawing Slate** is the process where Slate will iterate over all visible widgets and create a list of **Draw Elements** to send to the rendering system, this list is created every frame.
 
@@ -297,7 +297,7 @@ This occurs in an On Paint function where it will do two things:
 - Paint the actual visuals related to this widget.
 
 <a name="widget-hierarchy"></a>
-#### Widget Hierarchy
+#### 4.5 Widget Hierarchy
 
 The concept of the **Widget Hierarchy** is done using child slots, which are optional objects that can be tied to a Slate Widget\
 (because some Widgets are not designed to have children such as the Image widget(**Leaf Widget**)) \
@@ -322,7 +322,7 @@ are a mix of functions and values:
 - **Event Handlers** (Delegate values and/or Functions): These are the event based hooks for the UI elements to change at runtime usually in the form of “OnSomething”.
 
 <a name="invalidation"></a>
-#### Invalidation
+#### 4.6 Invalidation
 
 To avoid having to calculate the desired size of the widget every frame (which can tax the CPU if it’s happening to a lot of Widgets at once), \
 Widgets have the concept of caching their desired size, but at runtime if the size of the widget changes (either through an animation or through game code) \
@@ -330,7 +330,7 @@ then it will **Invalidate** the widget to tell Slate that this widget needs to r
 This is an optimization to avoid polling for each widget's desired size every frame when it doesn’t need to recalculate it.
 
 <a name="slate-widget-examples"></a>
-#### Slate Widget Examples(Slate Test Suite/Starship Suite)
+#### 4.7 Slate Widget Examples(Slate Test Suite/Starship Suite)
 
 The **Slate Widget Examples** (also known as **Slate Test Suite** if using UE4/ **Starship Suite** if using UE5) \
 is a collection of Slate built examples such as radio buttons, responsive grid, color wheel, etc.
@@ -356,14 +356,14 @@ and build the Test Suite program(which will create the executable in `[EnginePat
 *Test Suite from UE4, currently the UE4 version of the test suite is more feature rich than Starship Suite in UE5.*
 
 <a name="helpful-console-commands-for-slate"></a>
-#### Helpful Console Commands for Slate
+#### 4.8 Helpful Console Commands for Slate
 - `Slate.HitTestGridDebugging [0/1]`: Flag for showing UMG/Slate focusing hit test grid.
 - `SlateDebugger.Invalidate.[Disable/Enable]`: Enables or disables the invalidation debugger visualizer.
 - `Slate.GlobalScrollAmount [float value]` (default = 32.0): The amount used for scrolling for each click of the mouse wheel(in Slate Units).
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="umg"></a>
-## UMG (Unreal Motion Graphics)
+## 5. UMG (Unreal Motion Graphics)
 
 The UMG framework are UObject’s that have to be tied to a specific **Player Controller** known as the **Owning Player**(to account for split screen), \
 if nothing is inputted for the owning player then it will automatically be connected to the first local player in the level.
@@ -381,7 +381,7 @@ User Widgets cannot inherit their **Widget Hierarchy** like how Actors do with C
 (so making a User Widget abstract will allow for other classes to inherit from it or creating the class in C++ will allow for inheritance).
 
 <a name="user-widget-hierarchy"></a>
-#### User Widget Hierarchy
+#### 5.1 User Widget Hierarchy
 
 Each **User Widget** is the root `UWidget` by design, so a User Widget can have no widgets inside it and is by default a **Compound Widget** that can only have 1 child, \
 but that child can have other children under it and causes the cascading effect of child widgets within each User Widget's **Tree Hierarchy**. \
@@ -389,7 +389,7 @@ but that child can have other children under it and causes the cascading effect 
 *Example of Hierarchy panel in the UMG Designer window*
 
 <a name="user-widget-animation"></a>
-#### User Widget Animation
+#### 5.2 User Widget Animation
 
 Every User Widget is able to create custom animations using the widgets within that User Widget via **Sequencer**. \
 You can create these animations inside the Widget Designer and you’re able to modify things relating to that widget specifically such as render transform, widget visibility, etc. \
@@ -403,7 +403,7 @@ because for an animation to play at all, the user widget needs to be able to tic
 if the user widgets ability to tick is turned off(by setting its tick frequency to never) then it will not tick the animation object.
 
 <a name="user-widget-events"></a>
-#### User Widget Events
+#### 5.3 User Widget Events
 
 Every user widget has built in events that you can implement and add your own functionality from;
 
@@ -429,7 +429,7 @@ Occurs when focus is given to this User Widget(only this widget). It requires th
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widgets"></a>
-## Common Widgets
+## 6. Common Widgets
 
 There is a large amount of commonly used widgets in Unreal Engine, at its basic core elements. \
 Most/All of your UI that used UMG/Slate will probably be built from a combination of these widgets:
@@ -493,7 +493,7 @@ You can also use some helpful debug console commands for simulating the safe zon
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widget-functionality"></a>
-## Common Widget Functionality
+## 7. Common Widget Functionality
 
 Each widget has its own functionality and use while still containing a common functionality across all the widgets such as:
 
@@ -549,10 +549,10 @@ Only certain widgets actually use it but it is in all widgets in case you want t
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="input-framework"></a>
-## Input Framework(in relation to UMG/Slate)
+## 8. Input Framework(in relation to UMG/Slate)
 
 <a name="input-flow-of-unreal-engine"></a>
-#### Input Flow of Unreal Engine
+#### 8.1 Input Flow of Unreal Engine
 
 The general flow of input from the lowest level to the highest level is listed in order below in the order that an input is routed for each user \
 (each stage calls to the next stage of the input flow):
@@ -575,7 +575,7 @@ which handles propagating that input to the rest of the game engine and connecti
 *Input Flow Diagram*
 
 <a name="input-event-types"></a>
-#### Input Event Types
+#### 8.2 Input Event Types
 
 Each time an input occurs a struct is used for each type of input that all inherit from **FInputEvent**:
 
@@ -619,7 +619,7 @@ Every other event type comes from `FInputEvent`:
   - **NavigationGenesis** `ENavigationGenesis`: Enum for knowing where this navigation event came from(was caused by) such as Keyboard/Controller/User.
 
 <a name="input-modes"></a>
-#### Input Modes
+#### 8.3 Input Modes
 
 **WidgetBlueprintLibrary** has 3 functions for setting something called **Input Mode** on Player Controllers, \
 the three states explain what’s actually happening in the input flow in relation to step 6; Game Viewport Client. \
@@ -644,7 +644,7 @@ Mouse Lock Mode`EMouseLockMode` is how the mouse cursor is locked(meaning the cu
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="unreals-focusing-system"></a>
-## Unreal's Focusing System
+## 9. Unreal's Focusing System
 
 Unreal Engine’s focusing system in regards to Slate/UMG is the concept of **User Focus** where only one **Slate Widget** can be focused at a time by a specific user known as a **Slate User**. \
 Multiple Slate Users can focus on the same widget but a user cannot focus on two widgets at once \
@@ -661,7 +661,7 @@ Unreal Engine’s focusing system is built from 4 key elements:
 - **Navigation Config**: Handles figuring out which navigation direction to use based on an input.
 
 <a name="navigation-grid-explanation"></a>
-#### Navigation Grid Explanation
+#### 9.1 Navigation Grid Explanation
 
 > To visualize the hit test grid, the console command is `Slate.HitTestGridDebugging [0/1]` also located in the [Helpful Console Commands Section](#helpful-console-commands-for-slate) of the [Slate Overview Section](#slate)
 
@@ -697,7 +697,7 @@ You can filter which user changed focus via the `FFocusEvent` that the delegate 
 *[Insert code snippet of the delegate and binding to an example function inside a player controller as well as how to filter in that function]*
 
 <a name="navigation-genesis"></a>
-#### Navigation Genesis
+#### 9.2 Navigation Genesis
 
 Navigation can be caused by 3 types, known as **Navigation Genesis**:
 - **Keyboard**: The navigation event was caused by the keyboard input.
@@ -706,7 +706,7 @@ Navigation can be caused by 3 types, known as **Navigation Genesis**:
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="split-screen"></a>
-## Split Screen
+## 10. Split Screen
 
 Split Screen works where it has a **Game Layer Manager** that manages the viewport slate widget, which player that’s using that slate widget and how to shape that slate widget. \
 The game layer manager is instanced by the game engine on initialization inside `GameEngine.cpp`(`UGameEngine`) and in `PlayLevel.cpp`(`UEditorEngine`) using a hard coded class so to build your own it would require modifying the engine’s source code \
@@ -719,7 +719,7 @@ useful for pause menus or anything that’s meant to entirely take up the screen
 useful for HUDs or anything that is specific to that local player and not all the other players.
 
 <a name="game-layer-manager"></a>
-#### Game Layer Manager
+#### 10.1 Game Layer Manager
 
 The Game Layer Manager is an interface that has the barebones information for getting the geometry of the viewport, getting the local player using this widget, \
 adding layers of widgets(not recommended unless you know what you’re doing) which holds all slate widgets that have been added to that specific viewport, and for holding the actual game viewport slate widget. \
@@ -727,7 +727,7 @@ The Game Layer Manager is located in `SGameLayerManager.h/cpp` and you can find 
 using a simple rectangle layout that is retrieved from the game viewport client. The `SGameLayerManager` also routes changes to DPI scale and for scaling the viewport based on the DPI scale value including all of its widget layers.
 
 <a name="viewport-layout"></a>
-#### Viewport Layout
+#### 10.2 Viewport Layout
 
 By default the layout design is a rectangle shape that is customized via its X/Y size and its X/Y position on the screen in a 0-1 ratio for the center of it. \
 This is set in the default `UGameViewportClient`’s constructor. \
@@ -738,7 +738,7 @@ If you want to create your own custom viewport shapes; you would have to create 
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-links"></a>
-## IMPORTANT LINKS
+## 11. IMPORTANT LINKS
 
 Here is a list(starting with Epic related links then community links that are in no particular order) of important and helpful sources of information regarding Slate and UMG in Unreal Engine. \
 Some links might have a description of what it is, to help understand why this link is included, or any other information I recommend checking out.
@@ -759,7 +759,7 @@ Some links might have a description of what it is, to help understand why this l
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-file-names"></a>
-## IMPORTANT FILE NAMES
+## 12. IMPORTANT FILE NAMES
 
 Here is a list(in no particular order) of important/helpful C++ files within Unreal Engine that it’s recommended you should look at, some might not even be talked about in this compendium. \
 You don’t need to understand it immediately but this helps with knowing helpful files to refer back to.
