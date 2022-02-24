@@ -1,7 +1,7 @@
 # UMG-Slate-Compendium
 
 #### Document version
-*0.0.2*
+*0.0.3*
 
 <a name="table-of-contents"></a>
 ## Table of Contents
@@ -229,7 +229,8 @@ and controls the cursor/has pointer information to account for gestures (this is
 
 You can access the Slate User via 2 primary ways:
 - From the Slate Application using an integer index for that local Slate User.
-- From a `ULocalPlayer` object which you can get from any Player Controller. \
+- From a `ULocalPlayer` object which you can get from any Player Controller.
+
 > An important thing to note is that Local Player’s can exist before the Player Controller is spawned \
 > (there’s functions in Player Controllers for when their Local Player is set that you can override), \
 > and Local Player’s exist between levels instead of per level like Player Controllers since they are UObjects and not Actors.
@@ -744,18 +745,24 @@ Here is a list(starting with Epic related links then community links that are in
 Some links might have a description of what it is, to help understand why this link is included, or any other information I recommend checking out.
 
 [Official Documentation for Slate Framework](https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Slate/) \
-[Official Documentation on Slate Widget Examples]() \
-[Offical Documentation for UMG]() \
-[Epic Approved Course for Introduction to Accessible Design]() \
-[Epic's AnswerHub explaining Slate Units]() \
-[Epic's Rich Text Documentation]() \
-[Rich Text Article by Epic]() \
-[My UMG/Slate Example Project](): My own UMG/Slate Example Project where I remade the Border Widget and commented all of the code with explanations of what is happening. \
-[JoyRok's Website](): Technical Artist with UMG Tech Art Articles. \
-[Ben UI's Website](): UI Engineer with UMG/Slate Articles. \
-[Alessa "CodeKitten" Baker's Medium Site](): Technical Artist with Unreal Engine Slate Editor & Slate Articles. \
-[Alex Forsythe explaining "The Unreal Engine's Game Framework: From int main() to BeginPlay", Youtube Video](): I also recommend checking out this channel’s other videos as they’re extremely informative. \
-[Elhoussine Mehnik's Mesh Swapper Plugin, Github](): A plugin that creates its own editor viewport and window, a great example for extending the editor. \
+[Official Documentation on Slate Widget Examples](https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Slate/Widgets/) \
+[Official Documentation for UMG](https://docs.unrealengine.com/en-US/InteractiveExperiences/UMG/) \
+[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine) \
+[Epic's AnswerHub explaining Slate Units](https://forums.unrealengine.com/t/what-are-slate-units/310703) \
+[Epic's Rich Text Documentation](https://docs.unrealengine.com/en-US/InteractiveExperiences/UMG/UserGuide/UMGRichTextBlock/) \
+[Rich Text Article by Epic](https://www.unrealengine.com/en-US/tech-blog/advanced-text-styling-with-rich-text-block) \
+[My UMG/Slate Example Project](https://github.com/Oldsiren/UMG-Slate-ExampleProject): 
+My own UMG/Slate Example Project where I remade the Border Widget and commented all of the code with explanations of what is happening. \
+[JoyRok's Website](https://joyrok.com/BLOG): 
+Technical Artist with UMG Tech Art Articles. \
+[Ben UI's Website](https://benui.ca/): 
+UI Engineer with UMG/Slate Articles. \
+[Alessa "CodeKitten" Baker's Medium Site](https://codekittah.medium.com/): 
+Technical Artist with Unreal Engine Slate Editor & Slate Articles. \
+[Alex Forsythe explaining "The Unreal Engine's Game Framework: From int main() to BeginPlay"; Youtube Video](https://youtu.be/IaU2Hue-ApI): 
+I also recommend checking out this channel’s other videos as they’re extremely informative. \
+[Elhoussine Mehnik's Mesh Swapper Plugin, Github](https://github.com/HoussineMehnik/UE4-MeshSwapperPlugin): 
+A plugin that creates its own editor viewport and window, a great example for extending the editor.
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-file-names"></a>
