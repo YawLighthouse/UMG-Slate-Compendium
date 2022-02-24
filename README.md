@@ -216,7 +216,7 @@ slate unit would be 1 unit = 2.5 pixels. You can change the DPI scaling dependin
 the project settings under the “Engine-User Interface” category.
 
 Epic themselves admits it’s not perfect but it works well for most-all use cases. \
-[Epic's AnswerHub explaining Slate Units](https://answers.unrealengine.com/questions/190770/what-are-slate-units.html)
+[Epic's AnswerHub explaining Slate Units](https://forums.unrealengine.com/t/what-are-slate-units/310703)
 
 <a name="slate-users"></a>
 #### 4.2 Slate Users
@@ -502,8 +502,9 @@ Each widget has its own functionality and use while still containing a common fu
 *[Insert picture for each value of this setting in the editor]*
 
 - **Accessibility**: Each widget will listen to the project’s default settings for accessibility, these settings can be overridden for each widget and can affect its own children, \
-going over accessibility is out of scope for this document but here is an official Epic approved course going over it \
-https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine (also in the list of important links at the top of the document).
+going over accessibility is out of scope for this document but here is an official Epic approved course going over it: \
+[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine) \
+(also in the list of important links at the top of the document).
 - **Tool Tip Text**: A tool tip text widget that is either using the default widget or your own custom one, to show when the user hovers over the widget with the mouse.
 - **Is Enabled**: Flag to know if this widget is enabled/disabled and if it can be modified interactively by the user.
 - **Visibility**: The render visibility and interactivity visibility of the widget. \
