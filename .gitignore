@@ -8,6 +8,9 @@
 .idea/
 **.sln.DotSettings.user
 
+# Obsidian MD
+.obsidian/
+
 # Compiled Object files
 *.slo
 *.lo
