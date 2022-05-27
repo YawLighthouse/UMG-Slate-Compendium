@@ -1,5 +1,16 @@
 # UMG-Slate-Compendium
 
+<!--- 
+UE5 Editor Background Color:
+- Hex Linear: 040404FF
+- Hex sRGB: 242424FF
+- Value: 0.017642
+- Red: 0.017642
+- Green: 0.017642
+- Blue: 0.017642
+- Alpha: 1.0
+--->
+
 #### Document version
 *0.0.3*
 
@@ -143,7 +154,12 @@ referenced, or even stored on the hard disk on the platform that you do not want
 <a name="slate-umg-in-unreal"></a>
 ## 3. Slate & UMG in Unreal
 Unreal Engine uses **Slate**; its custom **UI Programming Framework**. It is used \
-for both game and non-game applications (the unreal editor and the Epic Games Launcher were built using Slate) using Widgets. \
+for both game and non-game applications using Slate Widgets. \
+Some examples include:
+- The Unreal Editor is built entirely using Slate.
+- (Credit to Nick Darnell for explaining this) The Epic Games Launcher uses Slate as a frame and displays a chromium app.
+- The Halo Master Chief Collection uses UMG/Slate(TBD) for its UI(this is based off public announcements and not insider knowledge).
+
 **Slate** is entirely used within C++ using declarative syntax and is **<u>NOT</u>** derived from the `UObject` hierarchy. \
 Because it is not derived from `UObject`, that means you can’t use Unreal’s object casting system to get specific Slate \
 types, the way you should cast for them is using `static_cast<>` or `const_cast<>` below is an example using `static_cast<>`.
@@ -152,7 +168,7 @@ types, the way you should cast for them is using `static_cast<>` or `const_cast<
 // This is the recommended way of saving a pointer to a widget(to use SharedPtr/WeakPtr/SharedRef's)
 // Sometimes it's fine to use a raw pointer(depends on what you're doing)
 TSharedPtr<SWidget> genericWidget;
-if(genericWidget->GetType() == "SMyCoolWidget)
+if(genericWidget->GetType() == "SMyCoolWidget")
 {
     SMyCoolWidget* coolWidgetPtr = static_cast<SMyCoolWidget*>(genericWidget.Get());
 }
@@ -760,6 +776,8 @@ Technical Artist with UMG Tech Art Articles. \
 UI Engineer with UMG/Slate Articles. \
 [Alessa "CodeKitten" Baker's Medium Site](https://codekittah.medium.com/): 
 Technical Artist with Unreal Engine Slate Editor & Slate Articles. \
+[Steve Streeting's UE Helpers Plugin](https://github.com/sinbad/StevesUEHelpers)|[Steve's UE Helpers Plugin Example Project](https://github.com/sinbad/StevesUEExamples):
+A very helpful plugin for Unreal Engine, a great example for creating custom Rich Text Decorator's. \
 [Alex Forsythe explaining "The Unreal Engine's Game Framework: From int main() to BeginPlay"; Youtube Video](https://youtu.be/IaU2Hue-ApI): 
 I also recommend checking out this channel’s other videos as they’re extremely informative. \
 [Elhoussine Mehnik's Mesh Swapper Plugin, Github](https://github.com/HoussineMehnik/UE4-MeshSwapperPlugin): 
