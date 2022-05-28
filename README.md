@@ -1,4 +1,4 @@
-# UMG-Slate-Compendium
+# UMG-Slate Compendium
 
 <!--- 
 UE5 Editor Background Color:
@@ -10,6 +10,8 @@ UE5 Editor Background Color:
 - Blue: 0.017642
 - Alpha: 1.0
 --->
+
+[FAQ Page](FAQ.md)
 
 #### Document version
 *0.0.3*
