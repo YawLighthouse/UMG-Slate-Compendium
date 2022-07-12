@@ -9,79 +9,110 @@ UE5 Editor Background Color:
 - Green: 0.017642
 - Blue: 0.017642
 - Alpha: 1.0
+
+To add a fake indent, this adds a bunch of forced spaces(I hate this):
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+Some rules regarding linking table of contents information:
+- "--" is used for symbols like %, $, #, @, &
+- Adding a new main category requires you to update the numbers so for the link we don't include the number just to save needless effort
+
+This document used "split screen" and not "split-screen" or "splitscreen".
+
+For categories we don't include the words in parenthesis just to keep it short and reasonable.
+
+HTML Notes:
+- <tr></tr> This will end the line horizontally and start a new line vertically.
+- <td></td> Will end the line vertically and start a new line horizontally.
+- Use <i></i> To italicize text.
+- Use <b></b> To bold text.
+- <a href="LINK" target="_blank">DISPLAY TEXT</a> For links. `target="_blank"` will make a new tab/window when link is selected.
+- <br> for line breaks.
+- <ul><li></li></ul> for non-ordered lists.
+- <ol><li></li></ol> for ordered numbered lists.
 --->
 
 [FAQ Page](FAQ.md)
 
-#### Document version
-*0.0.3*
+###### Document Version
+<!---Major.Minor.Patch--->
+*0.4.0*
 
 <a name="table-of-contents"></a>
 ## Table of Contents
 
-> 1. [Introduction](#1-introduction) 
-> 2. [Performance & Design Considerations](#2-performance--design-considerations) \
->    2.1 [CPU Considerations](#21-cpu-considerations) \
->    2.2 [GPU Considerations](#22-gpu-considerations)
-> 3. [Slate & UMG in Unreal](#3-slate--umg-in-unreal)
-> 4. [Slate](#4-slate) \
->    4.1 [Slate Units & DPI Scaling](#41-slate-units--dpi-scaling) \
->    4.2 [Slate Users](#42-slate-users) \
->    4.3 [Widget Layout](#43-widget-layout) \
->    4.4 [On Paint](#44-on-paint) \
->    4.5 [Widget Hierarchy](#45-widget-hierarchy) \
->    4.6 [Invalidation](#46-invalidation) \
->    4.7 [Slate Widget Examples(Slate Test Suite/Starship)](#47-slate-widget-examplesslate-test-suitestarship-suite) \
->    4.8 [Helpful Console Commands for Slate](#48-helpful-console-commands-for-slate)
-> 5. [UMG (Unreal Motion Graphics)](#5-umg-unreal-motion-graphics) \
->    5.1 [User Widget Hierarchy](#51-user-widget-hierarchy) \
->    5.2 [User Widget Animation](#52-user-widget-animation) \
->    5.3 [User Widget Events](#53-user-widget-events)
-> 6. [Common Widgets](#6-common-widgets)
-> 7. [Common Widget Functionality](#7-common-widget-functionality)
-> 8. [Input Framework(in relation to UMG/Slate)](#8-input-frameworkin-relation-to-umgslate) \
->    8.1 [Input Flow of Unreal Engine](#81-input-flow-of-unreal-engine) \
->    8.2 [Input Event Types](#82-input-event-types) \
->    8.3 [Input Modes](#83-input-modes)
-> 9. [Unreal's Focusing System](#9-unreals-focusing-system) \
->    9.1 [Navigation Grid Explanation](#91-navigation-grid-explanation) \
->    9.2 [Navigation Genesis](#92-navigation-genesis)
-> 10. [Split Screen](#10-split-screen) \
->     10.1 [Game Layer Manager](#101-game-layer-manager) \
->     10.2 [Viewport Layout](#102-viewport-layout)
-> 11. [Important Links](#11-important-links)
-> 12. [Important File Names](#12-important-file-names)
+> 1.0 [Introduction](#introduction)  \
+> 2.0 [Performance & Design Considerations](#performance--design-considerations) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1 [CPU Considerations](#cpu-considerations) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2 [GPU Considerations](#gpu-considerations) \
+> 3.0 [Slate & UMG in Unreal](#slate--umg-in-unreal) \
+> 4.0 [Slate](#slate) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.1 [Slate Widget Casting & Storing](#slate-widget-casting--storing) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2 [Slate Units & DPI Scaling](#slate-units--dpi-scaling) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.3 [Slate Users](#slate-users) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.4 [Widget Layout](#widget-layout) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.5 [On Paint](#on-paint) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.6 [Widget Ticking](#widget-ticking) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.7 [Widget Hierarchy](#widget-hierarchy) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.8 [Invalidation](#invalidation) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.9 [Slate Widget Examples(Slate Test Suite/Starship)](#slate-widget-examples) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.10 [Helpful Console Commands for Slate](#helpful-console-commands-for-slate) \
+> 5.0 [UMG (Unreal Motion Graphics)](#umg) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.1 [User Widget Hierarchy](#user-widget-hierarchy) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.2 [User Widget Animation](#user-widget-animation) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.3 [User Widget Events](#user-widget-events) \
+> 6.0 [Common Widgets](#common-widgets) \
+> 7.0 [Common Widget Functionality](#common-widget-functionality) \
+> 8.0 [UMG in relation to Levels/Worlds](#umg-in-relation-to-levels-worlds) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1 [HUD Actors](#hud-actors) \
+>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1.1 [HUD Drawing](#hud-drawing) \
+>     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.1.2 [HUD HitBoxes](#hud-hitboxes) \
+> 9.0 [Input Framework of Unreal Engine(relating to UMG/Slate)](#input-framework-of-unreal-engine) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.1 [Input Flow of Unreal Engine](#input-flow-of-unreal-engine) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.2 [Input Components](#input-components) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.3 [Input Event Types](#input-event-types) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9.4 [Input Modes](#input-modes) \
+> 10.0 [Unreal's Focusing System](#unreals-focusing-system) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.1 [Navigation Grid Explanation](#navigation-grid-explanation) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10.2 [Navigation Genesis](#navigation-genesis) \
+> 11.0 [Split Screen](#split-screen) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11.1 [Game Layer Manager](#game-layer-manager) \
+>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11.2 [Viewport Layout](#viewport-layout) \
+> 12.0 [Links](#links) \
+> 13.0 [Important File Names](#important-file-names)
 
 <a name="introduction"></a>
-## 1. Introduction
+## 1.0 Introduction
 
 This compendium is intended to teach the basics of UMG & Slate and to
 provide a base understanding of how to work with Unreal Engine’s UI
 framework. PLEASE let me know if there is anything about this document
-that can be improved upon because this is meant to help everybody!
+that can be improved upon because this is meant to help the community!
 
-An important note about skill level in programming and how its used in this
-document: usually when somebody refers to a concept as *“high level”* they
-mean its very complicated and requires a high skill level or a lot of
-experience, **BUT** in programming its flipped; where a *“high level”* concept is
-actually extremely easy to use and is a simple concept with little to no
-experience and the more *“low level”* it gets, the more complicated the
-concept becomes and requires a larger amount of experience.
-For example; **Blueprint** is a *“high level”* coding language, **C++** is a *“low level”*
-coding language.
+Please refer to the [FAQ Page](FAQ.md)(also linked at the top of the document) 
+if you have further questions regarding the document(or anything relating to the document).
 
-GeeksForGeeks has a great and simple article explaining the difference: \
-*<u>https://www.geeksforgeeks.org/difference-between-high-level-and-low-level-languages/ </u>*
+> An important note about skill level in programming and how its used in this
+> document: usually when somebody refers to a concept as *“high level”* they
+> mean its very complicated and requires a high skill level or a lot of
+> experience, **BUT** in programming its flipped; where a *“high level”* concept is
+> actually extremely easy to use and is a simple concept with little to no
+> experience and the more *“low level”* it gets, the more complicated the
+> concept becomes and requires a larger amount of experience.
+> For example; **Blueprint** is a *“high level”* coding language, **C++** is a *“low level”*
+> coding language.
+> 
+> GeeksForGeeks has a great and simple article explaining the difference: \
+> *<u>https://www.geeksforgeeks.org/difference-between-high-level-and-low-level-languages/ </u>*
 
-An important note about the two types of Unreal Engine:
-- **Launcher Version**: The version of the engine that you would download
-  from the Epic Games Launcher that exposes the engine to view but is
-  not intended to be modifiable and not being able to submit code
-  changes to Epic to integrate into Unreal Engine.
-- **Source Code Version**: The version of the engine that you would
-  clone/download from GitHub which gives full modifiable access to the Unreal
-  Engine as well as being able to submit code changes to Epic for them
-  to integrate into Unreal Engine’s future releases.
+> An important note about the two types of Unreal Engine:
+> - **Launcher Version**: The version of the engine that you would download
+>   from the Epic Games Launcher; the engine is exposed to view but 
+>   is not able to be modified, and is not able to submit code changes to Epic via GitHub.
+> - **Source Code Version**: The version of the engine that you would
+>   clone/download from GitHub; this gives full modifiable access to Unreal
+>   Engine as well as being able to submit code changes to Epic via GitHub Pull Request's for them
+>   to integrate into Unreal Engine’s future releases.
 
 *All pictures of the editor in this document are from the launcher version of the engine.*
 
@@ -89,9 +120,9 @@ What this compendium covers:
 - **Performance & Design considerations**
 - **Slate Framework**
 - **UMG Framework**
-- **The input framework in relation to UMG/Slate**
+- **The input framework of Unreal Engine(relating to UMG/Slate)**
 - **How the built in focusing system works**
-- **How splitscreen generally works**
+- **How split screen generally works**
 
 It is **NOT** intended to teach beginners how to use Unreal Engine in general,
 just this specific aspect of the engine which encompasses a lot of the
@@ -108,16 +139,16 @@ documentation but is intended to shed light on what some of the official
 documentation means BUT it is not a redefinition of something that is
 already explained.
 
-At the bottom of the document is a list of helpful links and files for you to refer back to \
-(you can reach them easily using the [Table of Contents](#table-of-contents) at the top of the file).
+*At the bottom of the document is a list of helpful links and files for you to refer back to \
+(you can reach them easily using the [Table of Contents](#table-of-contents) at the top of the file).*
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
-<a name="performance-design-considerations"></a>
-## 2. Performance & Design Considerations
+<a name="performance--design-considerations"></a>
+## 2.0 Performance & Design Considerations
 
 **UMG** & **Slate** are extremely performant frameworks for both the rendering (GPU) and computation (CPU) aspects,
 <a name="cpu-considerations"></a>
-#### 2.1 CPU Considerations
+### 2.1 CPU Considerations
 Slate/UMG use the concept of **Invalidation** and caching rather than constantly polling the data. \
 The reason for this is because sometimes polling is either not performant or functionally incorrect(for example when using multithreaded code). \
 Typically performant UI in Unreal is intended to be **event based**. \
@@ -126,20 +157,19 @@ which is significantly more taxing on the CPU than using an event based framewor
 UI Complexity is usually in relation to the number of active and visible widgets 
 (so offscreen widgets don’t tick and should not run functionality if not on screen). \
 The general technical design with UI is to be reactive to game code but not
-to drive the game code to keep it performant and reusable, only to start
-executing the game code and to listen if that game code succeeded or
-failed.
+to drive the game code to keep it performant and reusable, only to start 
+executing the game code and to listen if that game code succeeded or failed.
 
 |                                                                                             **CPU Technial Design Scenario**                                                                                              |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | In an RTS you need to have a UI marker for seeing where to place a squad of soldiers in the world,<br/>the player selects a valid spot in the world for where to place the UI marker and then the troops will move to it. |
 
 | **Good Example**                                                                                                                                                                                                                                                                    |                                                                                                                                                       **Bad Example** |
-|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | A player manager object creates the UI marker widget and manages where to move the troops.<br/>The world position that is chosen by the player is fed into the UI marker’s widget(from the player manager object) and the widget itself handles positioning itself in screen space. | The player picks a world position and feeds that directly to the UI marker, the UI marker then directly tells the troops where to move to and handles their movement. |
 
 <a name="gpu-considerations"></a>
-#### 2.2 GPU Considerations
+### 2.2 GPU Considerations
 Most of the general GPU considerations you would have to worry about are
 the same when working in 3D space, such as:
 - **Texture memory sizes**
@@ -147,34 +177,22 @@ the same when working in 3D space, such as:
 - **Draw calls**
 
 If your framework is built out properly, GPU optimization wouldn’t be an issue when it comes to Slate/UMG due to it using some of Unreal’s 3D
-rendering features to offload some of the work. \
+rendering features to unify some of the work. \
 An important gotcha with Unreal Engine is that it does not have a robust method of swapping between different textures depending on platform type. \
 For example; switching from Mobile to PC, you will have to build those systems out yourself so that unused textures are not cooked, loaded, \
 referenced, or even stored on the hard disk on the platform that you do not want them to be on.
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
-<a name="slate-umg-in-unreal"></a>
-## 3. Slate & UMG in Unreal
-Unreal Engine uses **Slate**; its custom **UI Programming Framework**. It is used \
+<a name="slate--umg-in-unreal"></a>
+## 3.0 Slate & UMG in Unreal
+Unreal Engine uses **Slate**; its custom **UI Programming Framework**. It is used 
 for both game and non-game applications using Slate Widgets. \
 Some examples include:
 - The Unreal Editor is built entirely using Slate.
 - (Credit to Nick Darnell for explaining this) The Epic Games Launcher uses Slate as a frame and displays a chromium app.
 - The Halo Master Chief Collection uses UMG/Slate(TBD) for its UI(this is based off public announcements and not insider knowledge).
 
-**Slate** is entirely used within C++ using declarative syntax and is **<u>NOT</u>** derived from the `UObject` hierarchy. \
-Because it is not derived from `UObject`, that means you can’t use Unreal’s object casting system to get specific Slate \
-types, the way you should cast for them is using `static_cast<>` or `const_cast<>` below is an example using `static_cast<>`.
-
-```c++
-// This is the recommended way of saving a pointer to a widget(to use SharedPtr/WeakPtr/SharedRef's)
-// Sometimes it's fine to use a raw pointer(depends on what you're doing)
-TSharedPtr<SWidget> genericWidget;
-if(genericWidget->GetType() == "SMyCoolWidget")
-{
-    SMyCoolWidget* coolWidgetPtr = static_cast<SMyCoolWidget*>(genericWidget.Get());
-}
-```
+**Slate** is entirely used within C++ using declarative syntax and is **<u>NOT</u>** derived from the `UObject` hierarchy.
 
 Pros of Slate:
 - **Performance gains from entirely being in C++**
@@ -210,7 +228,7 @@ Cons of UMG:
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="slate"></a>
-## 4. Slate
+## 4.0 Slate
 
 The Slate Framework has two main parts:
 - **Slate Renderer**
@@ -222,8 +240,81 @@ The Slate Framework has two main parts:
   or to the rest of the game engine (yes this is where the raw inputs are received before UI element’s get them) and registering \
   (creating)/tracking the Slate Users.
 
-<a name="slate-units-dpi-scaling"></a>
-#### 4.1 Slate Units & DPI Scaling
+<a name="slate-widget-casting--storing"></a>
+### 4.1 Slate Widget Casting & Storing
+
+Since **Slate Widgets** are **<u>NOT</u>** derived from `UObject`, that means you can’t use Unreal’s object casting system to get specific Slate
+types as well as not being able to take advantage of `UObject`'s garbage collection. 
+Instead Slate uses Unreal's Shared Pointers(also known as Smart Pointers) Framework for its memory management of Widgets. 
+
+There are three shared pointer template types:
+- `TSharedRef`: Non-nullable, reference counted, non-intrusive authoritative smart pointer.
+- `TSharedPtr`: Reference counted, non-intrusive authoritative smart pointer.
+- `TWeakPtr`: Reference counted, non-intrusive weak pointer reference.
+
+> An important note is that when all reference counts are gone for a shared reference; the object will be deleted and a limitation is that it will only call the default destructor so custom destructors with parameters are not usable.
+
+Using shared pointers allows you to assume ownership of these slate widgets without having to call delete on them. \
+*I recommend taking a look at [Epic's Documentation on Smart Pointers](https://docs.unrealengine.com/5.0/en-US/smart-pointers-in-unreal-engine/)*
+
+> An important note that when casting Slate Widget's it is totally fine to use standard casting such as `static_cast` and `const_cast`, 
+> but I do recommend using Unreal's templated cast versions listed below to save time.
+
+There are also helper classes and functions to make life easier regarding using Unreal's Shared Pointers framework and this includes working with Slate.
+
+- `MakeShareable`: Used to initialize shared pointers from C++ pointers.
+  ```c++
+  TSharedPtr<FMyCustomCalculator> calculator = MakeShareable(new FMyCustomCalculator());
+  ```
+- `TSharedFromThis`: Used with custom C++ classes as something you inherit from to allow it to be used with Unreal's Shared Pointers framework. 
+  ```c++
+  /** Special class to handle custom calculations */
+  class FMyCustomCalculator : public TSharedFromThis<FMyCustomCalculator>
+  {
+  public:
+    FMyCustomCalculator()
+    { }
+    // ...
+  };
+  ```
+- `StaticCastSharedRef`: Static cast utility function, typically used to downcast to a derived type when getting a smart reference.
+  ```c++
+  void MyFunction(FMySubCalculator& CalculatorItem)
+  {
+    TWeakPtr<FMyCustomCalculator> calculator = StaticCastSharedRef<FMyCustomCalculator>(CalculatorItem.AsShared()); 
+    // ...
+  }
+  ```
+- `ConstCastSharedRef`: Converts a `const` reference to `mutable` smart reference.
+  ```c++
+  void MyFunction(TSharedRef<const FMyCustomCalculator> CalculatorItem)
+  {
+    TSharedRef<FMyCustomCalculator> calculator = ConstCastSharedRef<FMyCustomCalculator>(CalculatorItem); 
+    // ...
+  }
+  ```
+- `StaticCastSharedPtr`: Dynamic cast utility function, typically used to downcast to a derived type. This is what you would use instead of `static_cast`(its not a requirement but it requires less typing).
+  ```c++
+  void MyFunction(TWeakPtr<FMyCustomCalculator> CalculatorItem)
+  {
+    TSharedPtr<FMyCustomCalculator> calculator = StaticCastSharedPtr<FMyCustomCalculator>(CalculatorItem.Pin()); 
+    // ...
+  }
+  ```
+- `ConstCastSharedPtr`: Converts a `const` smart pointer to `mutable` smart pointer. This is what you would use instead of `const_cast<>`(its not a requirement but it requires less typing).
+  ```c++
+  void MyFunction(TSharedPtr<const FMyCustomCalculator> CalculatorItem)
+  {
+    TWeakPtr<FMyCustomCalculator> calculator = ConstCastSharedPtr<FMyCustomCalculator>(CalculatorItem); 
+    // ...
+  }
+  ```
+For more information please refer to these files:
+- Examples using the different utility functions and templates: `Engine/Source/Runtime/Core/Public/Templates/SharedPointerTesting.ini`
+- Explanation of Unreal Engine's Shared Pointer System: `Engine/Source/Runtime/Core/Public/Templates/SharedPointer.h`
+
+<a name="slate-units--dpi-scaling"></a>
+### 4.2 Slate Units & DPI Scaling
 - **Slate Units**: Unreal’s way of making a UI that is independent of pixel density so your application can support multiple platforms easily. \
 This allows for it to be more precise and independent of the pixel density of the user’s monitor. \
 A single slate unit can vary in physical size but by default it is conveniently set to 1 pixel for each slate unit. \
@@ -237,7 +328,7 @@ Epic themselves admits it’s not perfect but it works well for most-all use cas
 [Epic's AnswerHub explaining Slate Units](https://forums.unrealengine.com/t/what-are-slate-units/310703)
 
 <a name="slate-users"></a>
-#### 4.2 Slate Users
+### 4.3 Slate Users
 **Slate Users** are classes that represent that a local individual input-providing user \
 (for example; in split screen co-op with 3 players then there are 3 Slate Users, but in an online game with 32 players and no split screen then the only local player is the only Slate User on this device). \
 Each **Platform’s SDK** will tell the **Slate Application** to register (create) a new Slate User when a new connection is added (for example when a new controller is plugged in). \
@@ -281,7 +372,7 @@ if(FSlateApplication::IsInitialized())
 *Code example for how to get the Slate User using the player controller's local player object*
 
 <a name="widget-layout"></a>
-#### 4.3 Widget Layout
+### 4.4 Widget Layout
 
 The way a Slate Widgets layout is calculated is done in two passes (listed in order of execution):
 1. **Cache Desired Size**: Calculate how much space each widget wants to occupy, \
@@ -307,7 +398,7 @@ The first horizontal box slot indicates that it wants the desired size of the ch
 while the second slot wants to fill the available width which is 11 slate units remaining for the image widget.
 
 <a name="on-paint"></a>
-#### 4.4 On Paint
+### 4.5 On Paint
 
 **Drawing Slate** is the process where Slate will iterate over all visible widgets and create a list of **Draw Elements** to send to the rendering system, this list is created every frame.
 
@@ -315,8 +406,21 @@ This occurs in an On Paint function where it will do two things:
 - Arrange all the children based on their **Geometry** (desired size).
 - Paint the actual visuals related to this widget.
 
+<a name="widget-ticking"></a>
+### 4.6 Widget Ticking
+
+Slate Widget's(which also means UMG widget's) themselves do not tick, they do not have tick components and do not have tick groups.
+The order that Slate Widget's tick occurs is during the Paint pass with these calls originating from the Slate Application,
+so that a widget's tick function will only be called when it is on screen and being rendered:
+1. `FSlateApplication::Tick`
+2. `FSlateApplication::TickAndDrawWidgets`...
+3. `SWidget::Paint`
+4. `SWidget::OnPaint`...
+5. `SObjectWidget::Tick`
+6. `UUserWidget::NativeTick`(this is when Blueprint will receive tick too)
+
 <a name="widget-hierarchy"></a>
-#### 4.5 Widget Hierarchy
+### 4.7 Widget Hierarchy
 
 The concept of the **Widget Hierarchy** is done using child slots, which are optional objects that can be tied to a Slate Widget\
 (because some Widgets are not designed to have children such as the Image widget(**Leaf Widget**)) \
@@ -341,7 +445,7 @@ are a mix of functions and values:
 - **Event Handlers** (Delegate values and/or Functions): These are the event based hooks for the UI elements to change at runtime usually in the form of “OnSomething”.
 
 <a name="invalidation"></a>
-#### 4.6 Invalidation
+### 4.8 Invalidation
 
 To avoid having to calculate the desired size of the widget every frame (which can tax the CPU if it’s happening to a lot of Widgets at once), \
 Widgets have the concept of caching their desired size, but at runtime if the size of the widget changes (either through an animation or through game code) \
@@ -349,7 +453,7 @@ then it will **Invalidate** the widget to tell Slate that this widget needs to r
 This is an optimization to avoid polling for each widget's desired size every frame when it doesn’t need to recalculate it.
 
 <a name="slate-widget-examples"></a>
-#### 4.7 Slate Widget Examples(Slate Test Suite/Starship Suite)
+### 4.9 Slate Widget Examples(Slate Test Suite/Starship Suite)
 
 The **Slate Widget Examples** (also known as **Slate Test Suite** if using UE4/ **Starship Suite** if using UE5) \
 is a collection of Slate built examples such as radio buttons, responsive grid, color wheel, etc.
@@ -375,14 +479,14 @@ and build the Test Suite program(which will create the executable in `[EnginePat
 *Test Suite from UE4, currently the UE4 version of the test suite is more feature rich than Starship Suite in UE5.*
 
 <a name="helpful-console-commands-for-slate"></a>
-#### 4.8 Helpful Console Commands for Slate
+### 4.10 Helpful Console Commands for Slate
 - `Slate.HitTestGridDebugging [0/1]`: Flag for showing UMG/Slate focusing hit test grid.
 - `SlateDebugger.Invalidate.[Disable/Enable]`: Enables or disables the invalidation debugger visualizer.
 - `Slate.GlobalScrollAmount [float value]` (default = 32.0): The amount used for scrolling for each click of the mouse wheel(in Slate Units).
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="umg"></a>
-## 5. UMG (Unreal Motion Graphics)
+## 5.0 UMG (Unreal Motion Graphics)
 
 The UMG framework are UObject’s that have to be tied to a specific **Player Controller** known as the **Owning Player**(to account for split screen), \
 if nothing is inputted for the owning player then it will automatically be connected to the first local player in the level.
@@ -400,7 +504,7 @@ User Widgets cannot inherit their **Widget Hierarchy** like how Actors do with C
 (so making a User Widget abstract will allow for other classes to inherit from it or creating the class in C++ will allow for inheritance).
 
 <a name="user-widget-hierarchy"></a>
-#### 5.1 User Widget Hierarchy
+### 5.1 User Widget Hierarchy
 
 Each **User Widget** is the root `UWidget` by design, so a User Widget can have no widgets inside it and is by default a **Compound Widget** that can only have 1 child, \
 but that child can have other children under it and causes the cascading effect of child widgets within each User Widget's **Tree Hierarchy**. \
@@ -408,7 +512,7 @@ but that child can have other children under it and causes the cascading effect 
 *Example of Hierarchy panel in the UMG Designer window*
 
 <a name="user-widget-animation"></a>
-#### 5.2 User Widget Animation
+### 5.2 User Widget Animation
 
 Every User Widget is able to create custom animations using the widgets within that User Widget via **Sequencer**. \
 You can create these animations inside the Widget Designer and you’re able to modify things relating to that widget specifically such as render transform, widget visibility, etc. \
@@ -422,7 +526,7 @@ because for an animation to play at all, the user widget needs to be able to tic
 if the user widgets ability to tick is turned off(by setting its tick frequency to never) then it will not tick the animation object.
 
 <a name="user-widget-events"></a>
-#### 5.3 User Widget Events
+### 5.3 User Widget Events
 
 Every user widget has built in events that you can implement and add your own functionality from;
 
@@ -448,56 +552,122 @@ Occurs when focus is given to this User Widget(only this widget). It requires th
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widgets"></a>
-## 6. Common Widgets
+## 6.0 Common Widgets
 
 There is a large amount of commonly used widgets in Unreal Engine, at its basic core elements. \
 Most/All of your UI that used UMG/Slate will probably be built from a combination of these widgets:
 
-@TODO
-*[Insert picture for each widget as an simple example of it]*
-
 - **Text Block** *[Leaf Widget]*: Handles displaying static text that can be changed at runtime by setting it to another text value. \
 TextBlock widgets allow for a custom font to be used(including its typeface if the font has any others), customizing its text size, letter spacing(also known as kerning), its outline settings(this will offset the rendered text), \
-apply materials to the letters themselves, add a shadow offset(this will offset the rendered text), set its justification(how the text is aligned), etc.
-- **Rich Text Block** *[Leaf Widget]*: Works similarly to TextBlock widgets but allows for the use of custom images, glyphs, multiple fonts, etc to be used within the same text value at once.
-- **Image** *[Leaf Widget]*: Handles displaying either a texture or a material that uses the UI domain to display it.
-- **Border** *[Compound Widget]*: Can only have 1 child widget. Displays child widget in front of this widget, basically an Image widget that can have a child.
-- **Button** *[Compound Widget]*: Can only have 1 child widget. Displays that child in front of this widget, can be interacted with and focused. Returns when it is clicked/pressed/released/hovered/unhovered. You can also set its click(mouse button) method, touch(touch screen’s) method, and press(keyboard & gamepad) method.
-- **Check Box** *[Leaf Widget]*: Handles displaying a specific image/material depending on what state the check box is in, it can be clicked(or set to a specific state) and meant to show if something is on/off.
-- **Progress Bar** *[Leaf Widget]*: Handles displaying an image/material in front of this widget via a scaled 0-1 percentage value via its Bar Fill Type.
-  - **Left to Right**: Fills the progress bar from left to right.
-  - **Right to Left**: Fills the progress bar from right to left.
-  - **Fill from Center**: Linearly fills the progress bar on both X and Y from the center towards the edges.
-  - **Top to Bottom**: Fills the progress bar from top to bottom.
-  - **Bottom to Top**: Fills the progress bar from bottom to top.
-- **Slider** *[Leaf Widget]*: Similar to the progress bar except it is interactable and you can change the orientation of it from horizontal to vertical and set its step size(for keyboard/gamepad presses).
-- **Editable Text** *[Leaf Widget]*: A field for the user to be able to type in one line of text, allows for hint text and can be set to read only, is password(so it only shows a dot instead of the actual text), as well as being able to adjust settings on it like a normal text block widget.
-- **Editable Text(Multi-Line)** *[Leaf Widget]*: Same as Editable Text widget except the user can type in multiple lines of text instead of one.
-- **Text Box** *[Leaf Widget]*: Same as Editable Text except it is wrapped with an image/material behind the text.
-- **Text Box(Multi-Line)** *[Leaf Widget]*: Same as Editable Text(Multi-Line) except it is wrapped with an image/material behind the text.
-- **Spin Box** *[Leaf Widget]*: Displays a number(can be set to allow decimals or not) that the user can input or use the mouse and interact with it to slide and increase/decrease the number.
-- **Combo Box(String)** *[Leaf Widget]*: A drop down box widget that displays a string(NOT TEXT, so its not localizable) value when selected and displays its options as well.
-- **Invalidation Box** *[Compound Widget]*: Can only have 1 child widget. This will control when that child widget is invalided for its layout/geometry passes, very useful for performance optimization.
+apply materials to the letters themselves, add a shadow offset(this will offset the rendered text), set its justification(how the text is aligned), etc. \
+  ![Text Block Widget](images/common_widgets/w_textblock.png)
+- **Rich Text Block** *[Leaf Widget]*: Works similarly to TextBlock widgets but allows for the use of custom images, glyphs, multiple fonts, etc to be used within the same text value at once. \
+  ![Rich Text Block Widget](images/common_widgets/w_richtextblock.png)
+- **Image** *[Leaf Widget]*: Handles displaying either a texture or a material that uses the UI domain to display it. \
+  ![Image Widget](images/common_widgets/w_image.png)
+- **Border** *[Compound Widget]*: Can only have 1 child widget. Displays child widget in front of this widget, basically an Image widget that can have a child. \
+  ![Border Widget](images/common_widgets/w_border.png)
+- **Button** *[Compound Widget]*: Can only have 1 child widget. Displays that child in front of this widget, can be interacted with and focused. Returns when it is clicked/pressed/released/hovered/unhovered. You can also set its click(mouse button) method, touch(touch screen’s) method, and press(keyboard & gamepad) method. \
+  ![Button Widget](images/common_widgets/w_button.png)
+- **Check Box** *[Leaf Widget]*: Handles displaying a specific image/material depending on what state the check box is in, it can be clicked(or set to a specific state) and meant to show if something is on/off. \
+  ![Checkbox Widget](images/common_widgets/w_checkbox.png)
+- **Progress Bar** *[Leaf Widget]*: Handles displaying an image/material in front of this widget via a scaled 0-1 fill percentage value via its Bar Fill Type & Bar Fill Style.
+  - Fill Types: 
+    - **Left to Right**: Fills the progress bar from left to right. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_left_right_mask.png" width="305" height="144"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_left_right_scale.png" width="318" height="146.5"> \
+    *Scaled Version*
+    - **Right to Left**: Fills the progress bar from right to left. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_right_left_mask.png" width="299" height="144.5"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_right_left_scale.png" width="295.5" height="144.5"> \
+    *Scaled Version*
+    - **Fill from Center**: Linearly fills the progress bar on both X and Y from the center towards the edges. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_mask.png" width="297.5" height="136.5"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_scale.png" width="290" height="140"> \
+    *Scaled Version*
+    - **Fill from Center Horizontal**: Linearly fills the progress bar on the X axis from the center towards the edges. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_horizontal_mask.png" width="283.5" height="134.5"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_horizontal_scale.png" width="298" height="144"> \
+    *Scaled Version*
+    - **Fill from Center Vertical**: Linearly fills the progress bar on the Y axis from the center towards the edges. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_vertical_mask.png" width="298" height="147.5"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_center_vertical_scale.png" width="290" height="133"> \
+    *Scaled Version*
+    - **Top to Bottom**: Fills the progress bar from top to bottom. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_top_bottom_mask.png" width="300" height="138.5"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_top_bottom_scale.png" width="303.5" height="140.5"> \
+    *Scaled Version*
+    - **Bottom to Top**: Fills the progress bar from bottom to top. \
+    <img src="images/common_widgets/progress_bars/w_progressbar_bottom_top_mask.png" width="297.5" height="136"> \
+    *Masked Version* \
+    <img src="images/common_widgets/progress_bars/w_progressbar_bottom_top_scale.png" width="293" height="142.5"> \
+    *Scaled Version*
+  - Fill Styles:
+    - **Mask**: The progress bar's fill image is masked out based on the fill percentage and fill type.
+    - **Scale**: The progress bar's fill image is scaled and stretched/squished based on the fill percentage and fill type.
+- **Slider** *[Leaf Widget]*: Similar to the progress bar except it is interactable and you can change the orientation of it from horizontal to vertical and set its step size(for keyboard/gamepad presses). \
+  ![Slider Widget](images/common_widgets/w_slider.png)
+- **Editable Text** *[Leaf Widget]*: A field for the user to be able to type in one line of text, allows for hint text and can be set to read only, is password(so it only shows a dot instead of the actual text), as well as being able to adjust settings on it like a normal text block widget. \
+  ![Editable Text Widget](images/common_widgets/w_editable_text.png)
+- **Editable Text(Multi-Line)** *[Leaf Widget]*: Same as Editable Text widget except the user can type in multiple lines of text instead of one. \
+  ![Editable Text (Multi-Line) Widget](images/common_widgets/w_editable_text_multi.png)
+- **Text Box** *[Leaf Widget]*: Same as Editable Text except it is wrapped with an image/material behind the text. \
+  ![Text Box Widget](images/common_widgets/w_textbox.png)
+- **Text Box(Multi-Line)** *[Leaf Widget]*: Same as Editable Text(Multi-Line) except it is wrapped with an image/material behind the text. \
+  ![Text Box (Multi-Line) Widget](images/common_widgets/w_textbox_multi.png)
+- **Spin Box** *[Leaf Widget]*: Displays a number(can be set to allow decimals or not) that the user can input or use the mouse and interact with it to slide and increase/decrease the number. \
+  ![Spin Box Widget](images/common_widgets/w_spinbox.png)
+- **Combo Box(String)** *[Leaf Widget]*: A drop down box widget that displays a string(NOT TEXT, so its not localizable) value when selected and displays its options as well. \
+  ![Combo Box Widget](images/common_widgets/w_combobox.png)
+- **Invalidation Box** *[Compound Widget]*: Can only have 1 child widget. This will control when that child widget is invalided for its layout/geometry passes, very useful for performance optimization. *Can't really use a picture for this because it wraps entirely around the widget and is invisible*.
 - **Retainer Box** *[Compound Widget]*: Can only have 1 child widget. This will render a material over its child widget and only its child widget so it will not render that material over background space that the child widget does not occupy with its render. \
-For example if you wrap a Text Block with a Retainer Box, the material will only apply over the text and not the space between each letter.
-- **Throbber** *[Leaf Widget]*: Displays an image/material in a specific animated pattern. Useful for showing something is loading.
+For example if you wrap a Text Block with a Retainer Box, the material will only apply over the text and not the space between each letter. \
+  ![Retainer Box Widget](images/common_widgets/w_retainerbox.png) \
+  *The retainer box's hierarchy in the designer* \
+  ![Retainer Box Material Widget](images/common_widgets/w_retainerbox_material.png) \
+  *The retainer box's material* \
+  ![Retainer Box Result Widget](images/common_widgets/w_retainerbox_result.png) \
+  *The retainer box at runtime(when running play in editor)*
+- **Throbber** *[Leaf Widget]*: Displays an image/material in a specific animated pattern. Useful for showing something is loading. \
+  ![Throbber Widget](images/common_widgets/w_throbber.png)
 - **Circular Throbber** *[Leaf Widget]*: A version of the throbber that moves the images/materials in a circle. \
-*A note from the author, “Please change the throbber’s image with something other than the default image in your final products if possible, thank you.”*
+  ![Circular Throbber Widget](images/common_widgets/w_throbber_circular.png)
+  - > *A note from the author; “Please change the throbber’s image with something other than the default image in your final products if possible. I'm tired of seeing the default throbber in full release products, you can do better! Thank you.”*
 - **Spacer** *[Leaf Widget]*: This widget does not have a visual representation and it just provides padding and space between other widgets, recommended to use this rather than padding within slots if your UI design is changing constantly to make rapid iteration easier.
 - **Background Blur** *[Compound Widget]*: Can only have 1 child widget. Basically an image widget with its child rendered behind it, and blurs the rendered result of that child widget using Gaussian Blur. \
-Recommended to use this with proper clipping area’s setup otherwise use a custom material to make it easier for artists to modify.
-- **Input Key Selector** *[Leaf Widget]*: Allows for the user to press an input while focusing this widget and it will display what input that is.
+Recommended to use this with proper clipping area’s setup otherwise use a custom material to make it easier for artists to modify. \
+  ![Background Blur Widget](images/common_widgets/w_background_blur.png)
+- **Input Key Selector** *[Leaf Widget]*: Allows for the user to press an input while focusing this widget and it will display what input that is. \
+  ![Input Key Selector Widget](images/common_widgets/w_input_key_selector.png)
 - **Canvas Panel** *[Panel Widget]*: This is the default widget found in newly created User Widgets, allows for the designer to place child widgets at arbitrary locations, anchored and z-ordered with other children of this canvas. \
-It uses absolute layout for its placement so it's good for on screen indicators that follow a specific in-world object or something that can move around the entire screen.
-- **Horizontal Box** *[Panel Widget]*: Allows for its child widgets to be laid out in a horizontal flow moving from left to right with 0 index as the farthest left and its last widget being farthest right.
+It uses absolute layout for its placement so it's good for on screen indicators that follow a specific in-world object or something that can move around the entire screen. \
+  ![Canvas Panel Widget](images/common_widgets/w_canvas_panel.png)
+- **Horizontal Box** *[Panel Widget]*: Allows for its child widgets to be laid out in a horizontal flow moving from left to right with 0 index as the farthest left and its last widget being farthest right. \
+  ![Horizontal Box Widget](images/common_widgets/w_horizontalbox.png)
 - **Vertical Box** *[Panel Widget]*: Works the same as horizontal boxes except it lays out its children in a vertical flow moving from top to bottom, with 0 index as the farthest top widget and its last widget being the farthest bottom widget. \
-*Vertical Box and Horizontal Box do not scroll, to allow for that you would have to use a scroll box widget or something similar.*
-- **Scroll Box** *[Panel Widget]*: Works the same way as the vertical box AND the horizontal box(has to be set to either vertical or horizontal) but allows them to be scrollable. Does not support virtualization.
-- **Size Box** *[Compound Widget]*: Can only have 1 child widget. Allows for this widget to specify the desired size of its child widget(since not all widgets will report a desired size because they are dependent on their own child widgets).
-- **Scale Box** *[Compound Widget]*: Can only have 1 child widget. Allows for this widget to have its child scaled to fit a constrained size on this box's allotted area.
-- **Overlay** *[Panel Widget]*: Displays widgets stacked on top of each other based on their index within the child widgets. This widget is extremely useful to quickly overlay a widget over another widget quickly.
-- **Grid Panel** *[Panel Widget]*: Allows child widgets to automatically be placed in a grid like pattern resembling a table that retains the width of every column.
-- **Uniform Grid Panel** *[Panel Widget]*: Basically the grid panel but it will evenly divide up available space between all of its children.
+*Vertical Box and Horizontal Box do not scroll, to allow for that you would have to use a scroll box widget or something similar.* \
+  ![Vertical Box Widget](images/common_widgets/w_verticalbox.png)
+- **Scroll Box** *[Panel Widget]*: Works the same way as the vertical box AND the horizontal box(has to be set to either vertical or horizontal) but allows them to be scrollable. Does not support virtualization. \
+  ![Scroll Box Widget](images/common_widgets/w_scrollbox.png)
+- **Size Box** *[Compound Widget]*: Can only have 1 child widget. Allows for this widget to specify the desired size of its child widget(since not all widgets will report a desired size because they are dependent on their own child widgets). \
+  ![Size Box Widget](images/common_widgets/w_sizebox.png)
+- **Scale Box** *[Compound Widget]*: Can only have 1 child widget. Allows for this widget to have its child scaled to fit a constrained size on this box's allotted area. \
+  ![Scale Box Widget](images/common_widgets/w_scalebox.png) \
+  *In this example the scale box is resizing the image to fit uniformly*
+- **Overlay** *[Panel Widget]*: Displays widgets stacked on top of each other based on their index within the child widgets. This widget is extremely useful to quickly overlay a widget over another widget quickly. \
+  ![Overlay Widget](images/common_widgets/w_overlay.png) \
+  *The text and the image are children of the overlay widget*
+- **Grid Panel** *[Panel Widget]*: Allows child widgets to automatically be placed in a grid like pattern resembling a table that retains the width of every column. \
+  ![Grid Panel Widget](images/common_widgets/w_gridpanel.png)
+  *This grid has been configured to fill the space between each column and row, yours may look different depending on how you configured it*
+- **Uniform Grid Panel** *[Panel Widget]*: Basically the grid panel but it will evenly divide up available space between all of its children. \
+  ![Uniform Grid Panel Widget](images/common_widgets/w_uniformgrid.png)
 - **Widget Switcher** *[Panel Widget]*: This will only display one of its child widgets at a time via its child index but it will load all of them(not good for main pages, just smaller stuff) and initialize, construct all of them when the widget switcher is loaded, initialized, constructed.
 - **Safe Zone** *[Compound Widget]*: Can only have 1 child widget. This widget is special where it will apply padding to the top/bottom/left/right sides of its child widget inwards to account for what device this widget is being shown on, \
 so for example on some mobile devices with a notch on one side, the safe zone will account for that and add padding to its child widget so it does not get cut off by the notch, as well as accounting for tv’s with extra pixels under the bezel, \
@@ -509,97 +679,241 @@ You can also use some helpful debug console commands for simulating the safe zon
     - 0: Do not display the safe zone overlay
     - 1: Display the overlay for the title safe zone
     - 2: Display the overlay for the action safe zone
+![Safe Zone Widget](images/common_widgets/w_safezone.png) \
+*In this example we wrapped a canvas panel with a save zone so it pushes the canvas away from the area of the screen that would be inaccessible due to the screen's notch or operating system*
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="common-widget-functionality"></a>
-## 7. Common Widget Functionality
+## 7.0 Common Widget Functionality
 
 Each widget has its own functionality and use while still containing a common functionality across all the widgets such as:
 
-@TODO
-*[Insert picture for each value of this setting in the editor]*
-
 - **Accessibility**: Each widget will listen to the project’s default settings for accessibility, these settings can be overridden for each widget and can affect its own children, \
 going over accessibility is out of scope for this document but here is an official Epic approved course going over it: \
-[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine) \
-(also in the list of important links at the top of the document).
-- **Tool Tip Text**: A tool tip text widget that is either using the default widget or your own custom one, to show when the user hovers over the widget with the mouse.
-- **Is Enabled**: Flag to know if this widget is enabled/disabled and if it can be modified interactively by the user.
-- **Visibility**: The render visibility and interactivity visibility of the widget. \
-@TODO
-*[Insert picture for each value of this setting in the editor]*
+[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine). \
+![Accessibility Fields Overview](images/common_widget_func/accessibility_overview.png)
+  - **Override Accessible Defaults**: When enabled will override the default accessibility behavior and text for this widget.
+    - **Can Children be Accessible**: Flag to know if children of this widget should be as distinct accessible widgets.
+    - **Accessible Behavior**: Setting for whether or not this widget is accessible, including how to describe it. When using the "custom" option, you're able to enter in your own accessible text.
+      ![Accessibility Behavior Overview](images/common_widget_func/accessibility_behavior.png)
+    - **Accessible Summary Behavior**: Setting for how to describe this widget when it's being presented via a summary of a parent widget. When using the "custom" option, you're able to enter in your own accessible text.
+      ![Accessibility Summary Behavior Overview](images/common_widget_func/accessibility_summary_behavior.png)
+- **Tool Tip Text**: A tool tip text widget that is either using the default widget or your own custom one, to show when the user hovers over the widget with the mouse. \
+  ![Tool Tip Text field](images/common_widget_func/tooltip_text.png)
+- **Is Enabled**: Flag to know if this widget is enabled/disabled and if it can be modified interactively by the user. \
+  ![Is Enabled Checkbox](images/common_widget_func/is_enabled.png)
+- **Visibility**: The render visibility and interactivity visibility of the widget.
   - **Visible**: Renders the widget and allows it to be intractable with the cursor.
   - **Collapsed**: Does not render, not interactable, and takes up no space in the layout.
   - **Hidden**: Does not render and is not interactable but occupies layout space.
   - **Not Hit-Testable/Hit Test Invisible(Self & All Children)**: Does render the widget but cannot be interacted with and does not allow its children to be interactable.
-  - **Not Hit-Testable/Hit Test Invisible(Self Only)**: Does render the widget but only this widget cannot be interacted with.
-- **Render Opacity**: The render opacity of this widget and does affect its children’s opacity as well. 0 = Invisible, 1 = Fully Visible.
+  - **Not Hit-Testable/Hit Test Invisible(Self Only)**: Does render the widget but only this widget cannot be interacted with. \
+  ![Visibility Enumerator Overview](images/common_widget_func/visibility_overview.png)
+- **Render Opacity**: The render opacity of this widget and does affect its children’s opacity as well. 0 = Invisible, 1 = Fully Visible. \
+  ![Render Opacity](images/common_widget_func/render_opacity.png)
 - **Render Transform**: Each widget has a render transform, which can affect the collision shape of the widget, but not override the original layout and paint information. \
 Think of it like it’s a modifier to the original transform information but it does not change its layout.
   - **Translation**: The X and Y location offset.
   - **Scale**: The X and Y scale of the widget.
   - **Shear**: The X and Y shear of the widget, also known as skew.
-  - **Angle**: The rotational of the widget. You only need 1 axis to rotate on but it can go between -180 and 180 degrees.
+  - **Angle**: The rotation of the widget. You only need 1 axis to rotate on in a 2D space but it can go between -180 and 180 degrees.
   - **Pivot**: The pivot offset of the widget that controls the location for where transforms are applied from. \
-  The actual value is a normalized amount starting at 0.5 on X/Y to be the center of the widget, 0.0 = Left/Top and 1.0 = Right/Bottom directions.
+  The actual value is a normalized amount starting at 0.5 on X/Y to be the center of the widget, 0.0 = Left/Top and 1.0 = Right/Bottom directions. \
+  ![Render Transform](images/common_widget_func/render_transform.png)
 - **Is Volatile**: This flag when set to true will mark this widget as non-cacheable so it always has to update its layout and geometry collision, it is defaulted to false because it is not commonly used but it is exposed in case you need it.
+  ![Is Volatile](images/common_widget_func/is_volatile.png)
 - **Clipping**: This is in regards to layout and geometry information where you can specify how the widget is clipped, \
 this does not batch together clipping spaces so this can have a performance cost depending on how many overlapping and clipping widgets you have on screen. \
-@TODO
-*[Insert picture for each value of this setting in the editor]*
-  - **Inherit**: This clipping space does not allow the widget to clip its children, but this widget and all its children inherit the clipping area of the last widget that was clipped above it.
-  - **Clip to Bounds**: This clipping space clips to the bounds of this widget, it intersects those bounds with any previous clipping area from above it.
+  ![Clipping Overview](images/common_widget_func/clipping_overview.png)
+  - **Inherit**: This clipping space does not allow the widget to clip its children, but this widget and all its children inherit the clipping area of the last widget that was clipped above it. \
+  ![Inherit Clipping Example](images/common_widget_func/clipping_inherit.png) \
+  *In this example there is a `Scroll Box` widget with its clipping set to `Inherit` and it is a child of a `Canvas Panel` widget that has its clipping set to `Clip to Bounds`.*
+  - **Clip to Bounds**: This clipping space clips to the bounds of this widget, it intersects those bounds with any previous clipping area from above it. \
+  ![Clip to Bounds Example](images/common_widget_func/clipping_clip_to_bounds.png) \
+  *In this example there is a `Scroll Box` widget with its clipping set to `Clip to Bounds` so its child widgets which are `Button`'s will be intersected when they go out of bounds of the `Scroll Box`*
   - **Clip to Bounds - Without Intersecting(Advanced)**: This clipping area clips to its bounds as well but it does **<u>NOT</u>** intersect with any existing clipping geometry, it will always push its own new clipping state. \
-  Allowing this widget to render outside the bounds of the hierarchy that does clip it. This will **<u>NOT</u>** allow you to ignore the clipping zone that is set to *"Always"* though.
+  Allowing this widget to render outside the bounds of the hierarchy that does clip it. This will **<u>NOT</u>** allow you to ignore the clipping zone that is set to *"Always"* though. \
+  ![Clip to Bounds Without Intersecting Example](images/common_widget_func/clipping_clip_to_bounds_intersect.png) \
+  *In this example there is a `Scroll Box` widget with its clipping set to `Clip to Bounds` and one of its child widgets has its clipping set to `Clip to Bounds - Without Intersecting(Advanced)`*
   - **Clip to Bounds - Always(Advanced)**: This clipping area clips to bounds as well and it always intersects those bounds with any previous clipping area. \
-  This clipping area **<U>CANNOT</U>** be ignored, it will always clip its children. Useful for hard barriers in the UI where you never want animations or other effects to break into/out of that region.
+  This clipping area **<U>CANNOT</U>** be ignored, it will always clip its children. Useful for hard barriers in the UI where you never want animations or other effects to break into/out of that region. \
+  ![Clip to Bounds Always Example](images/common_widget_func/clipping_clip_to_bounds_always.png) \
+  *In this example there are 3 main widgets; \
+  `Canvas Panel` with its clipping set to `Clip to Bounds - Always(Advanced)` \
+  `Scroll Box` within `Canvas Panel` with its clipping set to `Clip to Bounds` \
+  `Button` within `Scroll Box` with its clipping set to `Clip to Bounds - Without Intersecting(Advanced)`* 
   - **On Demand(Advanced)**: This clipping area clips to its bound when its Desired Size is larger than the allocated geometry in the layout. \
-  If it does occur where it needs to be clipped, then it will be treated like *“Always”*. According to the source code, this mode was primarily added for Text for when it is placed inside a container that eventually is resized to not be able to support the length of the text.
+  If it does occur where it needs to be clipped, then it will be treated like *“Always”*. According to the source code, this mode was primarily added for Text for when it is placed inside a container that eventually is resized to not be able to support the length of the text. \
+  ![Clipping On Demand Example](images/common_widget_func/clipping_on_demand.gif) \
+  *In this example we have a `Vertical Box` widget with clipping set to `Inherit` and a custom `Textblock` widget from Epic's Common UI Plugin that has its clipping set to `On Demand(Advanded)` so the text can scroll and be clipped properly(this example is also found in Epic's Context Examples project in the Common UI example map)*
 - **Navigation**: This is where you would add your navigation hooks for what widget to navigate to when using Unreal’s focusing framework. You can set these at runtime in Blueprint and in C++. \
-Please refer to the [Navigation Section](#unreals-focusing-system) for a more detailed explanation of the navigation flow.
-  - **Escape**: This navigation type will navigate to either another widget or try to reach any other widget and escape out of the bounds of this widget when navigated out in that direction.
-  - **Stop**: Navigation stops when trying to navigate out of this widget in that direction.
-  - **Wrap**: Navigation will attempt to wrap to the opposite bounds of this widget(for example in a vertical box, navigating to the bottom widget and having a wrap setting for down on the last widget will send navigation to the top widget of the vertical box).
-  - **Explicit**: Navigates to a specifically chosen widget when navigating out of this widget in that direction.
-  - **Custom**: Allows you to override what widget to navigate to using a function that can either return a widget or no widget(simulating the *“Stop”* navigation type). Intended for when navigating **FROM** or out of this widget to another widget in that specific direction.
+Please refer to the [Unreal's Focusing System](#unreals-focusing-system) section for a more detailed explanation of the navigation flow. \
+  ![Navigation Overview](images/common_widget_func/navigation_overview.png)
+  - **Escape**: This navigation type will navigate to either another widget or try to reach any other widget and escape out of the bounds of this widget when navigated out in that direction. \
+  ![Escape Navigation Example](images/common_widget_func/navigation_escape.png)
+  - **Stop**: Navigation stops when trying to navigate out of this widget in that direction. \
+  ![Stop Navigation Example](images/common_widget_func/navigation_stop.png)
+  - **Wrap**: Navigation will attempt to wrap to the opposite bounds of this widget(for example in a vertical box, navigating to the bottom widget and having a wrap setting for down on the last widget will send navigation to the top widget of the vertical box). \
+  ![Wrap Navigation Example](images/common_widget_func/navigation_wrap.png)
+  - **Explicit**: Navigates to a specifically chosen widget when navigating out of this widget in that direction. \
+  ![Explicit Navigation Example](images/common_widget_func/navigation_explicit.png) \
+  *You can only select other widgets that have their name edited in the editor when selecting it in the designer, otherwise in code you can just provide the widget itself regardless of if its been renamed or not.*
+  - **Custom**: Allows you to override what widget to navigate to using a function that can either return a widget or no widget(simulating the *“Stop”* navigation type). Intended for when navigating **FROM** or out of this widget to another widget in that specific direction. \
+  ![Custom Navigation Example](images/common_widget_func/navigation_custom.png)
   - **Custom Boundary**: Allows you to override what widget to navigate to using a function that can either return a widget or no widget(simulating the *“Stop”* navigation type). Intended for when navigating **TO** this widget from another widget in that specific direction, \
-  so if the direction is Left and you have it set to Custom Boundary then when you navigate from another widget to this one and it was a Left direction then it will run this function that it's bound to.
+  so if the direction is Left and you have it set to Custom Boundary then when you navigate from another widget to this one and it was a Left direction then it will run this function that it's bound to. \
+  ![Custom Boundary Navigation Example](images/common_widget_func/navigation_custom_boundary.png)
 - **Flow Direction**: For localization, allows you to set the flow direction of this widget regarding whether it is from left to right, or right to left. \
 Only certain widgets actually use it but it is in all widgets in case you want to add your own functionality based on flow direction. For example text widgets can flip from left to right/right to left depending on its flow direction and the language that specifies its flow direction to that.
+  - **Inherit**: Inherits the flow direction set by the parent widget.
+  - **Culture**: Begins laying out widgets using the current cultures layout direction preference, flipping the directionality of flows.
+  - **Left to Right**: Forces a Left to Right layout flow.
+  - **Right to Left**: Forces a Right to Left layout flow. \
+  ![Flow Direction Preference](images/common_widget_func/flow_direction_preference.png)
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
-<a name="input-framework"></a>
-## 8. Input Framework(in relation to UMG/Slate)
+<a name="umg-in-relation-to-levels-worlds"></a>
+## 8.0 UMG in relation to Levels/Worlds
+
+<a name="hud-actors"></a>
+### 8.1 HUD Actors
+
+HUD Actors are actors that are only spawned into the level by the Game Mode(I do not recommend spawning them manually unless you are overriding Game Mode functionality and know what you're doing).
+These actors do not replicate, are hidden by default, and are only spawned per local player controller(to account for split screen) and does not spawn on dedicated servers.
+
+The purpose of HUD Actors has changed with the release of Unreal Engine 4(it has stayed the same for Unreal Engine 5) from how it was in Unreal Engine 3 where it used to be the main source of functionality for UI elements in a level for a player,
+but with the release of UMG and Slate this caused HUD actors to become manager objects for UMG/Slate UI elements rather than driving every aspect of the UI's functionality but they are completely optional to how you want to architect your code.
+
+<a name="hud-drawing"></a>
+#### 8.1.1 HUD Drawing
+
+HUD Actors are tied to a specific player controller and have debug mode information, as well as the functionality to manually draw UI elements to the screen.
+Here is the list of drawable UI elements:
+- Text: Draws a string on the viewport canvas.
+- Line: Draws a 2D line on the viewport canvas in 2D screenspace.
+  - 2D Line: Draws a 2D line on the viewport canvas using pixel coordinates(which can be less accurate than screenspace due to how Unreal uses Slate Units).
+  - 3D Line: Tells the debug line drawing system for the world to draw a line in world space.
+- Rect: Draws an untextured quad(square/rectangle) on the viewport canvas.
+- Texture: Draws a textured quad(square/rectangle) on the viewport canvas.
+  - Texture Simple: Draws a textured quad(square/rectangle) assuming 1:1 texel density on the viewport canvas. 
+- Material: Draws a material-textured quad(square/rectangle) on the viewport canvas.
+  - Material Simple: Draws a material-textured quad(square/rectangle) on the viewport canvas but assumes UV's are (0.0, 0.0) and (1.0, 1.0).
+  - Material Triangle: Draws a material-textured triangle shape on the viewport canvas.
+> A important note is that the way that the HUD Actor draws images and other UI elements is by skipping a few steps of how UMG does it by directly getting the canvas and telling it to draw items.
+
+<a name="hud-hitboxes"></a>
+#### 8.1.2 HUD HitBoxes
+An interesting feature that HUD Actors have is they have the ability to know if portions of the screen are moused over/clicked/pressed and released.
+The way they do this is by using a class called `FHUDHitBox`.
+
+`FHUDHitBox` is a C++ only class that has these properties:
+- Coords `FVector2D`: Coordinates of top left of the hit box.
+- Size `FVector2D`: Size of the hit box.
+- Name `FName`: The name of the hit box.
+- bConsumesInput `boolean`: Does not consume actual input from the game.
+  - True: Prevents hit checks to other hit boxes.
+  - False: Allows the hit check to pass through to other hit boxes.
+- Priority `int32`: The priority of the hit box(could also be considered the Z-Order). Higher hit boxes are given priority first.
+
+The benefits of using a `FHUDHitBox` is that the HUD has mouse events that work with it, each event provides the name of the HitBox:
+- Click: Occurs when a hit box is clicked on.
+- Release: Occurs when a hit box is no longer clicked.
+- Begin Cursor Over: Occurs when a hit box is moused over.
+- End Cursor Over: Occurs when a hit box no longer has a mouse over it.
+
+The HUD Actor essentially has an array of HUD HitBoxes that can be added/removed at runtime. The array is a public variable in all HUD Actors but can only be accessed in C++:
+`HitBoxMap`(I know it says map but its not a map array). \
+There is two ways of adding a HitBox:
+- Calling `AddHitBox` and feeding in the parameters to create a `FHUDHitBox` class inside the function.
+- Manually creating the `FHUDHitBox` class and adding it to the `HitBoxMap` array.
+
+To remove a HitBox you can simply remove it from the `HitBoxMap` array.
+
+**[<span>&#11014;</span> Back to Top](#table-of-contents)**
+<a name="input-framework-of-unreal-engine"></a>
+## 9.0 Input Framework of Unreal Engine(relating to UMG/Slate)
 
 <a name="input-flow-of-unreal-engine"></a>
-#### 8.1 Input Flow of Unreal Engine
+### 9.1 Input Flow of Unreal Engine
 
 The general flow of input from the lowest level to the highest level is listed in order below in the order that an input is routed for each user \
 (each stage calls to the next stage of the input flow):
-1. **Engine Heartbeat Tick**: Unreal Engine’s heartbeat tick that notifies the platform SDKs to tick/update every frame.
-2. **Platform’s API**: SDK for Windows/Mac/Xbox/Playstation/etc which creates the Slate Application on initialization and sends inputs to it every frame per user.
-3. **Slate Application**: Handles routing that input between Input Processors, Slate UI and the game engine for game code to receive that input.
-4. **Input Processors** *optional*: These are C++ objects that can be dynamically added/removed from a list of Input Pre Processors within the Slate Application and receive input before anything else does and controls whether input is consumed or continues to be routed down. \
+1. **Engine Heartbeat Tick**`FEngineLoop`: Unreal Engine’s heartbeat tick that notifies the platform SDKs to tick/update every frame.
+2. **Platform’s API**`GenericApplication` & `FGenericApplicationMessageHandler`: SDK for Windows/Mac/Xbox/Playstation/etc which creates the Slate Application on initialization and sends inputs to it every frame per user.
+3. **Slate Application**`FSlateApplication`: Handles routing that input between Input Processors, Slate UI and the game engine for game code to receive that input.
+4. **Input Processors** *optional*`IInputProcessor`: These are C++ objects that can be dynamically added/removed from a list of Input Pre Processors within the Slate Application and receive input before anything else does and controls whether input is consumed or continues to be routed down. \
 It’s recommended you make one for your project because it gives you full control of your inputs before anything else in the engine gets them, there’s even an Epic made example in the engine called **AnalogCursor**! \
 This will also get input even if you're using Input Mode UI Only and receive inputs in the editor!
-5. **Slate UI Elements**: Any focused UI elements on screen that should be receiving input and can consume that input.
-   - This is also where **UMG Widgets** will receive input since UMG Widgets are just UObject based wrappers for Slate Widgets.
-6. **Game Viewport Client**: When looking through the code it may seem a little confusing for figuring out where the input is routed to the Game Viewport Client but basically at its core level, \
+5. **Slate UI Elements**`SWidget`: Any focused UI elements on screen that should be receiving input and can consume that input.
+   - This is also where **UMG Widgets**`UWidget` will receive input since UMG Widgets are just UObject based wrappers for Slate Widgets.
+6. **Game Viewport Client**`UGameViewportClient`: When looking through the code it may seem a little confusing for figuring out where the input is routed to the Game Viewport Client but basically at its core level, \
 if the Slate Application sent it to the Slate elements and it did not get consumed then it gets routed down through to the viewport widget which is a Slate widget(which is also the visual representation of the game’s final rendered image) that is then routed to the Game Viewport Client, \
 which handles propagating that input to the rest of the game engine and connecting with the game code. This is the point where depending on which input mode you’re using, Input Mode Game/Input Mode Game and UI will allow pawn’s to receive input.
-7. **Player Controller**: Once the Game Viewport receives an input, it has to go through some checks to make sure it's usable for game code and then tells the player controller to add it to its **Input Stack** inside `ProcessPlayerInput` which is called on from the player controller’s `Tick`.
-8. **Player Input**: A player input object that Player Controllers have for routing input to pawns and other objects that are on its Input Stack.
-9. **Input Component**: This is the commonly used method to receive input for game code that is also found in Epic's official documentation, it is an object that is on every actor that connects with the Player Controller’s Input Stack to receive input that is routed through the engine for the game code to listen to and receive inputs.
+7. **Player Controller**`APlayerController`: Once the Game Viewport receives an input, it has to go through some checks to make sure it's usable for game code and then tells the player controller to add it to its **Input Stack** inside `ProcessPlayerInput` which is called on from the player controller’s `Tick`.
+8. **Player Input**`UPlayerInput`: A player input object that Player Controllers have for routing input to pawns and other objects that are on its Input Stack.
+9. **Input Component**`UInputComponent`: This is the commonly used method to receive input for game code that is also found in Epic's official documentation, it is an object that is on every actor that connects with the Player Controller’s Input Stack to receive input that is routed through the engine for the game code to listen to and receive inputs.
 
 ![Input Flow Diagram](images/input_flow_diagram.png) \
 *Input Flow Diagram*
 
+<a name="input-components"></a>
+### 9.2 Input Components
+
+Input Component's are `UActorComponent`'s that are present in all actors(`AActor`). 
+These components will link with AxisMappings and ActionMappings as bindings in your project to run functionality.
+Each binding can consume input events which prevents other components on the input stack from processing that same input event.
+Input Components enable an actor to bind input events to delegate functions that are automatically handled by two classes:
+
+> - `APlayerController`:: Handles building the input stack and controls the order and prioritization.
+> - `UPlayerInput`:: Handles broadcasting those delegate functions and handles figuring out if an binding is being used or not.
+> 
+> Here is the actual order of operations for input components every frame. 
+> 
+> 1. [`APlayerController::TickPlayerInput`]
+>    1. [`UPlayerInput::Tick`]
+>    2. Collects mouse over events.
+>    3. Collects touch over events.
+>    4. [`APlayerController::ProcessPlayerInput`]
+>       1. [`APlayerController::BuildInputStack`]: Builds the stack of input components and the order that they will be processed. Can be overriden to control the order.
+>       2. [`UPlayerInput::ProcessInputStack`]: Actually start processing input.
+>          1. [`APlayerController::PreProcessInput`]
+>          2. Copies the state of non-axis key's.
+>             1. Starts going through the stack of input components from top to bottom;
+>                one by one(now consider we're working with a single input component but in a loop until there's no more input components).
+>                1. Builds the keymap for this input component to know what actions/axis work with specific key bindings to create input cords.
+>                2. Looks for touch bindings and decide if an input action binding has occured. If that's the case then track it.
+>                3. Looks for gesture bindings and decide if an input action binding has occurred. If that's the case then track it.
+>                4. Looks for axis bindings and decide if an input axis binding has occured. If that's the case then track it.
+>                5. Decide whether to consume key or not(based off book-keeping done in between building the keymap and reaching this point).
+>          3. Resets each input component's axis bindings to zero.
+>          4. Broadcasts Input Actions to the input components that should have functionality run.
+>          5. Broadcasts Input Axis to the input components that should have functionality run.
+>          6. [`APlayerController::PostProcessInput`]
+>          7. [`UPlayerInput::FinishProcessingPlayerInput`]: Finishes processing input for this frame by saving if inputs are now being held. Cleaning up values for next frame.
+>          8. Clears all the bindings that were broadcast.
+>       3. Resets the input stack for next frame.
+>    5. [`APlayerController::ProcessForceFeedbackAndHaptics`]
+
+@TODO
+*[Convert input components order of operations into a picture for visually explaining the order of operations]*
+
+Input Components can also have a priority stack so that input can be consumed by the higher priority actors. \
+The priority stack for input components are as follows(highest priority first):
+1. Actors with "Accepts Input" enabled, from most-recently enabled to least-recently enabled. 
+   1. To move an actor to the top of priority in this stack, you can re-enable its "Accepts Input" value and it will be moved to the top of the priority stack.
+2. Player Controllers
+3. Level Script
+4. Pawns
+
+![Input Component Stack](images/input_component_stack.png) \
+*Input Component Stack, courtesy of [Epic's Documentation](https://docs.unrealengine.com/5.0/en-US/input/)*
+
 <a name="input-event-types"></a>
-#### 8.2 Input Event Types
+### 9.3 Input Event Types
 
 Each time an input occurs a struct is used for each type of input that all inherit from **FInputEvent**:
 
-- **FInputEvent**: Base class for all mouse, key events, Touch/Motion events.
+- **FInputEvent**: Base struct for all mouse, key events, Touch/Motion events.
   - **Modifier Keys** `FModiferKeysState`: State of modifier keys when this event happened during this frame.
   - **Is Repeat** `bool`: Flag to know if this input event was auto-repeated(held and then repeatedly fired).
   - **User Index** `uint32`: The integer index of the **Slate User** that caused this event.
@@ -639,7 +953,7 @@ Every other event type comes from `FInputEvent`:
   - **NavigationGenesis** `ENavigationGenesis`: Enum for knowing where this navigation event came from(was caused by) such as Keyboard/Controller/User.
 
 <a name="input-modes"></a>
-#### 8.3 Input Modes
+### 9.4 Input Modes
 
 **WidgetBlueprintLibrary** has 3 functions for setting something called **Input Mode** on Player Controllers, \
 the three states explain what’s actually happening in the input flow in relation to step 6; Game Viewport Client. \
@@ -657,14 +971,14 @@ Mouse Lock Mode`EMouseLockMode` is how the mouse cursor is locked(meaning the cu
 - **Lock Always**: Always lock the mouse cursor to the viewport, not allowing it to leave the viewport.
 - **Lock in Fullscreen**: Always lock the cursor if we're in fullscreen.
 
-> I want to specify that Mouse Lock Mode is on a per viewport basis which accounts for splitscreen for each player's viewport while window would account for the entire window all of the viewports.
+> I want to specify that Mouse Lock Mode is on a per viewport basis which accounts for split screen for each player's viewport while window would account for the entire window all of the viewports.
 
 @TODO
 *[Insert picture visually explaining what values are changed in the game viewport client]*
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="unreals-focusing-system"></a>
-## 9. Unreal's Focusing System
+## 10.0 Unreal's Focusing System
 
 Unreal Engine’s focusing system in regards to Slate/UMG is the concept of **User Focus** where only one **Slate Widget** can be focused at a time by a specific user known as a **Slate User**. \
 Multiple Slate Users can focus on the same widget but a user cannot focus on two widgets at once \
@@ -681,7 +995,7 @@ Unreal Engine’s focusing system is built from 4 key elements:
 - **Navigation Config**: Handles figuring out which navigation direction to use based on an input.
 
 <a name="navigation-grid-explanation"></a>
-#### 9.1 Navigation Grid Explanation
+### 10.1 Navigation Grid Explanation
 
 > To visualize the hit test grid, the console command is `Slate.HitTestGridDebugging [0/1]` also located in the [Helpful Console Commands Section](#helpful-console-commands-for-slate) of the [Slate Overview Section](#slate)
 
@@ -710,14 +1024,90 @@ to find the focusable widget by sweeping in each cell to see if there is a widge
 After the widget has passed these tests it is saved as the Best Widget and saves its **Slate Rect**(to be used for navigation later) and then it checks what that widgets boundary navigation rule is \
 (Explicit, Custom, CustomBoundary, Stop, Wrap) and handles for each one that isn’t Escape. Once the sweep reaches the window edge of the screen, it will send focus to the best widget.
 
-You can also know when focus changes for any user(be sure to filter for specific users!) by getting the Slate Application and getting its `FocusChangingDelegate` and listening for focus changes. \
+You can also know when focus changes for any user(be sure to filter for specific users!) by getting the Slate Application and getting its `FocusChangingDelegate` using the `OnFocusChanging()` accessor function
+(depending on your version of Unreal you may just be able to get the delegate variable itself)and listening for focus changes. \
 You can filter which user changed focus via the `FFocusEvent` that the delegate outputs that has the user index that changed focus(it also has the cause for the focus change in case you need to know that for a specific use case).
 
-@TODO
-*[Insert code snippet of the delegate and binding to an example function inside a player controller as well as how to filter in that function]*
+*Scroll to the right for the header file ->*
+<table>
+<tr>
+<td style="text-align: center;">Source File(.cpp)</td> 
+<td style="text-align: center;">Header File(.h)</td>
+</tr><!--- This will end the line horizontally and start a new line vertically --->
+<td>
+
+```c++
+void AMyPlayerController::BeginPlay()
+{
+  Super::BeginPlay();
+  
+  // Valid check that slate application initialized 
+  if(FSlateApplication::IsInitialized())
+  {
+    // Depending on your version of Unreal Engine, 
+    // you may need to just do "FSlateApplication::Get().FocusChangingDelegate" instead of using a function to get it
+    
+    // Bind for when focus changes, if you're having issues with this then I recommend learning about Unreal's delegate framework
+    // or looking at the slate application's header and source file regarding the focus changing delegate
+    FSlateApplication::Get().OnFocusChanging().AddUObject(this, &AMyPlayerController::FocusChanged);    
+  }  
+}
+
+void AMyPlayerController::FocusChanged(const FFocusEvent& FocusEvent, const FWeakWidgetPath& OldFocusedWidgetPath,
+	const TSharedPtr<SWidget>& OldFocusedWidget, const FWidgetPath& NewFocusedWidgetPath,
+	const TSharedPtr<SWidget>& NewFocusedWidget)
+{
+  // Check if this player controller has a valid local player object yet
+  if(!IsValid(GetLocalPlayer()))
+  {
+  	// If we don't have a valid local player object then don't continue because we're not done setting up the player controller
+  	return;
+  }
+  // Check if the player that changed focus is ourselves
+  if(GetLocalPlayer()->GetControllerId() != FocusEvent.GetUser())
+  {
+  	// If self didn't do this focus change, then don't continue
+  	return;
+  }
+  // Do stuff
+}
+```
+
+</td>
+<td>
+
+```c++
+UCLASS()
+class MYGAME_API AMyPlayerController : public AActor
+{
+	GENERATED_BODY()
+protected:
+
+  // AActor interface
+  virtual void BeginPlay() override;
+  // ~AActor interface
+
+  /**
+   * Occurs when a Slate User changes widget focus. 
+   * @param FocusEvent The type of focus event that occured.
+   * @param OldFocusedWidgetPath The previously focused widget's path in the widget tree.
+   * @param OldFocusedWidget The previously focused slate widget.
+   * @param NewFocusedWidgetPath The widget path of the slate widget we're going to focus.
+   * @param NewFocusedWidget The slate widget we're going to focus.
+   */
+  virtual void FocusChanged(const FFocusEvent& FocusEvent,
+    const FWeakWidgetPath&  OldFocusedWidgetPath,
+    const TSharedPtr<SWidget>& OldFocusedWidget,
+    const FWidgetPath& NewFocusedWidgetPath,
+    const TSharedPtr<SWidget>& NewFocusedWidget);	
+};
+```
+
+</td>
+</table>
 
 <a name="navigation-genesis"></a>
-#### 9.2 Navigation Genesis
+### 10.2 Navigation Genesis
 
 Navigation can be caused by 3 types, known as **Navigation Genesis**:
 - **Keyboard**: The navigation event was caused by the keyboard input.
@@ -726,7 +1116,7 @@ Navigation can be caused by 3 types, known as **Navigation Genesis**:
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="split-screen"></a>
-## 10. Split Screen
+## 11.0 Split Screen
 
 Split Screen works where it has a **Game Layer Manager** that manages the viewport slate widget, which player that’s using that slate widget and how to shape that slate widget. \
 The game layer manager is instanced by the game engine on initialization inside `GameEngine.cpp`(`UGameEngine`) and in `PlayLevel.cpp`(`UEditorEngine`) using a hard coded class so to build your own it would require modifying the engine’s source code \
@@ -739,7 +1129,7 @@ useful for pause menus or anything that’s meant to entirely take up the screen
 useful for HUDs or anything that is specific to that local player and not all the other players.
 
 <a name="game-layer-manager"></a>
-#### 10.1 Game Layer Manager
+### 11.1 Game Layer Manager
 
 The Game Layer Manager is an interface that has the barebones information for getting the geometry of the viewport, getting the local player using this widget, \
 adding layers of widgets(not recommended unless you know what you’re doing) which holds all slate widgets that have been added to that specific viewport, and for holding the actual game viewport slate widget. \
@@ -747,7 +1137,7 @@ The Game Layer Manager is located in `SGameLayerManager.h/cpp` and you can find 
 using a simple rectangle layout that is retrieved from the game viewport client. The `SGameLayerManager` also routes changes to DPI scale and for scaling the viewport based on the DPI scale value including all of its widget layers.
 
 <a name="viewport-layout"></a>
-#### 10.2 Viewport Layout
+### 11.2 Viewport Layout
 
 By default the layout design is a rectangle shape that is customized via its X/Y size and its X/Y position on the screen in a 0-1 ratio for the center of it. \
 This is set in the default `UGameViewportClient`’s constructor. \
@@ -757,57 +1147,141 @@ If you want to create your own custom viewport shapes; you would have to create 
 *[Insert diagram showing how the Game Layer Framework works with split screen’s viewports]*
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
-<a name="important-links"></a>
-## 11. IMPORTANT LINKS
+<a name="links"></a>
+## 12.0 Links
 
 Here is a list(starting with Epic related links then community links that are in no particular order) of important and helpful sources of information regarding Slate and UMG in Unreal Engine. \
 Some links might have a description of what it is, to help understand why this link is included, or any other information I recommend checking out.
 
-[Official Documentation for Slate Framework](https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Slate/) \
-[Official Documentation on Slate Widget Examples](https://docs.unrealengine.com/en-US/ProgrammingAndScripting/Slate/Widgets/) \
-[Official Documentation for UMG](https://docs.unrealengine.com/en-US/InteractiveExperiences/UMG/) \
-[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine) \
-[Epic's AnswerHub explaining Slate Units](https://forums.unrealengine.com/t/what-are-slate-units/310703) \
-[Epic's Rich Text Documentation](https://docs.unrealengine.com/en-US/InteractiveExperiences/UMG/UserGuide/UMGRichTextBlock/) \
-[Rich Text Article by Epic](https://www.unrealengine.com/en-US/tech-blog/advanced-text-styling-with-rich-text-block) \
-[My UMG/Slate Example Project](https://github.com/Oldsiren/UMG-Slate-ExampleProject): 
-My own UMG/Slate Example Project where I remade the Border Widget and commented all of the code with explanations of what is happening. \
-[JoyRok's Website](https://joyrok.com/BLOG): 
-Technical Artist with UMG Tech Art Articles. \
-[Ben UI's Website](https://benui.ca/): 
-UI Engineer with UMG/Slate Articles. \
-[Alessa "CodeKitten" Baker's Medium Site](https://codekittah.medium.com/): 
-Technical Artist with Unreal Engine Slate Editor & Slate Articles. \
-[Steve Streeting's UE Helpers Plugin](https://github.com/sinbad/StevesUEHelpers)|[Steve's UE Helpers Plugin Example Project](https://github.com/sinbad/StevesUEExamples):
-A very helpful plugin for Unreal Engine, a great example for creating custom Rich Text Decorator's. \
-[Alex Forsythe explaining "The Unreal Engine's Game Framework: From int main() to BeginPlay"; Youtube Video](https://youtu.be/IaU2Hue-ApI): 
-I also recommend checking out this channel’s other videos as they’re extremely informative. \
-[Elhoussine Mehnik's Mesh Swapper Plugin, Github](https://github.com/HoussineMehnik/UE4-MeshSwapperPlugin): 
-A plugin that creates its own editor viewport and window, a great example for extending the editor.
+<table id="Primary"> 
+  <tr> <!--- Create the table and start a new vertical line --->
+    <theader><td style="text-align: center;"><b>
+      Link
+    </b></td></theader> 
+    <theader><td style="text-align: center;"><b>
+      Notes
+    </b></theader>
+  </tr>
+  <tr> <!--- End the horizontal line start a new vertical line --->
+    <td><a href="https://docs.unrealengine.com/latest/INT/ProgrammingAndScripting/Slate/" target="_blank" rel="noopener noreferrer">Official Documentation for Slate Framework</a> </td> 
+  </tr>
+  <tr>
+    <td><a href="https://docs.unrealengine.com/latest/INT/InteractiveExperiences/UMG/" target="_blank" rel="noopener noreferrer">Official Documentation for UMG</a></td> 
+  </tr>
+  <tr>
+    <td><a href="https://docs.unrealengine.com/latest/INT/smart-pointers-in-unreal-engine/" target="_blank" rel="noopener noreferrer">Official Documentation on Epic's Smart Pointers Framework</a></td> 
+  </tr>
+  <tr>
+    <td><a href="https://docs.unrealengine.com/latest/INT/ProgrammingAndScripting/Slate/Widgets/" target="_blank" rel="noopener noreferrer">Official Documentation on Slate Widget Examples</a></td> 
+  </tr>
+  <tr>
+    <td><a href="https://docs.unrealengine.com/latest/INT/input/" target="_blank" rel="noopener noreferrer">Official Documentation on Input Component's</a></td> 
+  </tr>
+  <tr>
+    <td><a href="https://docs.unrealengine.com/latest/INT/InteractiveExperiences/UMG/UserGuide/UMGRichTextBlock/" target="_blank" rel="noopener noreferrer">Official Documentation on Rich Text</a></td> 
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine" target="_blank" rel="noopener noreferrer">
+        Epic Approved Course for Introduction to Accessible Design
+      </a>
+    </td> 
+  </tr>
+  <tr>
+    <td><a href="https://forums.unrealengine.com/t/what-are-slate-units/310703" target="_blank" rel="noopener noreferrer">Epic's AnswerHub explaining Slate Units</a></td> 
+  </tr>
+  <tr>
+    <td><a href="https://github.com/YawLighthouse/UMG-Slate-ExampleProject" target="_blank" rel="noopener noreferrer">My UMG/Slate Example Project</a>(Github Repository)</td>
+    <td>
+      My own UMG/Slate Example Project where I remade the Border Widget and commented all of the code with explanations of what is happening. 
+      <i>If its out of date please leave an issue in the github repo saying its out of date so I can track it and properly update it.</i>
+    </td>
+  </tr>
+  <tr>
+    <td><a href="https://joyrok.com/BLOG" target="_blank" rel="noopener noreferrer">JoyRok's Website</a></td>
+    <td>Technical Artist with UMG Tech Art Articles</td>
+  </tr>
+  <tr>
+    <td><a href="https://benui.ca/" target="_blank" rel="noopener noreferrer">Ben UI's Website</a></td>
+    <td>UI Engineer with UMG/Slate Articles.</td>
+  </tr>
+  <tr>
+    <td><a href="https://codekitten.me/" target="_blank" rel="noopener noreferrer">Alessa "CodeKitten" Baker's Website</a></td>
+    <td>Technical Artist with Unreal Engine Slate Editor & Slate Articles.</td>
+  </tr>
+  <tr>
+    <td><a href="https://lxjk.github.io/2019/10/01/How-to-Make-Tools-in-U-E.html" target="_blank" rel="noopener noreferrer">Eric Zhang's Blog on Making Tools in UE4</a></td>
+    <td>Tech Blog Article explaining foundational parts of making tools in editor. <i>While yes this is for UE4, the same rules/principals still apply.</i></td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/sinbad/StevesUEHelpers" target="_blank" rel="noopener noreferrer">Steve Streeting's UE Helpers Plugin</a>(Github Repository)</td>
+    <td>
+      A very helpful plugin for Unreal Engine, a great example for creating custom Rich Text Decorator's
+      <li>
+        <a href="https://github.com/sinbad/StevesUEExamples" target="_blank" rel="noopener noreferrer">Steve's UE Helpers Plugin Example Project</a>
+        (Github Repository): Example Project implementing the plugin.
+      </li>
+    </td> 
+  </tr>
+  <tr>
+    <td>
+      <a href="https://www.youtube.com/c/AlexForsythe/" target="_blank" rel="noopener noreferrer">Alex Forsythe's Youtube Channel</a> 
+    </td>
+    <td>
+      Extremely informative videos regarding learning and understanding Unreal Engine and how its structured from low level to high level understanding.
+      <li><a href="https://youtu.be/IaU2Hue-ApI" target="_blank" rel="noopener noreferrer">
+        "The Unreal Engine's Game Framework: From int main() to BeginPlay"</a>(Youtube Video)</li>
+    </td>
+  </tr>
+  <tr>
+    <td><a href="https://youtu.be/MV-uXsM2o0k" target="_blank" rel="noopener noreferrer">"Understanding Unreal's Input Stack #NotGDC"</a>(Youtube Video)</td>
+    <td>
+      A NotGDC video I did in <a href="https://t.co/SS05uQxGW0" target="_blank" rel="noopener noreferrer">Ben UI's Discord Server</a> 
+      talking about Unreal Engine's Input Stack(this was before the UMG/Slate Compendium was released).
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://unrealengineresources.com/" target="_blank" rel="noopener noreferrer">Elhoussine Mehnik's Unreal Resources Website</a>
+    </td>
+    <td>
+      A very helpful free sample projects/plugins/tools website.
+      <li><a href="https://github.com/HoussineMehnik/UE4-MeshSwapperPlugin" target="_blank" rel="noopener noreferrer">Mesh Swapper Plugin</a>
+        (Github Repository): Example plugin that extends the editor.
+      </li>
+      <li><a href="https://github.com/HoussineMehnik/UE4-VectorShapeWidgetPlugin" target="_blank" rel="noopener noreferrer">Vector Shape Widget Plugin</a>
+        (Github Repository): Example plugin for creating a custom slate widget that's usable in UMG.
+      </li>
+    </td>
+  </tr>
+</table>
 
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
 <a name="important-file-names"></a>
-## 12. IMPORTANT FILE NAMES
+## 13.0 Important File Names
 
 Here is a list(in no particular order) of important/helpful C++ files within Unreal Engine that it’s recommended you should look at, some might not even be talked about in this compendium. \
 You don’t need to understand it immediately but this helps with knowing helpful files to refer back to.
 
-|         ClassName         |          Header          |           Source           | Notes                                                                                                                                                                                                                   |
+|        Object Name        |          Header          |           Source           | Notes                                                                                                                                                                                                                   |
 |:-------------------------:|:------------------------:|:--------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|       `FEngineLoop`       |    LaunchEngineLoop.h    |    LaunchEngineLoop.cpp    | This is the heart of the entire Unreal Engine application, recommend only looking but not touching.                                                                                                                     |
+|        [Multiple]         |     SharedPointer.h      |  SharedPointerInternals.h  | This is where Epic's Shared(Smart) Pointer Framework is located, also recommend taking a look at `SharedPointerTesting.ini` for example's of using Shared Pointers.                                                     |
 |    `FSlateApplication`    |    SlateApplication.h    |    SlateApplication.cpp    |                                                                                                                                                                                                                         |
 |      `FHittestGrid`       |      HittestGrid.h       |      HittestGrid.cpp       |                                                                                                                                                                                                                         |
 |         `SWidget`         |        SWidget.h         |        SWidget.cpp         |                                                                                                                                                                                                                         |
 |         `UWidget`         |         Widget.h         |         Widget.cpp         |                                                                                                                                                                                                                         |
 |       `SUserWidget`       |      SUserWidget.h       |      SUserWidget.cpp       |                                                                                                                                                                                                                         |
 |       `UUserWidget`       |       UserWidget.h       |       UserWidget.cpp       |                                                                                                                                                                                                                         |
-|    `FNavigationConfig`    |    NavigationConfig.h    |    NavigationConfig.cpp    | This is where most of the Navigation related types are, this includes structs and enums                                                                                                                                 |
-|        [Multiple]         |       SlateEnums.h       |           [None]           | This is where most of the Slate related Enum Types are                                                                                                                                                                  |
-|        [Multiple]         |     InputCoreTypes.h     |     InputCoreTypes.cpp     | This is where most of the Input related types are, this includes structs and enums                                                                                                                                      |
+|    `FNavigationConfig`    |    NavigationConfig.h    |    NavigationConfig.cpp    | This is where most of the Navigation related types are, this includes structs and enums.                                                                                                                                |
+|        [Multiple]         |       SlateEnums.h       |           [None]           | This is where most of the Slate related Enum Types are.                                                                                                                                                                 |
+|        [Multiple]         |     InputCoreTypes.h     |     InputCoreTypes.cpp     | This is where most of the Input related types are, this includes structs and enums.                                                                                                                                     |
+|       `FInputEvent`       |         Events.h         |         Events.cpp         | This is where the hierarchy of `FInputEvent` types are located.                                                                                                                                                         |
 |    `SGameLayerManager`    |   SGameLayerManager .h   |   SGameLayerManager .cpp   |                                                                                                                                                                                                                         |
 |   `UGameViewportClient`   |   GameViewportClient.h   |   GameViewportClient.cpp   |                                                                                                                                                                                                                         |
 |        [Multiple]         |      UnrealClient.h      |      UnrealClient.cpp      | This one is interesting because it holds manager objects for the viewport's rendering and some of its functionality at the same time.<br/>This is also where screenshots are processed(including ones with/without UI). |
 |     `FSceneViewport`      |     SceneViewport.h      |     SceneViewport.cpp      | This is where our viewport's slate widget is essentially housed.                                                                                                                                                        |
-|     `IInputProcessor`     |    IInputProcessor.h     |           [None]           | This is the base interface class for Input Pre Processors, you would inherit from this class if you were making one. For an example of how to set one up, lookup FAnalogCursor                                          |
+|     `IInputProcessor`     |    IInputProcessor.h     |           [None]           | This is the base interface class for Input Pre Processors, you would inherit from this class if you were making one. For an example of how to set one up, lookup FAnalogCursor.                                         |
 |      `FAnalogCursor`      |      AnalogCursor.h      |      AnalogCursor.cpp      |                                                                                                                                                                                                                         |
 |       `FSlateUser`        |       SlateUser.h        |       SlateUser.cpp        |                                                                                                                                                                                                                         |
 |      `ULocalPlayer`       |      LocalPlayer.h       |      LocalPlayer.cpp       | This also holds `FLocalPlayerContext` which is useful for passing around to UI and other objects to have context to the local player, its player controller, game instance, world, etc.                                 |
