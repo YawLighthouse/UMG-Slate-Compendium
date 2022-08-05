@@ -36,7 +36,7 @@ HTML Notes:
 
 ###### Document Version
 <!---Major.Minor.Patch--->
-*0.4.0*
+*0.0.4*
 
 <a name="table-of-contents"></a>
 ## Table of Contents
