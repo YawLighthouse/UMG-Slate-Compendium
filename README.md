@@ -914,7 +914,7 @@ Each widget has its own functionality and use while still containing a common fu
 
 - **Accessibility**: Each widget will listen to the project’s default settings for accessibility, these settings can be overridden for each widget and can affect its own children, \
 going over accessibility is out of scope for this document but here is an official Epic approved course going over it: \
-[Epic Approved Course for Introduction to Accessible Design](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine). \
+[Epic Approved Course for Accessible Design](https://dev.epicgames.com/community/learning/courses/7M1/accessible-design-with-unreal-engine/yGwl/accessible-design-in-unreal-engine-overview). \
 ![Accessibility Fields Overview](images/common_widget_func/accessibility_overview.png)
   - **Override Accessible Defaults**: When enabled will override the default accessibility behavior and text for this widget.
     - **Can Children be Accessible**: Flag to know if children of this widget should be as distinct accessible widgets.
