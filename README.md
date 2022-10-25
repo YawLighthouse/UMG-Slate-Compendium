@@ -1637,8 +1637,8 @@ or any other information I recommend checking out.
   </tr>
   <tr>
     <td>
-      <a href="https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine" target="_blank" rel="noopener noreferrer">
-        Epic Approved Course for Introduction to Accessible Design
+      <a href="https://dev.epicgames.com/community/learning/courses/7M1/accessible-design-with-unreal-engine/yGwl/accessible-design-in-unreal-engine-overview" target="_blank" rel="noopener noreferrer">
+        Epic Approved Course for Accessible Design
       </a>
     </td> 
   </tr>
