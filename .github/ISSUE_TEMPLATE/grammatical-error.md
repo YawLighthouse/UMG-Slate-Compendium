@@ -1,5 +1,5 @@
 ---
-name: Issue Template - Grammatical Error
+name: Grammatical Error
 about: For grammatical errors in the document
 title: "[GRAMMAR]"
 labels: Grammar
