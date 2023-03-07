@@ -128,7 +128,7 @@ if you have further questions regarding the document(or anything relating to the
 >   is not able to be modified, and is not able to submit code changes to Epic via GitHub.
 > - **Source Code Version**: The version of the engine that you would
 >   clone/download from GitHub; this gives full modifiable access to Unreal
->   Engine as well as being able to submit code changes to Epic via GitHub Pull Request's for them
+>   Engine as well as being able to submit code changes to Epic via GitHub Pull Requests for them
 >   to integrate into Unreal Engine’s future releases.
 
 *All pictures of the editor in this document are from the launcher version of the engine.*
@@ -332,7 +332,7 @@ There are three shared pointer template types:
 Using shared pointers allows you to assume ownership of these slate widgets without having to call delete on them. \
 *I recommend taking a look at [Epic's Documentation on Smart Pointers](https://docs.unrealengine.com/5.0/en-US/smart-pointers-in-unreal-engine/)*
 
-> An important note that when casting Slate Widget's it is totally fine to use standard casting such as `static_cast` and `const_cast`, 
+> An important note that when casting Slate Widgets it is totally fine to use standard casting such as `static_cast` and `const_cast`, 
 > but I do recommend using Unreal's templated cast versions listed below to save time.
 
 There are also helper classes and functions to make life easier regarding using Unreal's Shared Pointers framework and this includes working with Slate.
@@ -455,7 +455,7 @@ this occurs through a *Bottom-Up* approach where it guarantees when this pass ha
 its children have already computed and cached their desired size.
 
 ![Cache Desired Size Example](images/cache_desired_size.png) \
-*Example of Desired Size for a Horizontal Box with Textblock and Image widget's*
+*Example of Desired Size for a Horizontal Box with Textblock and Image widgets*
 
 For the desired size example we have a horizontal box holding a text block and an image widget.
 In this case we compute the desired size for the text block (which is measured by the string that is displaying) and the image widget (which is measured based on the image data that is shown).
@@ -485,9 +485,9 @@ This occurs in an On Paint function where it will do two things:
 <a name="widget-ticking"></a>
 ### 4.6 Widget Ticking
 
-Slate Widget's(which also means UMG widget's) themselves do not tick, they do not have tick components and do not have tick groups.
-The order that Slate Widget's tick occurs is during the Paint pass with these calls originating from the Slate Application,
-so that a widget's tick function will only be called when it is on screen and being rendered:
+Slate Widgets (which also means UMG widgets) themselves do not tick, they do not have tick components and do not have tick groups.
+The order that Slate Widgets tick occurs is during the Paint pass with these calls originating from the Slate Application,
+so that a widgets tick function will only be called when it is on screen and being rendered:
 1. `FSlateApplication::Tick`
 2. `FSlateApplication::TickAndDrawWidgets`...
 3. `SWidget::Paint`
@@ -516,7 +516,7 @@ are a mix of functions and values:
 - **Compute Desired Size** (Function): Responsible for calculating the desired size as the first pass for layouting.
   - **Slate Rect** (Value): A rectangle with its origin at the top left corner, defined by upper-left and lower-right corners.
   The origin is in the top-left with the Y-axis going downwards and X-axis going to the right. This is used with calculations for desired size and for the bounds.
-- **Arrange Children** (Function): Responsible for arranging child widgets as the second pass for layout's.
+- **Arrange Children** (Function): Responsible for arranging child widgets as the second pass for layouts.
 - **On Paint** (Function): Responsible for the actual rendered appearance of the widget.
 - **Event Handlers** (Delegate values and/or Functions): These are the event based hooks for the UI elements to change at runtime usually in the form of “OnSomething”.
 
@@ -538,7 +538,7 @@ There are different types of invalidation reasons that you can specify when inva
 - RenderTransform: A Widgets render transform changed.
 - Visibility: Changing visibility (this implies layout).
 - AttributeRegistration: Attributes got bound or unbound (it's used by the SlateAttributeMetaData).
-- Prepass: Re-cache desired size of all of this widget's children recursively (this implies layout).
+- Prepass: Re-cache desired size of all of this widgets children recursively (this implies layout).
 - PaintAndVolatility: Use Paint invalidation if you're changing a normal property involving painting or sizing. Additionally if the property that was changed affects Volatility in anyway, it's important
   that you invalidate volatility so that it can be recalculated and cached.
 - LayoutAndVolatility: Use Layout invalidation if you're changing a normal property involving painting or sizing. Additionally if the property that was changed affects Volatility in anyway, it's important
@@ -954,7 +954,7 @@ this does not batch together clipping spaces so this can have a performance cost
   *In this example there is a `Scroll Box` widget with its clipping set to `Inherit` and it is a child of a `Canvas Panel` widget that has its clipping set to `Clip to Bounds`.*
   - **Clip to Bounds**: This clipping space clips to the bounds of this widget, it intersects those bounds with any previous clipping area from above it. \
   ![Clip to Bounds Example](images/common_widget_func/clipping_clip_to_bounds.png) \
-  *In this example there is a `Scroll Box` widget with its clipping set to `Clip to Bounds` so its child widgets which are `Button`'s will be intersected when they go out of bounds of the `Scroll Box`*
+  *In this example there is a `Scroll Box` widget with its clipping set to `Clip to Bounds` so its child widgets which are `Button`s will be intersected when they go out of bounds of the `Scroll Box`*
   - **Clip to Bounds - Without Intersecting(Advanced)**: This clipping area clips to its bounds as well but it does **<u>NOT</u>** intersect with any existing clipping geometry, it will always push its own new clipping state. \
   Allowing this widget to render outside the bounds of the hierarchy that does clip it. This will **<u>NOT</u>** allow you to ignore the clipping zone that is set to *"Always"* though. \
   ![Clip to Bounds Without Intersecting Example](images/common_widget_func/clipping_clip_to_bounds_intersect.png) \
@@ -1021,7 +1021,7 @@ Here is the list of drawable UI elements:
 - Texture: Draws a textured quad(square/rectangle) on the viewport canvas.
   - Texture Simple: Draws a textured quad(square/rectangle) assuming 1:1 texel density on the viewport canvas. 
 - Material: Draws a material-textured quad(square/rectangle) on the viewport canvas.
-  - Material Simple: Draws a material-textured quad(square/rectangle) on the viewport canvas but assumes UV's are (0.0, 0.0) and (1.0, 1.0).
+  - Material Simple: Draws a material-textured quad(square/rectangle) on the viewport canvas but assumes UVs are (0.0, 0.0) and (1.0, 1.0).
   - Material Triangle: Draws a material-textured triangle shape on the viewport canvas.
 > A important note is that the way that the HUD Actor draws images and other UI elements is by skipping a few steps of how UMG does it by directly getting the canvas and telling it to draw items.
 
@@ -1124,7 +1124,7 @@ The widget reflector tool is intended to help developers optimize and debug UI t
 ### 9.3 Slate Console Debugger
 
 The Slate Console Debugger is a list of console commands that can be used to debug different parts of Slate for debugging purposes.
-Each console command is prefixed with `SlateDebugger.`, when enabling an option this will cause it's debug information to be printed to the output log.
+Each console command is prefixed with `SlateDebugger.`, when enabling an option this will cause its debug information to be printed to the output log.
 
 The good news is that you can enable these flags from the widget reflector so you don't have to type in the difference debug commands.
 ![Widget Reflector Slate Console Debugger Flags](images/widget_reflector_console_debugger.png)
@@ -1276,7 +1276,7 @@ which handles propagating that input to the rest of the game engine and connecti
 <a name="input-components"></a>
 ### 10.2 Input Components
 
-Input Component's are `UActorComponent`'s that are present in all actors(`AActor`). 
+Input Components are `UActorComponent`s that are present in all actors(`AActor`). 
 These components will link with AxisMappings and ActionMappings as bindings in your project to run functionality.
 Each binding can consume input events which prevents other components on the input stack from processing that same input event.
 Input Components enable an actor to bind input events to delegate functions that are automatically handled by two classes:
@@ -1294,7 +1294,7 @@ Input Components enable an actor to bind input events to delegate functions that
 >       1. [`APlayerController::BuildInputStack`]: Builds the stack of input components and the order that they will be processed. Can be overriden to control the order.
 >       2. [`UPlayerInput::ProcessInputStack`]: Actually start processing input.
 >          1. [`APlayerController::PreProcessInput`]
->          2. Copies the state of non-axis key's.
+>          2. Copies the state of non-axis keys.
 >             1. Starts going through the stack of input components from top to bottom;
 >                one by one(now consider we're working with a single input component but in a loop until there's no more input components).
 >                1. Builds the keymap for this input component to know what actions/axis work with specific key bindings to create input cords.
@@ -1690,7 +1690,7 @@ or any other information I recommend checking out.
   <tr>
     <td><a href="https://github.com/sinbad/StevesUEHelpers" target="_blank" rel="noopener noreferrer">Steve Streeting's UE Helpers Plugin</a>(Github Repository)</td>
     <td>
-      A very helpful plugin for Unreal Engine, a great example for creating custom Rich Text Decorator's
+      A very helpful plugin for Unreal Engine, a great example for creating custom Rich Text Decorators
       <li>
         <a href="https://github.com/sinbad/StevesUEExamples" target="_blank" rel="noopener noreferrer">Steve's UE Helpers Plugin Example Project</a>
         (Github Repository): Example Project implementing the plugin.
@@ -1742,7 +1742,7 @@ You don’t need to understand it immediately but this helps with knowing helpfu
 |                                                                 Object Name                                                                  |          Header          |           Source           | Notes                                                                                                                                                                                                                   |
 |:--------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------:|:--------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |                 `FEngineLoop`<br/>[Documentation](https://docs.unrealengine.com/latest/INT/API/Runtime/Launch/FEngineLoop/)                  |    LaunchEngineLoop.h    |    LaunchEngineLoop.cpp    | This is the heart of the entire Unreal Engine application, recommend only looking but not touching.                                                                                                                     |
-|                                                                  [Multiple]                                                                  |     SharedPointer.h      |  SharedPointerInternals.h  | This is where Epic's Shared(Smart) Pointer Framework is located, also recommend taking a look at `SharedPointerTesting.ini` for example's of using Shared Pointers.                                                     |
+|                                                                  [Multiple]                                                                  |     SharedPointer.h      |  SharedPointerInternals.h  | This is where Epic's Shared(Smart) Pointer Framework is located, also recommend taking a look at `SharedPointerTesting.ini` for examples of using Shared Pointers.                                                     |
 | `FSlateApplication`<br/>[Documentation](https://docs.unrealengine.com/latest/INT/API/Runtime/Slate/Framework/Application/FSlateApplication/) |    SlateApplication.h    |    SlateApplication.cpp    |                                                                                                                                                                                                                         |
 |            `FHittestGrid`<br/>[Documentation](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Input/FHittestGrid/)            |      HittestGrid.h       |      HittestGrid.cpp       |                                                                                                                                                                                                                         |
 |                `SWidget`<br/>[Documentation](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Widgets/SWidget/)                |        SWidget.h         |        SWidget.cpp         |                                                                                                                                                                                                                         |
