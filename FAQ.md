@@ -1,8 +1,33 @@
+<a name="page-top"></a>
 # UMG-Slate Compendium FAQ(Frequently Asked Questions)
 
 All source code referenced in the compendium is from the launcher and Epic's public github repository of Unreal Engine.
 
-*Any major updates that the author of the document(also owner of the repository) have to be confirmed by the author's place of business to make sure no "trade secrets" are revealed, this can be a time consuming process BUT it helps avoid an legal issues that the document may incur. Pull Requests from the Community are not subject to this rule and can immediately be merged into the public repository if its approved.*
+*Any major updates that the author of the document(also owner of the repository) have to be confirmed by the author's place of business to make sure no "trade secrets" are revealed, 
+this can be a time consuming process BUT it helps avoid an legal issues that the document may incur.
+Pull Requests from the Community are not subject to this rule and can immediately be merged into the public repository if its approved.*
+
+<a name="repo-page-links"></a>
+## Repository Page Links
+
+> - [Main Compendium Page](README.md)
+> - [External Links Page](EXTERNAL_LINKS.md)
+
+<a name="translation-localization-faq"></a>
+## Translation/Localization FAQ
+
+For translating the compendium and its documents we use [GitLocalize](https://gitlocalize.com/). \
+For requesting to become a translator please fill out this form([LINK](https://forms.gle/xyS4otdTTNHLKfYz9)),
+if you already submitted the form and want to localize a different language(or additional one) you can just edit the form and re-submit it.
+
+Languages the Compendium is currently localized in(including how many translators for that language):
+- English(Original Language)
+   - 1 Translator
+- Russian
+   - 1 Translator
+
+<a name="questions"></a>
+## Questions
 
 ---
 1. QUESTION: I found an issue I wanted to report, what's the next steps? \
@@ -61,4 +86,4 @@ ANSWER: Since those aren't default Unreal Engine features and are at the end of 
 13. QUESTION: Since you're not covering Common UI and Common Input immediately, can I start writing up documentation for it to add to this repository now? \
 ANSWER: YES! You are 100% welcome to make a pull request and start adding Common UI and Common Input plugin documentation, I do require that you do them as separate .md files to make navigation easy for others and please try to follow the formatting structure that is in the base README file for the compendium which requires you to always point to where in the source code a system is(this helps avoid misinformation).
 
-
+**[<span>&#11014;</span> Back to Top](#page-top)**
