@@ -1,8 +1,22 @@
+<a name="page-top"></a>
+
 # Компендиум UMG-Slate
+
+Локализовано с помощью [GitLocalize](https://gitlocalize.com/) (Пожалуйста, прочитайте страницу [ЧаВо](FAQ.md) о том, как стать переводчиком!)
+
+<a name="document-version"></a>
+
+###### Версия документа
+
+<!---Major.Minor.Patch--->
+
+*0.6.0*
 
 <!---
 Section naming:
 Major.Minor.Mini
+
+For creating diagrams I use lucidchart, it has a nice user interface and style for both creating charts and exporting(and it has a good free tier).
 
 For the back to top arrow:
 **[<span>&#11014;</span> Back to Top](#table-of-contents)**
@@ -13,19 +27,19 @@ UE5 Editor Background Color:
 - Hex Linear: 040404FF
 - Hex sRGB: 242424FF
 - Value: 0.017642
-- Red: 0.017642
-- Green: 0.017642
-- Blue: 0.017642
+- Red: 0.017642 OR 24.0
+- Green: 0.017642 OR 24.0
+- Blue: 0.017642 OR 24.0
 - Alpha: 1.0
 
-To add a fake indent, this adds a bunch of forced spaces(I hate this):
+To add a fake indent, this adds a bunch of forced spaces(I hate this, would be nice to have a simple "&tab" or something):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 Some rules regarding linking table of contents information:
 - "--" is used for symbols like %, $, #, @, &
 - Adding a new main category requires you to update the numbers so for the link we don't include the number just to save needless effort
 
-This document used "split screen" and not "split-screen" or "splitscreen".
+This document uses "split screen" and not "split-screen"(excluding HTML linkage) or "splitscreen".
 
 For categories we don't include the words in parenthesis just to keep it short and reasonable.
 
@@ -34,32 +48,31 @@ HTML Notes:
 - <td></td> Will end the line vertically and start a new line horizontally.
 - Use <i></i> To italicize text.
 - Use <b></b> To bold text.
-- <a href="LINK" target="_blank">DISPLAY TEXT</a> For links. `target="_blank"` will make a new tab/window when link is selected.
+- <a href="LINK" target="_blank">DISPLAY TEXT</a> For links in HTML. `target="_blank"` will make a new tab/window when link is selected.
 - <br> for line breaks.
 - <ul><li></li></ul> for non-ordered lists.
 - <ol><li></li></ol> for ordered numbered lists.
 
 --->
 
-[Страница часто задаваемых вопросов](FAQ.md)
+<a name="repo-page-links"></a>
 
-###### Версия документа
+## Ссылки на страницы репозитория
 
-<!---Major.Minor.Patch--->
-
-*0.5.0*
+> - [Страница часто задаваемых вопросов](FAQ.md)
+> - [Страница внешних ссылок](EXTERNAL_LINKS.md)
 
 <a name="table-of-contents"></a>
 
 ## Оглавление
 
-> 1.0 [Введение](#introduction) <br> 2.0 [Вопросы производительности и дизайна](#performance--design-considerations) <br> 2.1 [Соображения относительно CPU](#cpu-considerations)<br> 2.1.1 [Производительность в части анимаций](#perf-animations)<br> 2.1.2 [Производительность в части Widget Components](#perf-widget-components)<br> 2.2 [Соображения в части GPU](#gpu-considerations)<br> 3.0 [Slate и UMG в Unreal](#slate--umg-in-unreal)<br> 4.0 [Slate](#slate)<br> 4.1 [Приведение типов (casting) и хранение виджетов Slate](#slate-widget-casting--storing)<br> 4.2 [Slate Units и масштабирование DPI](#slate-units--dpi-scaling)<br> 4.3 [Slate Users](#slate-users)<br> 4.4 [Макет виджета](#widget-layout)<br> 4.5 [On Paint](#on-paint)<br> 4.6 [Widget Ticking](#widget-ticking)<br> 4.7 [Иерархия виджетов](#widget-hierarchy)<br> 4.8 [Инвалидация](#invalidation)<br> 4.9 [Slate Widgets Examples (Slate Test Suite/Starship Suite)](#slate-widget-examples)<br> 4.10 [Полезные консольные команды для Slate](#helpful-console-commands-for-slate)<br> 5.0 [UMG (Unreal Motion Graphics)](#umg)<br> 5.1 [Иерархия User Widget](#user-widget-hierarchy)<br> 5.2 [Анимация User Widget](#user-widget-animation)<br> 5.3 [User Widget Events](#user-widget-events)<br> 6.0 [Распространённые виджеты](#common-widgets)<br> 7.0 [Распространённый функционал виджетов](#common-widget-functionality)<br> 8.0 [UMG в контексте миров (Levels)](#umg-in-relation-to-levels-worlds)<br> 8.1 [HUD Actors](#hud-actors)<br> 8.1.1 [Отрисовка HUD](#hud-drawing)<br> 8.1.2 [Хитбоксы HUD](#hud-hitboxes)<br> 9.0 [Инструменты разработки и отладки для UMG/Slate](#dev-debug-tools)<br> 9.1 [Отладочные команды консоли](#debug-console-commands)<br> 9.2 [Widget Reflector](#widget-reflector)<br> 9.3 [Slate Console Debugger](#slate-console-debugger)<br> 10.0 [Фреймворк ввода Unreal Engine (по отношению к UMG/Slate)](#input-framework-of-unreal-engine)<br> 10.1 [Поток ввода (Input Flow) Unreal Engine](#input-flow-of-unreal-engine)<br> 10.2 [Input Components](#input-components)<br> 10.3 [Типы Input Event](#input-event-types)<br> 10.4 [Input Modes](#input-modes)<br> 11.0 [Система фокусировки Unreal](#unreals-focusing-system)<br> 11.[Объяснение навигационной сетки (Navigation Grid)](#navigation-grid-explanation)<br> 11.2 [Navigation Genesis](#navigation-genesis)<br> 12.0 [Split Screen](#split-screen)<br> 12.1 [Game Layer Manager](#game-layer-manager)<br> 12.2 [Viewport Layout](#viewport-layout)<br> 12.3 [Local Players](#local-players)<br> [12.3.1 Gamepad ID (Controller ID)](#gamepad-id)<br> 13.0 [Ссылки](#links)<br> 14.[Имена важных файлов](#important-file-names)
+> 1.0 [Введение](#introduction)<br>2.0 [Соображения касательно производительности и дизайна](#performance--design-considerations)<br>2.1 [Соображения касательно CPU](#cpu-considerations)<br>2.1.1 [Производительность в части анимаций](#cpu-considerations)<br>2.1.2 [Производительность в части Widget Components](#perf-widget-components)<br>2.2 [Соображения в части GPU](#gpu-considerations)<br>3.0 [Slate и UMG в Unreal](#perf-widget-components)<br>4.0 [Slate](#slate)<br>4.1 [Приведение типов (casting) и хранение виджетов Slate](#slate-widget-casting--storing)<br>4.2 [Slate Units и масштабирование DPI](#slate--umg-in-unreal)<br>4.3 [Slate Users](#slate-users)<br>4.4 [Макет виджета](#widget-layout)<br>4.5 [On Paint](#slate-widget-casting--storing)<br>4.6 [Widget Ticking](#widget-ticking)<br>4.7 [Иерархия виджетов](#widget-hierarchy)<br>4.8 [Инвалидация](#slate-users)<br>4.9 [Slate Attributes и Slate Events](#slate-attributes-and-events)<br>4.10 [Slate Widget Examples(Slate Test Suite/Starship Suite)](#slate-widget-examples)<br>4.11 [Полезные консольные команды для Slate](#on-paint)<br>5.0 [UMG (Unreal Motion Graphics)](#widget-ticking)<br>5.1 <a>Иерархия User Widgets</a><br>5.2 <a>Анимация User Widget</a><br>5.3 [User Widget Events](#invalidation)<br>6.0 <a>Common Widgets</a><br>7.0 <a>Функционал Common Widgets</a><br>8.0 [UMG в контексте миров (Levels)](#slate-widget-examples)<br>8.1 <a>HUD Actors</a><br>8.1.1 <a>Отрисовка HUD</a><br>8.1.2 [Хитбоксы HUD](#umg)<br>8.2 <a>Widget Components</a><br>8.2.1 <a>Widget Interaction Components</a><br>8.2.2 [Как Widget Components отрисовываются](#user-widget-animation)<br>9.0 <a>Инструменты разработки и отладки для UMG/Slate</a><br>9.1 <a>Отладочные команды консоли</a><br>9.2 [Widget Reflector](#common-widgets)<br>9.3 <a>Slate Console Debugger</a><br>10.0 [Input Framework в Unreal Engine (то, что связано с UMG/Slate)](#common-widget-functionality)<br>10.1 <a>Поток ввода (Input Flow) Unreal Engine</a><br>10.2 <a>Input Components</a><br>10.3 [Типы Input Event](#hud-actors)<br>10.4 <a>Input Modes</a><br>11.0 <a>Система фокусировки Unreal</a><br>11.1 [Объяснение навигационной сетки (Navigation Grid)](#hud-hitboxes)<br>11.2 <a>Navigation Genesis</a><br>12.0 <a>Split Screen</a><br>12.1 [Game Layer Manager](#widget-interaction-components)<br>12.2 <a>Viewport Layout</a><br>12.3 <a>Local Players</a><br>12.3.1 [Gamepad ID (Controller ID)](#dev-debug-tools)<br>13.0 <a>Имена важных файлов</a>
 
 <a name="introduction"></a>
 
 ## 1.0 Введение
 
-Этот сборник предназначен для обучения основам UMG и Slate, а также для обеспечения базового понимания того, как работать со фреймворком пользовательского интерфейса Unreal Engine. ПОЖАЛУЙСТА, дайте мне знать, если в этом документе есть что-то, что можно улучшить, потому что он предназначен для помощи сообществу!
+Этот компендиум предназначен для обучения основам UMG и Slate и для обеспечения базового понимания того, как работать с UI-фреймворком Unreal Engine. ПОЖАЛУЙСТА, дайте мне знать, если есть что-то в этом документе, что можно улучшить, потому что это предназначено для помощи сообществу!
 
 Пожалуйста, обратитесь к [странице ЧаВо](FAQ.md) (на которую ещё есть ссылка вверху документа), если у вас есть дополнительные вопросы относительно документа (или чего-либо, связанного с документом).
 
@@ -70,7 +83,7 @@ HTML Notes:
 > Важное примечание о двух типах Unreal Engine:
 >
 > - **Версия из Лаунчера**: версия движка, которую вы загружаете из лаунчера Epic Games; движок доступен для просмотра, но не может быть изменен и не может отправлять изменения кода в Epic через GitHub.
-> - **Версия из исходников**: версия движка, которую вы клонируете/загружаете с GitHub; это дает полный изменяемый доступ к Unreal Engine, а также возможность отправлять изменения кода в Epic через GitHub Pull Request для их интеграции в будущие выпуски Unreal Engine.
+> - **Версия из исходников**: Версия движка, которую вы клонируете/скачиваете с GitHub; она дает полный доступ к Unreal Engine с возможностью модификации, а также возможность отправлять изменения кода в Epic через GitHub Pull Request'ы для интеграции в будущие релизы Unreal Engine.
 
 *Все изображения редактора в этом документе взяты из лаунчерной версии.*
 
@@ -93,13 +106,12 @@ HTML Notes:
 
 Этот сборник будет содержать информацию, взятую из официальной документации, но предназначен для того, чтобы пролить свет на то, что означает часть официальной документации, НО это не переопределение того, что уже объяснено.
 
-*В нижней части документа находится список полезных ссылок и файлов, к которым можно вернуться.
- (вы можете легко найти их, используя [оглавление](#table-of-contents) в верхней части файла).*
+*В нижней части документа находится список полезных ссылок и файлов, к которым вы можете вернуться <br> (их можно легко найти с помощью ссылки [Страница внешних ссылок](EXTERNAL_LINKS.md) в верхней части файла).*
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="performance--design-considerations"></a>
 
-## 2.0 Вопросы производительности и дизайна
+## 2.0 Соображения касательно производительности и дизайна
 
 [Официальная документация Epic по производительности и рекомендациям по оптимизации для Slate и UMG](https://docs.unrealengine.com/latest/INT/optimization-guidelines-for-umg-in-unreal-engine/)
 
@@ -111,7 +123,7 @@ HTML Notes:
 
 <a name="cpu-considerations"></a>
 
-### 2.1 Соображения относительно CPU
+### 2.1 Соображения касательно CPU
 
 Slate/UMG используют концепцию [инвалидации](#invalidation) и кэширования, а не постоянно опрашивают данные. Причина этого в том, что иногда опрос либо неэффективен, либо функционально неверен (например, при использовании многопоточного кода). Обычно производительный пользовательский интерфейс в Unreal должен быть **основан на событиях (Events)**. В UMG есть **Property Binds**, но их не следует использовать, поскольку они будут обновляться в каждом кадре, что значительно увеличивает нагрузку на ЦП, чем использование архитектуры, основанной на событиях (event-based).
 
@@ -181,7 +193,7 @@ Widget Components отлично подходят для создания про
 
 Важный момент с Unreal Engine заключается в том, что у него нет надежного метода переключения между различными текстурами в зависимости от типа платформы.<br> Например; при переходе с мобильных устройств на ПК вам придется создавать эти системы самостоятельно, чтобы неиспользуемые текстуры не готовились, не загружались,<br> не линкованись и даже не хранились на жестком диске на платформе, на которой вы не хотите, чтобы они находились.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="slate--umg-in-unreal"></a>
 
 ## 3.0 Slate и UMG в Unreal
@@ -209,7 +221,7 @@ Unreal Engine использует **Slate**; его собственный **ф
 - **Невозможно использовать с Blueprints**
 - **Не используется Reflection-системой движка, значит, не работает с системой сборщика мусора движка**
 
-![Пример галереи звездолета](images/starship_gallery.png)<br> *Slate Test Suite (в UE5 он называется Starship Gallery)*
+![Пример галереи звездолета](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/starship_gallery.png?raw=true)<br> *Slate Test Suite (в UE5 он называется Starship Gallery)*
 
 **UMG** (**Unreal Motion Graphics**) наследуется от `UObject`, но не является `Actor` и используется для создания и отображения виджетов Slate (по сути, дружественная к Unreal Engine обёртка вокруг Slate для работы с Blueprint).
 
@@ -226,9 +238,9 @@ Unreal Engine использует **Slate**; его собственный **ф
 - **Только для Unreal Engine** (не может использоваться вне движка для обычных приложений в ОС)
 - **Простота использования означает для разработчиков возможность увеличения технического долга, а UI возможность стать запутанным.**
 
-![Пример дизайнера UMG](images/umg_designer.png)
+![Пример дизайнера UMG](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/umg_designer.png?raw=true)
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="slate"></a>
 
 ## 4.0 Slate
@@ -371,13 +383,13 @@ if(FSlateApplication::IsInitialized())
 
 1. **Cache Desired Size**: подсчитывание того, сколько места каждый виджет должен занимать, это происходит с помощью подхода *"снизу вверх"*, когда гарантируется, что когда этот проход происходит для виджета, его дочерние элементы уже вычислили и кэшировали desired size.
 
-![Пример кэширования desired size](images/cache_desired_size.png)<br> *Пример желаемого размера Horizontal Box с текстовым блоком и виджетом Image*
+![Пример кэширования desired size](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/cache_desired_size.png?raw=true)<br> *Пример желаемого размера Horizontal Box с текстовым блоком и виджетом Image*
 
 Для примера желаемого размера у нас есть Horizontal Box, содержащий Text Block и виджет Image. В этом случае мы вычисляем желаемый размер Text Block (который измеряется отображаемой строкой) и виджета Image (который измеряется на основе отображаемых данных изображения). Затем Horizontal Box вычисляется путем объединения желаемых размеров Text Block и виджета Image (мы предполагаем, что Text Block занимает 14 Slate Units, а виджет Image — 8 Slate Units), поэтому для этого примера 14 Slate Units + 8 Slate Units = 22 Slate Units.
 
 1. **Arrange Children**: это происходит в подходе *"сверху-вниз"*, когда виджет просят упорядочить свои дочерние элементы на основе их желаемых размеров и желаемого размера самого виджета (все это получили при первом проходе).
 
-![Упорядочивание дочерних элементов](images/arrange_children.png)<br> *Пример упорядочивания дочерних элементов с использованием желаемого размера для Horizontal Box с Text Block и виджетом Image*
+![Пример кэширования desired size](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/arrange_children.png?raw=true)<br> *Пример желаемого размера Horizontal Box с текстовым блоком и виджетом Image*
 
 В примере с упорядоченными дочерними элементами горизонтальному блоку было выделено 25 единиц планшета родительским виджетом (не показано для простоты). Первый слот горизонтальной рамки указывает, что ему нужен желаемый размер дочернего элемента, который составляет 14 единиц планшета от текстового блока, в то время как второй слот хочет заполнить доступную ширину, которая составляет 11 единиц планшета, оставшихся для виджета изображения.
 
@@ -392,7 +404,7 @@ if(FSlateApplication::IsInitialized())
 - Располагает все дочерние элементы на основе их **геометрии** (желаемого размера).
 - Рисует реальную графику, связанную с этим виджетом.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="widget-ticking"></a>
 
 ### 4.6 WIdget Ticking
@@ -414,9 +426,9 @@ if(FSlateApplication::IsInitialized())
 
 Виджеты обычно бывают трех основных типов:
 
-- **Leaf Widgets**: виджеты без дочерних слотов. <br>![Пример Leaf Widgets](images/leaf_widgets.png)
-- **Panel Widgets**: с динамическим количеством дочерних слотов. <br>![Пример Panel Widgets](images/panel_widgets.png)
-- **Compound WIdgets**: виджеты с фиксированным количеством явно названных дочерних слотов. <br>![Пример Compound Widgets](images/compound_widgets.png)
+-  **Leaf Widgets**: виджеты без дочерних слотов. <br>![Пример Leaf Widgets](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/leaf_widgets.png?raw=true)
+-  **Panel Widgets**: с динамическим количеством дочерних слотов. <br>![Пример Panel Widgets](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/panel_widgets.png?raw=true)
+-  **Compound WIdgets**: виджеты с фиксированным количеством явно названных дочерних слотов. <br>![Пример Compound Widgets](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/compound_widgets.png?raw=true)
 
 Ключевые элементы любого Slate Widget (также известного как SWidget, где каждый Slate WIdget начинается с заглавной буквы «S» в C++) представляет собой сочетание функций и значений:
 
@@ -447,9 +459,138 @@ if(FSlateApplication::IsInitialized())
 - PaintAndVolatility: используйте инвалидацию Paint, если вы изменяете обычное свойство, связанное с рисованием или изменением размера. Дополнительно, если измененное свойство каким-либо образом влияет на Volatility, важно использовать инвалидацию volatility, чтобы ее можно было пересчитать и кэшировать.
 - LayoutAndVolatility: используйте инвалидацию Layout, если вы изменяете обычное свойство, связанное с рисованием или изменением размера. Дополнительно, если измененное свойство каким-либо образом влияет на Volatility, важно использовать инвалидацию volatility, чтобы ее можно было пересчитать и кэшировать.
 
+<a name="slate-attributes-events"></a>
+
+### 4.9 Slate Attributes и Slate Events
+
+Slate (и через Slate, UMG) поддерживает использование атрибутов для привязки свойств/функций/лямбд к свойствам виджета. Атрибуты виджета обновляются только в том случае, если виджет visible/не collapsed, поэтому установка его видимости в hidden приведет к тому, что они не будут обновляться.
+
+Атрибуты особенно полезны при стилизации виджетов, когда вы можете указать различные визуальные стили виджетов по всему проекту как общую тему. Это повышает производительность в рамках проекта как для инженерных, так и для артовых команд.
+
+- `TAttribute`: Базовый тип атрибута Unreal Engine, не используйте для свойств-членов в SWidget'ах.
+    - Не совместим с инвалидацией, так как не делает broadcast при изменении.
+    - Не cache-friendly (то есть может быть медленнее для процессора).
+    - Если вы используете `TAttribute` для изменения состояния SWidget, то вам необходимо переопределить `ComputeVolatility` (это не требуется для `TSlateAttribute` и `TSlateManagedAttribute`).
+- `TSlateAttribute`: Должен использоваться со свойствами-членами SWidget, позволяет свойству работать с системой аннулирования Slate и является более производительным для кода, специфичного для Slate, сохраняя безопасность атрибутов во всем движке.
+    - Не наследуется от `TAttribute`, а наследуется от `FSlateAttributeBase`/`TSlateMemberAttribute`.
+    - Не копируемый, но если вам нужно, чтобы он был movable, то рекомендуется использовать `TSlateManagedAttribute` вместо него.
+    - Обновляются один раз за кадр в фазе обновления PrePass и благодаря этому более производительны.
+    - Member attributes обновляются в том порядке, в котором переменные определены в определении SWidget (по умолчанию).
+    - Позволяет сделать invalidation reason предикатом и/или может быть переопределён для каждого SWidget, но используйте это с осторожностью, так как это может нарушить invalidation для родительских виджетов.
+- `TSlateManagedAttribute`: Должен использоваться с member properties SWidget, которые находятся внутри массивов ИЛИ других подвижных структур данных.
+    - Не наследуется от `TAttribute`, а наследуется от `FSlateAttributeBase`/`TSlateMemberAttribute`.
+    - Их можно только перемещать, но не копировать, из-за этого они потребляют больше памяти.
+
+> - `TAttributes` имеют большие накладные расходы памяти и не cache-friendly. Поэтому используйте их по своему усмотрению.
+> - Все атрибуты Slate сохраняются внутри `SlateAttributeMetaData` для легкого доступа в каждом SWidget.
+
+При объявлении макросов событий и атрибутов внутри SWidget необходимо, чтобы они находились между двумя другими макросами:
+
+- `SLATE_BEGIN_ARGS` ИЛИ `SLATE_USER_ARGS`: Разница в том, что `SLATE_USER_ARGS` требует, чтобы у пользователя вся реализация виджета находилась в исходном файле, поэтому заголовок может содержать только информацию о декларации, где все обработчики, по сути, являются действительно приватными и могут быть inlined (так что меньше boilerplate кода).
+- `SLATE_END_ARGS`
+
+Использование этих макросов позволяет авторам виджетов добавить поддержку конструирования виджетов через `SNew` и `SAssignNew`.
+
+У атрибутов в Slate также есть специальные макросы, которые должны быть использованы при их объявлении и должны быть использованы, если вы хотите раскрыть эти свойства при создании виджета Slate в рантайме.
+
+- `SLATE_ATTRIBUTE`:
+    - Позволяет использовать атрибут со значением ИЛИ функцией.
+    - Принимает тип атрибута в качестве первого параметра и имя атрибута в качестве второго параметра (желательно, чтобы совпадало с member property, чтобы избежать путаницы).
+- `SLATE_ARGUMENT`:
+    - Позволяет использовать атрибут только со значением.
+    - Принимает тип атрибута в качестве первого параметра и имя атрибута в качестве второго параметра (желательно, чтобы совпадало с member property, чтобы избежать путаницы).
+- `SLATE_ARGUMENT_DEFAULT`: То же самое, что и `SLATE_ARGUMENT`, но также поддерживает значения по умолчанию, синтаксис: `SLATE_ARGUMENT_DEFAULT(float, WheelScrollMultiplier) = 1.0f;`
+- `SLATE_STYLE_ARGUMENT`: То же самое, что и `SLATE_ARGUMENT`, но они могут использоваться только с типами, которые наследуются от `FSlateWidgetStyle` для визуальной стилизации виджета.
+
+Вот пример, в котором мы создаем пользовательский виджет кнопки, используя эти макросы.
+
+```c++
+class SMyButtonWidget : public SMyParentWidget
+{
+    SLATE_DECLARE_WIDGET(SMyButtonWidget, SMyParentWidget)
+public:
+
+    /** Setup default values for these arguments, underscore is to avoid shadowing of member names */
+    SLATE_BEGIN_ARGS( SMyButtonWidget )
+        : _Style(&FCoreStyle::Get().GetWidgetStyle< FButtonStyle >( "Button" ))
+        , _AdditionalPadding(FMargine(4.0f, 2.0f))
+        , _CanBounce(true)
+    { }
+
+    /** Scaling for after the button is customized */
+    SLATE_ARGUMENT_DEFAULT( float, CustomizedScaling ) = 1.0f;
+
+    /** Visual style of the button */
+    SLATE_STYLE_ARGUMENT( FButtonStyle, Style )
+    
+    /** Additional padding for what this button needs to display its visuals. */
+    SLATE_ATTRIBUTE( FMargin, AdditionalPadding )
+    
+    /** For knowing if the button should be able to bounce when clicked. */
+    SLATE_ARGUMENT( bool, CanBounce )
+
+    SLATE_END_ARGS()
+    
+    /**
+	 * Construct this widget
+	 *
+	 * @param	InArgs	The declaration data for this widget
+	 */
+	void Construct( const FArguments& InArgs )
+	{
+	    // Order does not matter here but to get the property we need the underscore infront of the value we're getting.
+	    bCanBounce = InArgs._CanBounce;
+	    Style = InArgs._Style;
+	    AdditionalPadding = InArgs._AdditionalPadding;
+	    CustomizedScaling = InArgs._CustomizedScaling;
+	}
+
+private:
+
+    /** Scaling for after the button is customized */
+    float CustomizedScaling;
+
+    /** Style resource for this custom button. */
+    const FButtonStyle* Style;
+    
+    /** Additional padding for what this button needs to display its visuals. */
+	TSlateAttribute<FMargin> AdditionalPadding;
+
+    /** Flag to know if this button can be bounced when clicked. */
+    TSlateAttribute<bool> bCanBounce;
+}
+```
+
+Slate Events по сути являются делегатами в SWidgets для привязки при создании виджета, вы можете объявить свой делегат в C++ с помощью этого макроса в объявлении макроса Arguments range.
+
+- `SLATE_EVENT`: Добавляет поддержку обработчика событий для этого виджета с определенной member variable, которая раскрывает делегаты для привязки при создании. Ожидается, что виджет имеет делегат типа `EventDelegateType` с именем, совпадающим с именем события, которое было введено.
+
+Вот пример виджета, который использует макрос события при наведении на него курсора.
+
+```c++
+class SMyWidget : public SMyParentWidget
+{
+    SLATE_DECLARE_WIDGET(SMyWidget, SMyParentWidget)
+public:
+
+    SLATE_USER_ARGS( SMyWidget )
+    { }
+
+    /** Called when this widget is hovered. */
+    SLATE_EVENT( FSimpleDelegate, OnHovered)
+
+    SLATE_END_ARGS()
+
+private:
+
+    /** Called when this widget is hovered. */
+    FSimpleDelegate OnHovered; // FSimpleDelegate is within the engine BTW
+}
+```
+
 <a name="slate-widget-examples"></a>
 
-### 4.9 Slate Widgets Examples (Slate Test Suite/Starship Suite)
+### 4.10 Slate Widget Examples(Slate Test Suite/Starship Suite)
 
 **Slate Widget Examples** (также известный как **Slate Test Suite** при использовании UE4/**Starship Suite** при использовании UE5) — это собой набор примеров, построенных на Slate, таких как радио-кнопки, адаптивная сетка, выбор цвета и т. д.
 
@@ -457,8 +598,8 @@ if(FSlateApplication::IsInitialized())
 
 1. В зависимости от того, используете ли вы UE4/UE5
     - UE4: `Window>Developer Tools>Debug Tools`
-    - UE5: `Tools/Debug/Debug Tools` <br>![Slate Widget Examples Шаг 1](images/slate_widget_examples_step1.png)
-2. Выберите `Test Suite` <br>![Slate Widget Examples Шаг 2](images/slate_widget_examples_step2.png)
+    - UE5: `Tools/Debug/Debug Tools` <br>![Slate Widget Examples Шаг 1](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/slate_widget_examples_step1.png?raw=true)
+2. Выберите `Test Suite` <br>![Slate Widget Examples Шаг 2](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/slate_widget_examples_step2.png?raw=true)
 
 Вы также можете запустить Test Suite как отдельное приложение без открытия Unreal Editor, если у вас есть версия движка bp исходников и собрана программа Test Suite (которая создаст исполняемый файл в `[EnginePath]/Engine/Binaries/Win64/`) .
 
@@ -469,17 +610,17 @@ if(FSlateApplication::IsInitialized())
     - `[EnginePath]/Engine/Source/Runtime/AppFramework/Public/Widgets/Testing/SStarshipSuite.h`
     - `[EnginePath]/Engine/Source/Runtime/AppFramework/Private/Widgets/Testing/SStarshipSuite.cpp`
 
-![UE4 Test Suite Example](images/ue4_test_suite.png) <br> *Test Suite из UE4, сейчас версия Test Suite для UE4 более многофункциональна, чем Starship Suite в UE5.*
+![UE4 Test Suite Example](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/ue4_test_suite.png?raw=true) <br> *Test Suite из UE4, сейчас версия Test Suite для UE4 более многофункциональна, чем Starship Suite в UE5.*
 
 <a name="helpful-console-commands-for-slate"></a>
 
-### 4.10 Полезные консольные команды для Slate
+### 4.11 Полезные консольные команды для Slate
 
 > Отладочные команды консоли см. в подразделе «[Отладочные команды консоли](#debug-console-commands)» раздела «[Инструменты разработки и отладки для UMG/Slate](#dev-debug-tools)».
 
 - `Slate.GlobalScrollAmount [float value]` (по умолчанию = 32.0): количество, используемое для прокрутки при каждом щелчке колесика мыши (в Slate Units).
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="umg"></a>
 
 ## 5.0 UMG (Unreal Motion Graphics)
@@ -500,7 +641,13 @@ User Widgets не могут наследовать свою иерархию(**
 
 ### 5.1 Иерархия User Widgets
 
-Каждый **User Widget** является корневым `UWidget` по дизайну, поэтому User Widget не может иметь внутри себя никаких виджетов и по умолчанию является составным (**Compound Widget**), у него может быть только 1 дочерний виджет, но у этого дочернего элемента могуть быть другие дочерние элементы, что вызывает каскадный эффект дочерних элементов в (**древовидной иерархии**) каждого User Widget. <br>![Пример User WIdgets Hierarchy](images/user_widget_hierarchy.png) <br> *Пример панели Hierarchy в окне UMG Designer*
+Каждый **User WIdget** является корневым `UWidget`, поэтому у User Widget не может быть виджетов внутри него и по умолчанию он считается **Compound Widget**, у которого может быть только один дочерний элемент, но этот элемент может иметь другие дочерние элементы под ним и вызывает эффект каскадирования дочерних виджетов внутри **Tree Hierarchy** каждого User Widget.
+
+Designer/Hierarchy Editor View | Runtime результат
+:-: | :-:
+![Пример иерархии User Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_hierarchy.png)<br>*`Health_Bar` и `Health_Text` выделены **жирным**, потому что у них включен флаг `Is Variable`*<br>![ Флаг Is Variable](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/is_variable.png) | ![Второй пример Hit Test Grid](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_hierarchy_result.png)
+
+![On Animation Started](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/umg_hierarchy_diagram.png?raw=true) *Пример этой иерархии в виде диаграммы*
 
 <a name="user-widget-animation"></a>
 
@@ -508,8 +655,7 @@ User Widgets не могут наследовать свою иерархию(**
 
 Каждый User Widget может создавать собственные анимации, используя виджеты в этом User WIdget с помощью **Sequencer**. Вы можете создавать эти анимации в конструкторе виджетов, ещё вы можете изменять вещи, относящиеся к этому виджету, такие как преобразование рендеринга (render transform), видимость виджета (widget visibility) и т. д. Вы также можете изменять свойства виджетов, такие как параметры материала, значения рантайма в виджете, и т.п.
 
-![Пример конструктора анимации пользовательского виджета](images/umg_animation_designer.gif)
- *Пример конструктора анимации в UMG*
+![On Added to Focus Path](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/umg_animation_designer.gif?raw=true) *Пример конструктора анимации в UMG*
 
 Если для параметра **Tick Frequency** в User Widget установлено значение **Never** вместо **Auto** в настройках класса по умолчанию, он никогда не будет запускать анимацию, потому что для того, чтобы анимация вообще воспроизводилась, User Widget должен иметь возможность тикать эту анимацию, и если возможность User Widgets тикать выключена (установлено значение tick frequency как never), тогда он не будет тикать объект анимации.
 
@@ -529,7 +675,7 @@ virtual void UUserWidget::NativePreConstruct()
 }
 ```
 
-![Pre Construct](images/user_widget_events/preconstruct.png)
+![On Focus Lost](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/preconstruct.png)
 
 - **On Initialized**: Срабатывает только один раз во время выполнения, когда создается экземпляр, не являющийся шаблоном (когда вы создаете user widget).
 
@@ -546,7 +692,7 @@ virtual void UUserWidget::NativeOnInitialized()
 }
 ```
 
-![On Initialized](images/user_widget_events/oninitialized.png)
+![Save Zone Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/oninitialized.png)
 
 - **Construct**: Может сработать несколько раз для одного User WIdget, потому что он основан на том, когда виджет построен (Constructed) на экране (Через Add to Viewport или Add to Player Screen). Поэтому, если вы удаляете виджет из родителя (Remove from Parent) и повторно добавляете его позже, рекомендуется не помещать в него код первой инициализации, а вместо этого поместить его в "On Initialized".
 
@@ -559,7 +705,7 @@ virtual void UUserWidget::NativeConstruct()
 }
 ```
 
-![Построить](images/user_widget_events/construct.png)
+![Tick](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/construct.png)
 
 - **Destruct**: Срабатывает, когда этот виджет больше не отображается на экране, может вызываться несколько раз, поскольку он является инверсией Construct, где он срабатывает, когда этот виджет удаляется из родителя.
 
@@ -572,7 +718,7 @@ virtual void UUserWidget::NativeDestruct()
 }
 ```
 
-![Destruct](images/user_widget_events/destruct.png)
+![Пример Widget Reflector](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/destruct.png)
 
 - **On Paint**: Срабатывает при отрисовке виджета каждый кадр, отличается от Tick тем, что он предназначен для обработки информации Paint Context.
 
@@ -593,7 +739,7 @@ virtual int32 UUserWidget::NativePaint(const FPaintArgs& Args, const FGeometry& 
 }
 ```
 
-![On Paint](images/user_widget_events/onpaint.png)
+![On Animation Finished](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/onpaint.png)
 
 - **Tick**: Будет срабатывать в каждом кадре, когда этот виджет находится на экране, он не будет тикать, если виджет не отображается (даже если он все еще существует, единственное, что имеет значение, это то, что он отображается, а затем его тиканье).
 
@@ -611,7 +757,7 @@ virtual void UUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaT
 }
 ```
 
-![Tick](images/user_widget_events/tick.png)
+![On Focus Reveived](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/tick.png)![On Focus Received c двумя видами возвращаемых значений](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/languages/ru/images/user_widget_events/focus_received_both.png?raw=true)
 
 - **On Animation Started**: Происходит, когда анимация виджета начинает воспроизводиться, сообщает, что виджет начал воспроизводить анимацию, на случай, если вам нужно будет проверить его или использовать его позже. (Для пользователей Blueprint: последние версии Unreal требуют, чтобы события завершения анимации отображались в Event Graph, в то время как предыдущие версии позволяют отображать их как переопределяемые функции)
 
@@ -625,7 +771,7 @@ virtual void UUserWidget::OnAnimationStartedPlaying(UUMGSequencePlayer& Player)
 }
 ```
 
-![On Animation Started](images/user_widget_events/animation_started.png)
+![On Added to Focus Path](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/animation_started.png)
 
 - **On Animation Finished**: Срабатывает, когда анимация виджета заканчивает воспроизводиться, сообщает вам про завершение воспроизведения этого виджета на случай, если вам нужно проверить его или использовать его позже. (Для пользователей Blueprint: последние версии Unreal требуют, чтобы события завершения анимации отображались в Event Graph, в то время как предыдущие версии позволяют отображать их как переопределяемые функции)
 
@@ -653,7 +799,7 @@ virtual void UUserWidget::OnAnimationFinishedPlaying(UUMGSequencePlayer& Player)
 }
 ```
 
-![On Animation Finished](images/user_widget_events/animation_finished.png)
+![Pre Construct](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/animation_finished.png)
 
 - **Of Focus Received**: (если у вас возникли проблемы с его поиском в Blueprint, он должен вернуть структуру Event Reply, поэтому вам придется переопределить ее в списке функций, а не в Event Graph) Срабатывает, когда фокус передается этому User Widget (только этому виджету). Нужно, чтобы вы возвращали структуру Event Reply, за счёт которой вы можете выбрать возвращаемое значение Handled или Unhandled.
 
@@ -665,7 +811,7 @@ virtual FReply UUserWidget::NativeOnFocusReceived( const FGeometry& InGeometry, 
 }
 ```
 
-![On Focus Reveived](images/user_widget_events/focus_received.png)![On Focus Received c двумя видами возвращаемых значений](images/user_widget_events/focus_received_both.png)
+![On Initialized](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/focus_received.png)
 
 - **On Added to Focus Path**: Срабатывает, когда этот виджет или дочерний виджет в этом User Widget добавляется в путь фокуса (или находится в фокусе) и ранее не был его частью.
 
@@ -677,9 +823,9 @@ virtual void UUserWidget::NativeOnAddedToFocusPath(const FFocusEvent& InFocusEve
 }
 ```
 
-![On Added to Focus Path](images/user_widget_events/added_to_focus_path.png)
+![On Initialized](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/added_to_focus_path.png)
 
-- **On Added to Focus Path**: Срабатывает, когда этот User Widget (только этот виджет) теряет фокус.
+- **On Focus Lost**: Срабатывает, когда этот User Widget (только этот виджет) теряет фокус.
 
 ```c++
 virtual void UUserWidget::NativeOnFocusLost( const FFocusEvent& InFocusEvent )
@@ -689,7 +835,7 @@ virtual void UUserWidget::NativeOnFocusLost( const FFocusEvent& InFocusEvent )
 }
 ```
 
-![On Focus Lost](images/user_widget_events/focus_lost.png)
+![Destruct](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/focus_lost.png)
 
 - **On Removed from Focus Path**: Похоже на On Focus Lost, за исключением того, что может сработать, когда дочерний виджет в этом User Widget или сам этот виджет больше не является частью пути фокуса.
 
@@ -701,112 +847,112 @@ virtual void UUserWidget::NativeOnRemovedFromFocusPath(const FFocusEvent& InFocu
 }
 ```
 
-![On Removed from Focus Path](images/user_widget_events/removed_from_focus_path.png)
+![On Paint](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/user_widget_events/removed_from_focus_path.png)
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="common-widgets"></a>
 
-## 6.0 Распространённые виджеты
+## 6.0 Common Widgets
 
 В Unreal Engine есть большое количество часто используемых виджетов, его базовых элементов.<br> Большая часть или даже все ваши UI, использующие UMG/Slate, вероятно, будут построены на комбинировании этих виджетов:
 
-- **Text Block** *[Leaf Widget]*: Обрабатывает отображение статического текста, который можно изменить во время выполнения, установив для него другое текстовое значение. Виджеты TextBlock позволяют использовать пользовательский шрифт (включая его гарнитуру, если у шрифта есть другие), настраивать размер текста, межбуквенный интервал (также известный как кернинг), параметры контура (это сместит отображаемый текст), применять материалы к самим буквам, добавить положение тени или shadow offset (это сместит отображаемый текст), установите его выравнивание (justification) и т. д. <br> ![Text Block Widget](images/common_widgets/w_textblock.png)
-- **Rich Text Block** *[Leaf Widget]*: Работает аналогично виджетам TextBlock, но позволяет использовать пользовательские изображения, глифы, несколько шрифтов и т. д. для одновременного использования в одном и том же текстовом значении. <br> ![Rich Text Block Widget](images/common_widgets/w_richtextblock.png)
-- **Image** *[Leaf Widget]*: Обрабатывает отображение либо текстуры, либо материала, который использует UI domain для его отображения. <br>![Image Widget](images/common_widgets/w_image.png)
-- **Border** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Отображает дочерний виджет перед этим виджетом, по сути это виджет Image, который может иметь дочерний элемент. <br>![Border Widget](images/common_widgets/w_border.png)
-- **Button** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Отображает перед собой этот дочерний элемент, с которым можно взаимодействовать и на который можно фокусироваться. Возвращается при клике/нажатии/отпускании/удержании/наведении (hovered) и снятии наведения (unhovered). Вы также можете установить его метод Click (кнопкой мыши), метод Touch (у сенсорного экрана) и метод Press (клавиатура и геймпад). <br> ![Button Widget](images/common_widgets/w_button.png)
-- **CheckBox** *[Leaf Widget]*: Занимается отображением определенного изображения/материала в зависимости от того, в каком состоянии находится флажок, его можно кликнуть (или установить в определенное состояние) а сам он показывает, включено или выключено что-то. <br> ![Checkbox Widget](images/common_widgets/w_checkbox.png)
+-  **Text Block** *[Leaf Widget]*: Обрабатывает отображение статического текста, который можно изменить во время выполнения, установив для него другое текстовое значение. Виджеты TextBlock позволяют использовать пользовательский шрифт (включая его гарнитуру, если у шрифта есть другие), настраивать размер текста, межбуквенный интервал (также известный как кернинг), параметры контура (это сместит отображаемый текст), применять материалы к самим буквам, добавить положение тени или shadow offset (это сместит отображаемый текст), установите его выравнивание (justification) и т. д. <br> ![Text Block Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_textblock.png)
+-  **Rich Text Block** *[Leaf Widget]*: Работает аналогично виджетам TextBlock, но позволяет использовать пользовательские изображения, глифы, несколько шрифтов и т. д. для одновременного использования в одном и том же текстовом значении. <br> ![Rich Text Block Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_richtextblock.png)
+-  **Image** *[Leaf Widget]*: Обрабатывает отображение либо текстуры, либо материала, который использует UI domain для его отображения. <br>![Image Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_image.png)
+-  **Border** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Отображает дочерний виджет перед этим виджетом, по сути это виджет Image, который может иметь дочерний элемент. <br>![Border Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_border.png)
+-  **Button** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Отображает перед собой этот дочерний элемент, с которым можно взаимодействовать и на который можно фокусироваться. Возвращается при клике/нажатии/отпускании/удержании/наведении (hovered) и снятии наведения (unhovered). Вы также можете установить его метод Click (кнопкой мыши), метод Touch (у сенсорного экрана) и метод Press (клавиатура и геймпад). <br> ![Button Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_button.png)
+-  **CheckBox** *[Leaf Widget]*: Занимается отображением определенного изображения/материала в зависимости от того, в каком состоянии находится флажок, его можно кликнуть (или установить в определенное состояние) а сам он показывает, включено или выключено что-то. <br> ![Checkbox Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_checkbox.png)
 - **Progress Bar** *[Leaf Widget]*: Обрабатывает отображение изображения/материала перед этим виджетом с помощью заполнения значения от 0 до 1 с помощью его Bar Fill Type и Bar Fill Style.
     - Типы заполнения (Fill Types):
-        - **Left to RIght**: Заполняет прогрессбар слева направо. <br> <img src="images/common_widgets/progress_bars/w_progressbar_left_right_mask.png" width="305" height="144"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_left_right_scale.png" width="318" height="146.5"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Right to Left**: Заполняет прогрессбар справа налево. <br><img src="images/common_widgets/progress_bars/w_progressbar_right_left_mask.png" width="299" height="144.5"><br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_right_left_scale.png" width="295.5" height="144.5"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Fill from Center**: Линейно заполняет прогрессбар по осям X и Y от центра к краям. <br><img src="images/common_widgets/progress_bars/w_progressbar_center_mask.png" width="297.5" height="136.5"><br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_center_scale.png" width="290" height="140"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Fill from Center Vertical**: Линейно заполняет прогрессбар по оси X от центра к краям. <br> <img src="images/common_widgets/progress_bars/w_progressbar_center_horizontal_mask.png" width="283.5" height="134.5"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_center_horizontal_scale.png" width="298" height="144"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Fill from Center Vertical**: Линейно заполняет прогрессбар по оси Y от центра к краям. <br> <img src="images/common_widgets/progress_bars/w_progressbar_center_vertical_mask.png" width="298" height="147.5"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_center_vertical_scale.png" width="290" height="133"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Top to Bottom**: Заполняет прогрессбар сверху вниз. <br> <img src="images/common_widgets/progress_bars/w_progressbar_top_bottom_mask.png" width="300" height="138.5"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_top_bottom_scale.png" width="303.5" height="140.5"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
-    - **Bottom to Top**: Заполняет прогрессбар снизу вверх. <br> <img src="images/common_widgets/progress_bars/w_progressbar_bottom_top_mask.png" width="297.5" height="136"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="images/common_widgets/progress_bars/w_progressbar_bottom_top_scale.png" width="293" height="142.5"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+        -  **Left to RIght**: Заполняет прогрессбар слева направо. <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_left_right_scale.png" class=""> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_left_right_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    -  **Right to Left**: Заполняет прогрессбар справа налево. <br><img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_right_left_mask.png" class=""><br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_right_left_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    -  **Fill from Center**: Линейно заполняет прогрессбар по осям X и Y от центра к краям. <br><img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_mask.png" class=""><br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    - **Fill from Center Horizontal**: Линейно заполняет прогрессбар по оси X от центра к краям. <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_horizontal_mask.png" class="" width="283.5" height="134.5"> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_horizontal_scale.png" class="" width="298" height="144"> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    -  **Fill from Center Vertical**: Линейно заполняет прогрессбар по оси Y от центра к краям. <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_vertical_mask.png" class=""> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_center_vertical_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    -  **Top to Bottom**: Заполняет прогрессбар сверху вниз. <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_top_bottom_mask.png" class=""> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_top_bottom_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
+    -  **Bottom to Top**: Заполняет прогрессбар снизу вверх. <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_bottom_top_mask.png" class=""> <br> *Вариант заполнения по маске (Masked Version)* <br> <img src="https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/progress_bars/w_progressbar_bottom_top_scale.png" class=""> <br> *Вариант заполнения масштабом изображения (Scaled Version)*
     - Варианты заполнения (Fill Styles):
         - По маске/**Mask**: Изображение-заполнитель прогрессбара маскируется в зависимости от процента заполнения и типа заполнения (fill type).
         - Масштабом/**Scale**: Изображение-заполнитель масштабируется и растягивается/сжимается в зависимости от процента заполнения и типа заполнения (fill type).
-    - **Slider** *[Leaf Widget]*: Похож на прогрессбар, но с ним можно взаимодействовать, и вы можете изменить его ориентацию с горизонтальной на вертикальную и установить размер шага (для нажатий с клавиатуры/геймпада). <br> ![Slider Widget](images/common_widgets/w_slider.png)
-- **Editable Text** *[Leaf Widget]*: Поле, в котором пользователь может ввести одну строку текста, может иметь текст подсказки и иметь включенный параметр "только для чтения", может быть полем для ввода пароля (когда вместо реального текста показываются точки), а может настраиваться, как обычный виджет Text Block. <br> ![Editable Text Widget](images/common_widgets/w_editable_text.png)
-- **Editable Text (Multi-Line)** *[Leaf Widget]*: То же самое, что и виджет Editable Text, разве что пользователь может вводить несколько строк текста вместо одной. <br> ![Editable Text (Multi-Line) Widget](images/common_widgets/w_editable_text_multi.png)
-- **Text Box** *[Leaf Widget]*: То же, что и Editable Text, разве что обёрнут изображением/материалом позади текста. <br> ![Text Box Widget](images/common_widgets/w_textbox.png)
-- **Text Box (Multi-Line)** *[Leaf Widget]*: То же, что и Editable Text(Multi-Line), разве что обернут изображением/материалом за текстом. <br> ![Text Box (Multi-Line) Widget](images/common_widgets/w_textbox_multi.png)
-- **Spin Box** *[Leaf Widget]*: Показывает число (можно разрешить или запретить использование десятичных знаков), которое пользователь может ввести или использовать мышь и взаимодействовать с ним для перемещения и увеличения/уменьшения числа. <br> ![Spin Box Widget](images/common_widgets/w_spinbox.png)
-- **Combo Box (String)** *[Leaf Widget]*: Виджет раскрывающегося списка, который отображает строковое (string, НЕ TEXT, поэтому его нельзя локализовать) значение при выборе, а также отображает его параметры. <br>![Combo Box Widget](images/common_widgets/w_combobox.png)
+    -  **Slider** *[Leaf Widget]*: Похож на прогрессбар, но с ним можно взаимодействовать, и вы можете изменить его ориентацию с горизонтальной на вертикальную и установить размер шага (для нажатий с клавиатуры/геймпада). <br> ![Slider Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_slider.png)
+-  **Editable Text** *[Leaf Widget]*: Поле, в котором пользователь может ввести одну строку текста, может иметь текст подсказки и иметь включенный параметр "только для чтения", может быть полем для ввода пароля (когда вместо реального текста показываются точки), а может настраиваться, как обычный виджет Text Block. <br> ![Editable Text Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_editable_text.png)
+-  **Editable Text (Multi-Line)** *[Leaf Widget]*: То же самое, что и виджет Editable Text, разве что пользователь может вводить несколько строк текста вместо одной. <br> ![Editable Text (Multi-Line) Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_editable_text_multi.png)
+-  **Text Box** *[Leaf Widget]*: То же, что и Editable Text, разве что обёрнут изображением/материалом позади текста. <br> ![Text Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_textbox.png)
+-  **Text Box (Multi-Line)** *[Leaf Widget]*: То же, что и Editable Text(Multi-Line), разве что обернут изображением/материалом за текстом. <br> ![Text Box (Multi-Line) Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_textbox_multi.png)
+-  **Spin Box** *[Leaf Widget]*: Показывает число (можно разрешить или запретить использование десятичных знаков), которое пользователь может ввести или использовать мышь и взаимодействовать с ним для перемещения и увеличения/уменьшения числа. <br> ![Spin Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_spinbox.png)
+-  **Combo Box (String)** *[Leaf Widget]*: Виджет раскрывающегося списка, который отображает строковое (string, НЕ TEXT, поэтому его нельзя локализовать) значение при выборе, а также отображает его параметры. <br>![Combo Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_combobox.png)
 - **Invalidation Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Будет контролировать, когда этот дочерний виджет становится невалидным для его проходов макета/геометрии (layout/geometry passes), что очень полезно для повышения производительности. *На самом деле не может использовать картинку, потому что полностью оборачивает виджет и невидим*.
-- **Retainer Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Будет отображать материал поверх своего дочернего виджета и только своего дочернего виджета, то есть не будет отображать этот материал по остальному пространству на фоне, которое дочерний виджет не занимает при отрисовке.<br> Например, если вы оборачиваете Text Block виджетом Retainer Box, материал будет применяться только к тексту, а не к пространству между буквами. <br> ![Retainer Box Widget](images/common_widgets/w_retainerbox.png)<br> *Иерархия Retainer Box в дизайнере* <br> ![Retainer Box Material Widget](images/common_widgets/w_retainerbox_material.png)<br> *Материал Retainer Box* <br>![Результирующий Retainer Box Widget](images/common_widgets/w_retainerbox_result.png)<br> *Retainer Box в рантайме (во время play in editor)*
-- **Throbber** *[Leaf Widget]*: Отображает изображение/материал в определенном анимированном шаблоне. Полезно для показа того, что что-то загружается. <br>![Throbber Widget](images/common_widgets/w_throbber.png)
-- **Circular Throbber** *[Leaf Widget]*: Версия Throbber, которая перемещает изображения/материалы по кругу. <br> ![Circular Throbber Widget](images/common_widgets/w_throbber_circular.png)
+-  **Retainer Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Будет отображать материал поверх своего дочернего виджета и только своего дочернего виджета, то есть не будет отображать этот материал по остальному пространству на фоне, которое дочерний виджет не занимает при отрисовке.<br> Например, если вы оборачиваете Text Block виджетом Retainer Box, материал будет применяться только к тексту, а не к пространству между буквами. <br> ![Retainer Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_retainerbox.png)<br> *Иерархия Retainer Box в дизайнере* <br> ![Retainer Box Material Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_retainerbox_material.png)<br> *Материал Retainer Box* <br>![Результирующий Retainer Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_retainerbox_result.png)<br> *Retainer Box в рантайме (во время play in editor)*
+-  **Throbber** *[Leaf Widget]*: Отображает изображение/материал в определенном анимированном шаблоне. Полезно для показа того, что что-то загружается. <br>![Throbber Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_throbber.png)
+- **Circular Throbber** *[Leaf Widget]*: Версия Throbber, которая перемещает изображения/материалы по кругу. <br> ![Circular Throbber Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_throbber_circular.png)
     - > *Примечание от автора; «Пожалуйста, измените изображение Throbber на что-то отличное от изображения по умолчанию в ваших финальных продуктах, если это возможно. Я устал видеть дефолтный троббер в выпущенных продуктах, вы можете сделать лучше! Спасибо."*
 - **Spacer** *[Leaf Widget]*: Этот виджет не имеет визуального представления, а просто обеспечивает заполнение и промежуток между другими виджетами, рекомендуется использовать его вместо отступов (padding) в слотах, если ваш дизайн UI постоянно меняется, чтобы упростить быструю итерацию.
-- **Background Blur** *[Compound Widget]*: У него может быть только 1 дочерний виджет. По сути, виджет Image с дочерним элементом, отображаемым позади него, размывает результат отображения этого дочернего виджета с помощью размытия по Гауссу. <br> Рекомендуется использовать его с правильной настройкой области отсечения (clipping area), иначе лучше использовать кастомный материал, чтобы художникам было легче вносить изменения. <br> ![Background Blur Widget](images/common_widgets/w_background_blur.png)
-- **Input Kay Selector** *[Leaf Widget]*: Позволяет пользователю нажать клавижу ввода, когда этот виджет в фокусе, и он будет отображать, какая это клавиша ввода. <br>![Input Key Selector Widget](images/common_widgets/w_input_key_selector.png)
-- **Canvas Panel** *[Panel Widget]*: Это виджет по умолчанию, который можно найти свожесозданном User Widget. Он позволяет разработчику размещать дочерние виджеты в произвольных местах, привязывая их к якорным точкам (anchors) и располагая по оси z с другими дочерними элементами этого холста (canvas).<br> Он использует макет gj абсолютным параметрам для своего размещения, поэтому он хорош для экранных индикаторов, которые следуют за определенным объектом в мире или чем-то, что может перемещаться по всему экрану. <br>![Canvas Panel Widget](images/common_widgets/w_canvas_panel.png)
-- **Horizontal Box** *[Panel Widget]*: Позволяет размещать свои дочерние виджеты в горизонтальном порядке, двигаясь слева направо от нулевой позиции — крайнего слева виджета, так, что последний виджет — крайний справа. <br>![Horizontal Box](images/common_widgets/w_horizontalbox.png)
-- **Vertical Box** *[Panel Widget]*: Работает так же, как и Horizontal Box, за исключением того, что он размещает свои дочерние элементы в вертикальном порядке, двигаясь сверху вниз, от нулевой позиции в качестве самого верхнего виджета, когда последний виджет является самым нижним виджетом.<br> *Vertical Box и Horizontal Box не прокручиваются (не скролятся), для этого вам придется использовать виджет Scroll Box или что-то подобное.* <br>![Vertical Box Widget](images/common_widgets/w_verticalbox.png)
-- **Scroll Box** *[Panel Widget]*: Работает так же, как Vertical Box И Horizontal Box (должно быть установлено либо вертикальное, либо горизонтальное положение), но позволяет их прокручивать (скролить). Не поддерживает виртуализацию. <br> ![Scroll Box Widget](images/common_widgets/w_scrollbox.png)
-- **Size Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Позволяет этому виджету указать желаемый размер (desired size) своего дочернего виджета (поскольку не все виджеты будут сообщать о желаемом размере, так как зависят от своих собственных дочерних виджетов). <br> ![Size Box Widget](images/common_widgets/w_sizebox.png)
-- **Scale Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Позволяет этому виджету масштабировать свой дочерний элемент, чтобы тот соответствовал конкретному размеру в области, занимаемой этим боксом. <br> ![Scale Box Widget](images/common_widgets/w_scalebox.png)<br> *В этом примере Scale Box изменяет размер Image, чтобы оно умещалось без перекосов*
-- **Overlay** *[Panel Widget]*: Отображает виджеты друг над другом, в зависимости от их порядка в списке дочерних виджетов. Этот виджет чрезвычайно полезен для быстрого наложения виджета поверх другого виджета. <br>![Overlay WIdget](images/common_widgets/w_overlay.png)<br> *Текст и изображение являются дочерними элементами Overlay Widget.*
-- **Grid Panel** *[Panel Widget]*: Позволяет автоматически размещать дочерние виджеты по сеткоподобному паттерну, напоминающему таблицу, которая сохраняет ширину каждого столбца. <br>![Grid Panel Widget](images/common_widgets/w_gridpanel.png) *Эта сетка была настроена так, чтобы заполнять пространство между каждым столбцом и строкой, то есть ваша сетка может выглядеть по-разному в зависимости от того, как вы ее настроили.*
-- **Uniform Grid Panel** *[Panel Widget]*: По сути Grid Panel, но он будет равномерно делить доступное пространство между всеми своими дочерними элементами. <br>![Uniform Grid Panel WIdget](images/common_widgets/w_uniformgrid.png)
+-  **Background Blur** *[Compound Widget]*: У него может быть только 1 дочерний виджет. По сути, виджет Image с дочерним элементом, отображаемым позади него, размывает результат отображения этого дочернего виджета с помощью размытия по Гауссу. <br> Рекомендуется использовать его с правильной настройкой области отсечения (clipping area), иначе лучше использовать кастомный материал, чтобы художникам было легче вносить изменения. <br> ![Background Blur Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_background_blur.png)
+-  **Input Kay Selector** *[Leaf Widget]*: Позволяет пользователю нажать клавижу ввода, когда этот виджет в фокусе, и он будет отображать, какая это клавиша ввода. <br>![Input Key Selector Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_input_key_selector.png)
+-  **Canvas Panel** *[Panel Widget]*: Это виджет по умолчанию, который можно найти свожесозданном User Widget. Он позволяет разработчику размещать дочерние виджеты в произвольных местах, привязывая их к якорным точкам (anchors) и располагая по оси z с другими дочерними элементами этого холста (canvas).<br> Он использует макет gj абсолютным параметрам для своего размещения, поэтому он хорош для экранных индикаторов, которые следуют за определенным объектом в мире или чем-то, что может перемещаться по всему экрану. <br>![Canvas Panel Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_canvas_panel.png)
+-  **Horizontal Box** *[Panel Widget]*: Позволяет размещать свои дочерние виджеты в горизонтальном порядке, двигаясь слева направо от нулевой позиции — крайнего слева виджета, так, что последний виджет — крайний справа. <br>![Horizontal Box](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_horizontalbox.png)
+-  **Vertical Box** *[Panel Widget]*: Работает так же, как и Horizontal Box, за исключением того, что он размещает свои дочерние элементы в вертикальном порядке, двигаясь сверху вниз, от нулевой позиции в качестве самого верхнего виджета, когда последний виджет является самым нижним виджетом.<br> *Vertical Box и Horizontal Box не прокручиваются (не скролятся), для этого вам придется использовать виджет Scroll Box или что-то подобное.* <br>![Vertical Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_verticalbox.png)
+-  **Scroll Box** *[Panel Widget]*: Работает так же, как Vertical Box И Horizontal Box (должно быть установлено либо вертикальное, либо горизонтальное положение), но позволяет их прокручивать (скролить). Не поддерживает виртуализацию. <br> ![Scroll Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_scrollbox.png)
+-  **Size Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Позволяет этому виджету указать желаемый размер (desired size) своего дочернего виджета (поскольку не все виджеты будут сообщать о желаемом размере, так как зависят от своих собственных дочерних виджетов). <br> ![Size Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_sizebox.png)
+-  **Scale Box** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Позволяет этому виджету масштабировать свой дочерний элемент, чтобы тот соответствовал конкретному размеру в области, занимаемой этим боксом. <br> ![Scale Box Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_scalebox.png)<br> *В этом примере Scale Box изменяет размер Image, чтобы оно умещалось без перекосов*
+-  **Overlay** *[Panel Widget]*: Отображает виджеты друг над другом, в зависимости от их порядка в списке дочерних виджетов. Этот виджет чрезвычайно полезен для быстрого наложения виджета поверх другого виджета. <br>![Overlay WIdget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_overlay.png)<br> *Текст и изображение являются дочерними элементами Overlay Widget.*
+-  **Grid Panel** *[Panel Widget]*: Позволяет автоматически размещать дочерние виджеты по сеткоподобному паттерну, напоминающему таблицу, которая сохраняет ширину каждого столбца. <br>![Grid Panel Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_gridpanel.png) *Эта сетка была настроена так, чтобы заполнять пространство между каждым столбцом и строкой, то есть ваша сетка может выглядеть по-разному в зависимости от того, как вы ее настроили.*
+-  **Uniform Grid Panel** *[Panel Widget]*: По сути Grid Panel, но он будет равномерно делить доступное пространство между всеми своими дочерними элементами. <br>![Uniform Grid Panel WIdget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_uniformgrid.png)
 - **Widget Switcher** *[Panel Widget]*: Будет отображать только один из своих дочерних виджетов за раз исходя из его дочернего индекса, но будет загружать их все сразу (не подходит для главных страниц интерфейса, только для небольших вещей) и инициализировать, создавать (construt) их все, когда переключатель виджетов загружается, инициализируется, создается (construct).
 - **Save Zone** *[Compound Widget]*: У него может быть только 1 дочерний виджет. Этот виджет особенный, поскольку он будет применять отступы к верхней/нижней/левой/правой сторонам своего дочернего виджета внутрь, учитывая, на каком устройстве отображается этот виджет, например, на некоторых мобильных устройствах с "бровью" (notch) на одной стороне, безопасная зона будет учитывать это и добавлять отступы к своему дочернему виджету, чтобы он не обрезался "бровью", а также учитывать телевизоры с дополнительными пикселями под рамкой, проекторы с дополнительными столбцами пикселей, скрытыми за черной рамкой, и т. д. Хорошим примером является то, что для некоторых телефонов с "бровью" (вы знаете, о каких я говорю), безопасная зона будет расширять эту сторону экрана для вас, чтобы ваши виджеты не закрывались выемкой.
 
 > Вы также можете использовать некоторые полезные отладочные команды консоли для имитирования безопасной зоны на ПК в редакторе, расположенные в подразделе [Отладочные команды консоли](#debug-console-commands) раздела [Инструменты разработки и отладки для UMG/Slate](#dev-debug-tools).
 
-![Save Zone Widget](images/common_widgets/w_safezone.png)<br> *В этом примере мы обернули Canvas Panel виджетом Save Zone, чтобы тот отодвинул canvas от области экрана, которая была бы недоступна из-за выреза на экране или особенностей операционной системы.*
+![Save Zone Widget](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widgets/w_safezone.png)<br> *В этом примере мы обернули Canvas Panel виджетом Save Zone, чтобы тот отодвинул canvas от области экрана, которая была бы недоступна из-за выреза на экране или особенностей операционной системы.*
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="common-widget-functionality"></a>
 
-## 7.0 Распространённый функционал виджетов
+## 7.0 Функционал Common Widgets
 
 У каждого виджета есть свои собственные функциональность и возможности, но при этом есть общая функциональность для всех виджетов, например:
 
-- **Accessibility**: каждый виджет будет проверять настройки специальных возможностей (accessibility) проекта по умолчанию, эти настройки могут быть переопределены для каждого виджета и могут влиять на его собственные дочерние элементы.<br> обсуждение специальных возможностей выходит за рамки этого документа, но вот официальный курс, одобренный Epic, посвященный этому:<br> [Одобренный Epic курс по доступному дизайну](https://dev.epicgames.com/community/learning/courses/7M1/accessible-design-with-unreal-engine/yGwl/accessible-design-in-unreal-engine-overview). <br> ![Обзор полей Accessibility](images/common_widget_func/accessibility_overview.png)
+- **Accessibility**: Каждый виджет будет слушать настройки проекта по умолчанию для доступности, эти настройки могут быть переопределены для каждого виджета и могут влиять на его дочерние элементы, <br> изучение доступности выходит за рамки этого документа, но вот официальный курс, одобренный Epic: <br> [Одобренный Epic курс по введению в доступный дизайн](https://www.unrealengine.com/en-US/onlinelearning-courses/introduction-to-accessible-design-with-unreal-engine). <br> ![Accessibility Fields Overview](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/accessibility_overview.png)
     - **Override Accessible Defaults**: если этот параметр включен, поведение специальных возможностей по умолчанию и текст для этого виджета переопределяются.
         - **Can Children be Accessible**: Переключатель, определяющий, должны ли дочерние элементы этого виджета быть отдельно доступными виджетами.
-        - **Accessible Behavior**: Настройка специальных возможностей этого виджета, включая его описание. При использовании опции "своё" (custom) вы можете ввести свой собственный текст специальных возможностей. ![Обзор Accessibility Behavior](images/common_widget_func/accessibility_behavior.png)
-        - **Accessible Summary Behavior**: Настройка описания этого виджета, когда он представлен через сводку родительского виджета. При использовании опции "своё" (custom) вы можете ввести свой собственный текст для специальных возможностей. ![Обзор Accessibility Summary Behavior](images/common_widget_func/accessibility_summary_behavior.png)
-- **Tool Tip Text**: Текстовый виджет всплывающей подсказки, который использует либо виджет по умолчанию, либо ваш собственный пользовательский виджет, который показывается, когда пользователь наводит курсор мыши на виджет. <br> ![Поле Tool Tip Text](images/common_widget_func/tooltip_text.png)
-- **Is Enabled**: Переключатель, определяющий, включен/отключен этот виджет и может ли пользователь интерактивно работать с ним. <br>![Переключатель Is Enabled](images/common_widget_func/is_enabled.png)
+        -  **Accessible Behavior**: Настройка специальных возможностей этого виджета, включая его описание. При использовании опции "своё" (custom) вы можете ввести свой собственный текст специальных возможностей. ![Обзор Accessibility Behavior](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/accessibility_behavior.png)
+        -  **Accessible Summary Behavior**: Настройка описания этого виджета, когда он представлен через сводку родительского виджета. При использовании опции "своё" (custom) вы можете ввести свой собственный текст для специальных возможностей. ![Обзор Accessibility Summary Behavior](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/accessibility_summary_behavior.png)
+-  **Tool Tip Text**: Текстовый виджет всплывающей подсказки, который использует либо виджет по умолчанию, либо ваш собственный пользовательский виджет, который показывается, когда пользователь наводит курсор мыши на виджет. <br> ![Поле Tool Tip Text](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/tooltip_text.png)
+-  **Is Enabled**: Переключатель, определяющий, включен/отключен этот виджет и может ли пользователь интерактивно работать с ним. <br>![Переключатель Is Enabled](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/is_enabled.png)
 - **Visibility**: Возможность отрисовки и интерактивного взаимодействия с виджетом.
     - **Visible**: Отрисовывает виджет и разрешает ему реагировать на курсор.
     - **Collapsed**: Не отрисовывает виджет, не даёт ему реагировать на взаимодействие и не даёт ему занимать место в макете (layout).
     - **Hidden**: Не отрисовывает виджет, не даёт реагировать на взаимодействие, но позволяет виджету занимать место в макете (layout).
     - **Not Hit-Testable/Hit Test Invisible (Self &amp; All Children)**: Отрисовывает виджет, но не даёт ему и его дочерним элементам реагировать на взаимодействие.
-    - **Not Hit-Testable/Hit Test Invisible (Self Only)**: Отрисовывает виджет, но делает так, что только этот самый виджет не реагирует на взаимодействие. <br>![Обзор вариантов Visibility](images/common_widget_func/visibility_overview.png)
-- **Render Opacity**: Непрозрачность рисуемого виджета, что также влияет на непрозрачность его дочерних элементов. 0 = Невидимый, 1 = Полностью видимый. <br>![Render Opacity](images/common_widget_func/render_opacity.png)
+    -  **Not Hit-Testable/Hit Test Invisible (Self Only)**: Отрисовывает виджет, но делает так, что только этот самый виджет не реагирует на взаимодействие. <br>![Обзор вариантов Visibility](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/visibility_overview.png)
+-  **Render Opacity**: Непрозрачность рисуемого виджета, что также влияет на непрозрачность его дочерних элементов. 0 = Невидимый, 1 = Полностью видимый. <br>![Render Opacity](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/render_opacity.png)
 - **Render Transform**: У каждого виджета есть размер при отрисовке (Render Transform), который может повлиять на форму финального отрисованного виджета, не меняя исходный макет (layout) и paint information.<br> Думайте об этом как о модификаторе исходной информации о преобразовании, который не меняет макет (layout).
     - **Translation**: Сдвиг местоположения по осям X и Y.
     - **Масштаб**: Масштаб виджета по осям X и Y.
     - **Сдвиг** : Сдвиг виджета по осям X и Y, также известный как перекос.
     - **Shear**: Поворот виджета. Вам нужна только 1 ось для вращения в 2D-пространстве, но она иметь значение в диапазоне от -180 до 180 градусов.
-    - **Pivot**: Смещение опорной точки (pivot point) виджета, которая определяет положение, из которого применяются преобразования.<br> Фактическое значение представляет собой приведённую величину, начинающуюся с 0,5 по осям X/Y для центра виджета, 0,0 = слева/сверху и 1,0 = справа/снизу. <br> ![Render Transform](images/common_widget_func/render_transform.png)
-- **Is Volatile**: Этот переключатель, если установлено значение true, будет помечать этот виджет как некэшируемый, поэтому он всегда должен обновлять свой макет (layout) и финальную форму (collision geometry). По умолчанию параметр равен false, потому что он обычно не используется, но предлагается на всякий случай. ![Is Volatile](images/common_widget_func/is_volatile.png)
-- **Clipping**: В зависимости от макета (layout) и формы (geometry information), здесь вы можете указать, как виджет обрезается,<br> при этом области обрезания разных виджетов не объединяются, то есть это может повлиять на производительность в зависимости от того, сколько перекрывающихся и отсеченных виджетов у вас есть на экране. <br> ![Обзор Clipping](images/common_widget_func/clipping_overview.png)
-    - **Inherit**: Этот clipping space не позволяет виджету обрезать свои дочерние элементы, но виджет и все его дочерние элементы наследуют область отсечения последнего виджета, который был обрезан выше по иерархии. <br>![Пример Inherit Clipping](images/common_widget_func/clipping_inherit.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Inherit`, и он является дочерним элементом виджета `Canvas Panel`, у которого Clipping установлен на `Clip to Bounds`.*
-    - **Clip to Bounds**: Этот clipping space обрезает границы своего виджета, он пересекает эти границы с любой предыдущей clipping area выше него по иерархии. <br>![Пример Clip to Bounds](images/common_widget_func/clipping_clip_to_bounds.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Clip to Bounds`, поэтому его дочерние виджеты, которые являются `Button`, будут пересекаться, когда они выходят за границы `Scroll Box`.*
-    - **Clip to Bounds - Without Intersecting(Advanced)**: Эта clipping area также обрезается до своих границ, но **<u>НЕ</u>** пересекается ни с какой существующей clipping area, она всегда будет "продавлилвать" свое собственное новое состояние Clipping.<br> Позволяет виджету отрисовываться за пределами тех границ, под которые обрезается вся его иерархия. Однако это **<u>НЕ</u>** позволит вам игнорировать clipping area, для которой установлено значение *"Always"*. <br>![Пример Clip to Bounds Without Intersecting](images/common_widget_func/clipping_clip_to_bounds_intersect.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Clip to Bounds` а один из его дочерних виджетов имеет Clipping, установленный на `Clip to Bounds - Without Intersecting(Advanced)`*
-    - **Clip to Bounds - Always(Advanced)**: Эта clipping area также обрезает границы и всегда пересекает эти границы с любой предыдущей clipping area.<br> Эту clipping area **<u>НЕЛЬЗЯ</u>** игнорировать, она всегда будет обрезать свои дочерние элементы. Полезно для жестких барьеров в UI, где вы никогда не хотите, чтобы анимация или другие эффекты врывались в или вырывались из этой области. <br>![Пример Clip to Bounds Always](images/common_widget_func/clipping_clip_to_bounds_always.png)<br> *В этом примере есть 3 основных виджета;<br> `Canvas Panel` с Clipping, установленным на `Clip to Bounds - Always(Advanced)`<br> `Scroll Box` в `Canvas Panel` с Clipping, установленным на `Clip to Bounds`<br> `Button` в `Scroll Box`, для которой установлено значение `Clip to Bounds - Without Intersecting(Advanced)`*
-    - **On demand(Advanced)**: Эта clipping area обрезается до границы, когда ее desired size больше, чем выделенная геометрия в макете (layout).<br> Если это происходит там, где его нужно обрезать, то она будет рассматриваться как *"Always"*. Согласно исходникам, этот режим был в первую очередь добавлен для текста, когда тот помещается в контейнер, размер которого в конечном итоге изменяется, чтобы не поддерживать длину текста. <br>![Пример Clipping On Demand](images/common_widget_func/clipping_on_demand.gif)<br> *В этом примере у нас есть виджет `Vertical Box` с Clipping, установленным на `Inherit`, и кастомный `Text Block` из эпиковского плагина Common UI, для которого Clipping установлен на `On Demand(Advanded)`, чтобы текст мог прокручиваться и обрезаться должным образом (этот пример также встречается в проекте эпиков Context Examples на карте Common UI Example)*
-- **Navigation**: Здесь вы можете добавить свои навигационные хуки для определения того, к какому виджету следует переходить при использовании фреймвока фокуса Unreal. Вы можете установить их в рантайме в Blueprint и в C++.<br> Пожалуйста, обратитесь к разделу [Система фокусироки Unreal](#unreals-focusing-system) для более подробного объяснения процесса навигации. <br>![Обзор Navigation](images/common_widget_func/navigation_overview.png)
-    - **Escape**: Этот тип навигации будет переходить либо к другому виджету, либо пытаться добраться до любого другого виджета и выйти за пределы этого виджета при перемещении в этом направлении. <br>![Пример Escape Navigation](images/common_widget_func/navigation_escape.png)
-    - **Stop**: Навигация останавливается при попытке выйти из этого виджета в этом направлении. <br>![Пример Stop Navigation](images/common_widget_func/navigation_stop.png)
-    - **Wrap**: Навигация будет пытаться перейти к противоположным границам этого виджета (например, в Vertical Box, переход к нижнему виджету и наличие настройки обтекания (wrap) для нижнего виджета на последнем виджете отправит навигацию к верхнему виджету Vertical Box). <br>![Пример Wrap Navigation](images/common_widget_func/navigation_wrap.png)
-    - **Explicit**: Навигация к специально выбранному виджету при переходе от этого виджета в этом направлении. <br>![Пример Explicit Navigation](images/common_widget_func/navigation_explicit.png)<br> *Вы можете выбирать только другие виджеты, имя которых изменено в редакторе, при выборе его в дизайнере, тогда как в коде вы можете просто предоставить сам виджет, независимо от того, был ли он переименован или нет.*
-    - **Custom**: позволяет переопределить виджет для перехода с помощью функции, которая может либо возвращать виджет, либо не возвращать виджет (имитируя тип навигации *"Stop"*). Предназначен для перехода **ОТ** или из этого виджета к другому виджету в этом конкретном направлении. <br>![Пример Custom Navigation](images/common_widget_func/navigation_custom.png)
-    - **Custom Boundary**: Позволяет переопределить, к какому виджету переходить, используя функцию, которая может либо возвращать виджет, либо не возвращать виджет (имитируя тип навигации *"Stop"*). Предназначен для перехода **к** этому виджету от другого виджета в этом конкретном направлении,<br> поэтому, если для направления Влево/Left и вы установили для него "Custom Boundary", тогда, когда вы переходите от другого виджета к этому, и это было направление Влево/Left, он будет запускать эту функцию, к которой он привязан. <br> ![Пример Custom Boundary Navigation](images/common_widget_func/navigation_custom_boundary.png)
+    -  **Pivot**: Смещение опорной точки (pivot point) виджета, которая определяет положение, из которого применяются преобразования.<br> Фактическое значение представляет собой приведённую величину, начинающуюся с 0,5 по осям X/Y для центра виджета, 0,0 = слева/сверху и 1,0 = справа/снизу. <br> ![Render Transform](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/render_transform.png)
+-  **Is Volatile**: Этот переключатель, если установлено значение true, будет помечать этот виджет как некэшируемый, поэтому он всегда должен обновлять свой макет (layout) и финальную форму (collision geometry). По умолчанию параметр равен false, потому что он обычно не используется, но предлагается на всякий случай. ![Is Volatile](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/is_volatile.png)
+- **Clipping**: В зависимости от макета (layout) и формы (geometry information), здесь вы можете указать, как виджет обрезается,<br> при этом области обрезания разных виджетов не объединяются, то есть это может повлиять на производительность в зависимости от того, сколько перекрывающихся и отсеченных виджетов у вас есть на экране. <br> ![Обзор Clipping](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/clipping_overview.png)
+    -  **Inherit**: Этот clipping space не позволяет виджету обрезать свои дочерние элементы, но виджет и все его дочерние элементы наследуют область отсечения последнего виджета, который был обрезан выше по иерархии. <br>![Пример Inherit Clipping](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/clipping_inherit.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Inherit`, и он является дочерним элементом виджета `Canvas Panel`, у которого Clipping установлен на `Clip to Bounds`.*
+    -  **Clip to Bounds**: Этот clipping space обрезает границы своего виджета, он пересекает эти границы с любой предыдущей clipping area выше него по иерархии. <br>![Пример Clip to Bounds](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/clipping_clip_to_bounds.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Clip to Bounds`, поэтому его дочерние виджеты, которые являются `Button`, будут пересекаться, когда они выходят за границы `Scroll Box`.*
+    -  **Clip to Bounds - Without Intersecting(Advanced)**: Эта clipping area также обрезается до своих границ, но **<u>НЕ</u>** пересекается ни с какой существующей clipping area, она всегда будет "продавлилвать" свое собственное новое состояние Clipping.<br> Позволяет виджету отрисовываться за пределами тех границ, под которые обрезается вся его иерархия. Однако это **<u>НЕ</u>** позволит вам игнорировать clipping area, для которой установлено значение *"Always"*. <br>![Пример Clip to Bounds Without Intersecting](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/clipping_clip_to_bounds_intersect.png)<br> *В этом примере есть виджет `Scroll Box` с Clipping, установленным на `Clip to Bounds` а один из его дочерних виджетов имеет Clipping, установленный на `Clip to Bounds - Without Intersecting(Advanced)`*
+    -  **Clip to Bounds - Always(Advanced)**: Эта clipping area также обрезает границы и всегда пересекает эти границы с любой предыдущей clipping area.<br> Эту clipping area **<u>НЕЛЬЗЯ</u>** игнорировать, она всегда будет обрезать свои дочерние элементы. Полезно для жестких барьеров в UI, где вы никогда не хотите, чтобы анимация или другие эффекты врывались в или вырывались из этой области. <br>![Пример Clip to Bounds Always](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/clipping_clip_to_bounds_always.png)<br> *В этом примере есть 3 основных виджета;<br> `Canvas Panel` с Clipping, установленным на `Clip to Bounds - Always(Advanced)`<br> `Scroll Box` в `Canvas Panel` с Clipping, установленным на `Clip to Bounds`<br> `Button` в `Scroll Box`, для которой установлено значение `Clip to Bounds - Without Intersecting(Advanced)`*
+    -  **On demand(Advanced)**: Эта clipping area обрезается до границы, когда ее desired size больше, чем выделенная геометрия в макете (layout).<br> Если это происходит там, где его нужно обрезать, то она будет рассматриваться как *"Always"*. Согласно исходникам, этот режим был в первую очередь добавлен для текста, когда тот помещается в контейнер, размер которого в конечном итоге изменяется, чтобы не поддерживать длину текста. <br>![Пример Clipping On Demand](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/images/common_widget_func/clipping_on_demand.gif)<br> *В этом примере у нас есть виджет `Vertical Box` с Clipping, установленным на `Inherit`, и кастомный `Text Block` из эпиковского плагина Common UI, для которого Clipping установлен на `On Demand(Advanded)`, чтобы текст мог прокручиваться и обрезаться должным образом (этот пример также встречается в проекте эпиков Context Examples на карте Common UI Example)*
+- **Navigation**: Здесь вы можете добавить свои навигационные хуки для определения того, к какому виджету следует переходить при использовании фреймвока фокуса Unreal. Вы можете установить их в рантайме в Blueprint и в C++.<br> Пожалуйста, обратитесь к разделу [Система фокусироки Unreal](#unreals-focusing-system) для более подробного объяснения процесса навигации. <br>![Обзор Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_overview.png)
+    -  **Escape**: Этот тип навигации будет переходить либо к другому виджету, либо пытаться добраться до любого другого виджета и выйти за пределы этого виджета при перемещении в этом направлении. <br>![Пример Escape Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_escape.png)
+    -  **Stop**: Навигация останавливается при попытке выйти из этого виджета в этом направлении. <br>![Пример Stop Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_stop.png)
+    -  **Wrap**: Навигация будет пытаться перейти к противоположным границам этого виджета (например, в Vertical Box, переход к нижнему виджету и наличие настройки обтекания (wrap) для нижнего виджета на последнем виджете отправит навигацию к верхнему виджету Vertical Box). <br>![Пример Wrap Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_wrap.png)
+    -  **Explicit**: Навигация к специально выбранному виджету при переходе от этого виджета в этом направлении. <br>![Пример Explicit Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_explicit.png)<br> *Вы можете выбирать только другие виджеты, имя которых изменено в редакторе, при выборе его в дизайнере, тогда как в коде вы можете просто предоставить сам виджет, независимо от того, был ли он переименован или нет.*
+    -  **Custom**: позволяет переопределить виджет для перехода с помощью функции, которая может либо возвращать виджет, либо не возвращать виджет (имитируя тип навигации *"Stop"*). Предназначен для перехода **ОТ** или из этого виджета к другому виджету в этом конкретном направлении. <br>![Пример Custom Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_custom.png)
+    -  **Custom Boundary**: Позволяет переопределить, к какому виджету переходить, используя функцию, которая может либо возвращать виджет, либо не возвращать виджет (имитируя тип навигации *"Stop"*). Предназначен для перехода **к** этому виджету от другого виджета в этом конкретном направлении,<br> поэтому, если для направления Влево/Left и вы установили для него "Custom Boundary", тогда, когда вы переходите от другого виджета к этому, и это было направление Влево/Left, он будет запускать эту функцию, к которой он привязан. <br> ![Пример Custom Boundary Navigation](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/navigation_custom_boundary.png)
 - **Flow Direction**: При локализации позволяет вам установить направление написания текста этого виджета, то есть слева направо или справа налево.<br> На самом деле его используют только некоторые виджеты, но он есть во всех виджетах на тот случай, если вы захотите добавить свои собственные функции, зависящие от направления написания. Например, текстовые виджеты могут переворачиваться слева направо/справа налево в зависимости от направления их написания и языка, который определяет его направление написания.
     - **Inherit**: Наследует направление написания, заданное родительским виджетом.
     - **Culture**: Начинает писать текст виджетов с использованием текущего предпочтения направления написания, принятый для языка, меняя направление написания.
     - **Left to Right**: Требует всегда писать текст слева направо.
-    - **Right to Left**: Требует всегда писать текст справа налево. <br>![Параметры Flow Direction](images/common_widget_func/flow_direction_preference.png)
+    -  **Right to Left**: Требует всегда писать текст справа налево. <br>![Параметры Flow Direction](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/common_widget_func/flow_direction_preference.png)
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="umg-in-relation-to-levels-worlds"></a>
 
 ## 8.0 UMG в контексте миров (Levels)
@@ -868,7 +1014,144 @@ HUD Actors привязаны к конкретному Player Controller и с�
 
 Чтобы удалить HitBox, вы можете просто удалить его из массива `HitBoxMap` .
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+<a name="widget-components"></a>
+
+### 8.2 Widget Components
+
+Компоненты виджетов - это `UMeshComponent`'ы (actor components, которые являются примитивными компонентами, способными рендерить меш), которые в основном создают процедурный static mesh в мире, текстурой которой является нарисованная текстура виджета (вы можете получить доступ к render target, используя `GetRenderTarget`).
+
+> Компоненты виджетов НЕ ТИКАЮТ на Dedicated Servers. <br> Это очевидно, поскольку большая часть функциональности компонента заключается в обновлении рендеринга User Widget. <br> Компонент также работает с коллизиями на основе User Widget, поэтому если виджет не спавнится на Dedicated Servers, то коллизии компонента не будут работать должным образом.
+
+Важное влияние на производительность при использовании компонентов виджетов заключается в том, что каждый компонент виджета является render target, обновляемым по тику компонента. <br> Таким образом, если у вас 100 компонентов виджетов с высоким разрешением, то это 100 render targets, обновляемых каждый кадр (вы можете сделать так, чтобы компонент обновлялся при отрисовке, но это все равно займет память GPU). <br> Чтобы избежать такого воздействия на память GPU, вот несколько распространенных ситуаций и решений (ЭТО НЕ ЕДИНСТВЕННЫЙ ПУТЬ РЕШЕНИЯ ЭТИХ ВОПРОСОВ, ЭТО ПРОСТО РЕКОМЕНДАЦИИ ИЗ МОЕГО ЛИЧНОГО ОПЫТА):
+
+- Ситуация 1: Большое количество изображений или прогресс-баров, которые находятся над головой NPC
+    - Решение: Использование static mesh components с материалами с параметром текстуры для изображения и материалом для создания прогресс-бара либо с помощью текстуры, либо с помощью математики (рекомендую посмотреть примеры SDF в Unreal).
+- Ситуация 2: Рендеринг индикаторов по всему миру, но масштабируется по мере приближения/отдаления камеры игрока от места расположения индикатора.
+    - Решение: Создайте материал для игнорирования depth pass, в последних версиях Unreal Engine также есть булево значение для пропуска motion blur pass, но вы можете сделать это, изменив движок в предыдущих версиях. Вы можете сделать это с помощью static mesh components или particle systems, рисующих static mesh, профилируйте и сделайте собственные выводы.
+
+Чтобы строительные материалы работали с компонентами виджета, вот параметры текстуры, которые автоматически работают с компонентами виджета:
+
+- `SlateUI`: Вводит Render Target виджета.
+- `TintColorAndOpacity`: Вводит свойство TintColorAndOpacity компонента виджета.
+- `OpacityFromTexture`: Вводит свойство OpacityFromTexture компонента виджета.
+
+Важно помнить, что хотя это и компонент, он фактически создает User Widget. <br> Для доступа к User Widget можно использовать `GetUserWidgetObject` (вы также можете использовать `GetSlateWidget` для получения `SWidget`, к которому он привязан).
+
+> Вы не можете использовать `GetUserWidgetObject` в construction script актора, поскольку виджет может валидироваться только с `BeginPlay`.
+
+По умолчанию он получает первого локального игрока из game instance:
+
+```c++
+if (UWorld* LocalWorld = GetWorld())
+{
+	UGameInstance* GameInstance = LocalWorld->GetGameInstance();
+	check(GameInstance);
+
+	return GameInstance->GetFirstGamePlayer();
+}
+```
+
+Это можно изменить, вызвав `SetOwnerPlayer` и введя `ULocalPlayer`.
+
+Для получения местоположения в пространстве 2D-плоскости виджета от местоположения в мире на компоненте виджета можно использовать `GetLocalHitLocation`, который вычисляет его, выполняя следующие математические операции:
+
+> 1. Путем преобразования мирового местоположения в относительное пространство компонента виджета с помощью `InverseTransformPosition`
+> 2. Строит простое 2D местоположение, где ось X является отрицательной осью Y относительного местоположения, а отрицательная ось Z относительного местоположения для 2D оси Y.
+> 3. Смещает (добавляет) 2D ось X на ось X текущего размера рисунка * ось X Pivot.
+> 4. Смещает (добавляет) ось Y 2D на ось Y текущего размера рисунка * ось Y Pivot.
+> 5. Кэширует нормализованное местоположение 2D местоположения, деленное на текущий draw size.
+> 6. Обновляет ось Y 2D местоположения на ось Y текущего размера рисунка * нормализует ось Y местоположения, чтобы учесть искажение параболы.
+
+<a name="widget-interaction-components"></a>
+
+#### 8.2.1 Widget Interaction Components
+
+Для возможности взаимодействия с компонентами виджетов существует компонент Widget Interaction Component, который <br> предназначен для имитации пользовательского ввода и ввода указателя мыши (или кончика виртуального пальца) в стиле лазерной указки при взаимодействии с виджетом.
+
+У каждого widget interaction component есть виртуальный пользователь, связанный с ним, который обрабатывает ввод данных для slate widgets. <br> При активации компонент создает фактического `FSlateUser` для имитации ввода и т.п. <br> По умолчанию движок будет использовать индекс Slate User 8 (максимально допустимое количество пользователей) вместо 0 и увеличивать его, <br> позволяя пользователям slate и виртуальным пользователям не конфликтовать.
+
+Widget Interaction Components будут отслеживать по тику, чтобы определить, с каким виджетом он взаимодействует. <br> Вот порядок тикового кадра для компонента, чтобы определить компонент, против которого он делает line tracing в `UWidgetInteractionComponent::TickComponent`:
+
+> 1. `UWidgetInteractionComponent::SimulatePointerMovement`
+>     1. Проверьте, можем ли мы вообще делать hit test, установив `bEnableHitTesting`.
+>     2. Проверьте, может ли компонент отправлять ввод в `CanSendInput`
+>         1. Если приложение slate инициализировано и если virtual user был настроен.
+>     3. `UWidgetInteractionComponent::DetermineWidgetUnderPointer`
+>         1. Кэширует ранее hovered компонент виджета.
+>         2. `UWidgetInteractionComponent::PerformTrace`
+>             1. Line trace на основе типа `InteractionSource`:
+>             - Мир: Multi-Line Trace по `TraceChannel` в направлении вперед от местоположения компонента взаимодействия, <br> игнорирует любые компоненты в owning actor, чтобы не делать hit себя (исключая компоненты виджета).
+>             - Мышь: Multi-Line Trace по `TraceChannel` от позиции мыши, проецируемой с экрана на мир.
+>             - Center Screen: Multi-Line Trace по `TraceChannel` из центральной позиции видового экрана, проецируемая с экрана на мир.
+>             - Custom: Использует свойства `CustomHitResult`, которые могут быть установлены в runtime. <br> Важное замечание об этой структуре - в первом тиковом кадре она может быть еще не установлена, так как тик Blueprint может произойти после вызова этой структуры. <br> Вы можете установить его в BeginPlay, и он будет установлен заранее для этого первого тикового кадра.
+>             1. Если мы не используем пользовательский тип `InteractionSource`, то фильтруйте invisible виджеты.
+>             2. Получает компонент виджета попадания и передает hit result, после чего компонент виджета возвращает 2D hit location в пространстве виджета.
+>             3. Находит `FWidgetPath` из возвращаемого hit location в пространстве виджета.
+>             4. Возвращает результат трассировки `PerformTrace`.
+>         3. Сообщите вновь hovered компоненту виджета о необходимости перерисовки.
+>         4. Итерация по упорядоченному списку виджетов из полученного widget path из трассировки и обновление этих флагов на основе последнего виджета:
+>             - `bIsHoveredWidgetInteractable`: Если виджет является интерактивным.
+>             - `bIsHoveredWidgetFocusable`: Если виджет keyboard focusable.
+>             - `bIsHoveredWidgetHitTestVisible`: Если виджет hit testible.
+>         5. Если вновь hovered компонент виджета отличается от ранее наведенного компонента виджета, то сообщить предыдущему компоненту о необходимости перерисовки. И сделать broadcast `OnHoveredWidgetChanged` для других систем.
+>         6. Возвращает путь виджета из трассировки.
+>     4. Сообщите приложению slate (для передачи в остальную часть движка), что на этом виджете симулируется ввод или, если мы больше ничего не hovering, сообщить, что указатель переместился с этого старого виджета.
+
+<a name="widget-components-rendering"></a>
+
+#### 8.2.2 Как Widget Components отрисовываются
+
+Для рисования user widget в `UTextureRenderTarget2D` используется общий процесс, который делают Widget Component'ы (наряду с дополнительной работой, потому что это компонент и поэтому должен предоставлять scene proxy и тому подобное); это создание `FWidgetRenderer`, а затем получение slate wudget из user widget и отрисовка виджета в виде текстуры. <br> Вот пример кода использования рендерера виджетов для создания текстуры из `UUserWidget` (существует несколько реализаций `FWidgetRenderer::DrawWindow` &amp; `FWidgetRenderer::DrawWidget`, так что это один из способов):
+
+```c++
+bool UExampleFunctionLibrary::DrawWidgetToTarget(UTextureRenderTarget2D*& DrawnWidgetRenderTarget,
+    UUserWidget* WidgetToRender, const FVector2D DrawSize, const float DeltaTime)
+{
+    // Reset the variable for Blueprint users to avoid reusing previous calls
+    DrawnWidgetRenderTarget = nullptr;
+    // Are we using a valid widget to grab from for the render target
+    if(!IsValid(WidgetToRender))
+    {
+        UE_LOG(LogExampleFunctionLibrary, Error, TEXT("UExampleFunctionLibrary::DrawWidgetToTarget: Inputted NULL WidgetToRender"));
+    	return false;
+    }
+    // Make sure we're using a valid draw size
+    if(DrawSize.X <= 0 || DrawSize.Y <= 0)
+    {
+        UE_LOG(LogExampleFunctionLibrary, Error, TEXT("UExampleFunctionLibrary::DrawWidgetToTarget: Inputted INVALID DrawSize(%s)"), *DrawSize.ToString());
+    	return false;
+    }
+    // Create the render target object using the user widget as the outer object(as a safety measure)
+    DrawnWidgetRenderTarget = NewObject<UTextureRenderTarget2D>(WidgetToRender);
+    // Setup the render target's size and formatting
+    DrawnWidgetRenderTarget->InitCustomFormat(DrawSize.X, DrawSize.Y,
+    	FSlateApplication::Get().GetRenderer()->GetSlateRecommendedColorFormat(),
+    	true); // If we set this to false then it will not use linear gamma, but then we wouldn't get accurate coloring
+    
+    // This is the object that handles talking with the slate renderer to draw widgets as textures
+    FWidgetRenderer* WidgetRenderer = new FWidgetRenderer(true, false); // FWidgetRenderer(bool bUseGammaCorrection = false, bool bInClearTarget = true)
+    WidgetRenderer->DrawWidget(DrawnWidgetRenderTarget,
+        WidgetToRender->TakeWidget(),
+        DrawSize,
+        DeltaTime,
+        false); // THIS PARAMETER IS EXTREMELY IMPORTANT, this is for if you want to immediately update the render target.
+    // bDeferRenderTargetUpdate: Whether or not the update is deferred until the end of the frame when it is potentially less expensive to update the render target.
+    
+    // Flush any queued rendering commands to immediately have the GPU draw the widget and get the texture information filled out
+    FlushRenderingCommands(); // This is ANOTHER way of forcing the GPU to update the render target.
+    
+    // HINT HINT ^^^
+    // Deferred cleanup of the widget renderer to be deleted AFTER the render command queue has been flushed
+    BeginCleanup(WidgetRenderer);
+    return true;
+}
+```
+
+Для рисования виджета в мировом пространстве используется описанный выше подход, но вместо `DrawWidget` используется непосредственно `DrawWindow`.
+
+Для рисования виджета в пространстве экрана он добавит user widget во второй виджет игрового слоя, предназначенный только для работы с widget components под названием `FWorldWidgetScreenLayer`, который напрямую взаимодействует с `SWorldWidgetScreenLayer`.
+
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="dev-debug-tools"></a>
 
 ## 9.0 Инструменты разработки и отладки для UMG/Slate
@@ -879,7 +1162,7 @@ HUD Actors привязаны к конкретному Player Controller и с�
 
 ### 9.1 Отладочные команды консоли
 
-[Официальная документация по Console Slate Debugger](https://docs.unrealengine.com/latest/INT/console-slate-debugger-in-unreal-engine/) (также находится в разделе [Ссылки](#links)).
+[Официальная документация по Console Slate Debugger](https://docs.unrealengine.com/latest/INT/console-slate-debugger-in-unreal-engine/) (также находится на [Странице внешних ссылок](EXTERNAL_LINKS.md)).
 
 - Пожалуйста, обратитесь к разделу [Консольные команды Slate Console Debugger](#slate-console-debugger) для конкретных консольных команд Slate Debugger.
 - `Slate.HitTestGridDebugging [0/1]`: Переключатель для отображения hit test grid фокуса UMG/Slate.
@@ -905,7 +1188,7 @@ HUD Actors привязаны к конкретному Player Controller и с�
 
 ### 9.2 Widget Reflector
 
-[Официальная документация для Widget Reflector](https://docs.unrealengine.com/latest/INT/using-the-slate-widget-reflector-in-unreal-engine/) (также находится в разделе [Ссылки](#links)).
+[Официальная документация по Widget Reflector](https://docs.unrealengine.com/latest/INT/using-the-slate-widget-reflector-in-unreal-engine/) (также находится на [Странице внешних ссылок](EXTERNAL_LINKS.md)).
 
 > Чтобы открыть Widget Reflector, вы можете перейти к `Tools/Debug/Widget Reflector` или собрать Widget Reflector как отдельное приложение при использовании версии Unreal Engine из исходников.
 
@@ -933,7 +1216,7 @@ HUD Actors привязаны к конкретному Player Controller и с�
 - Culling
 - Кэширование
 
-![Пример Widget Reflector](images/widget_reflector_example.png)
+![Отладочный вид Navigation Grid](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/widget_reflector_example.png)
 
 > Для отладки устройств, таких как консоли или телефоны, вы можете использовать подключаемый модуль Remote Session (официальное название Slate Remote) в движке, чтобы подключить отладчик к устройству для live-отладки Slate и UMG с помощью Widget Reflector.
 
@@ -943,7 +1226,7 @@ HUD Actors привязаны к конкретному Player Controller и с�
 
 Slate Console Debugger — это список консольных команд, которые можно использовать для отладки различных частей Slate в целях отладки. Каждая консольная команда имеет префикс `SlateDebugger.`, при включении параметр сделает так, что его отладочная информация будет напечатана в Output Log.
 
-Хорошая новость в том, что вы можете включить эти переключатели в Widget Reflector, поэтому вам не нужно вводить разные команды отладки. ![Widget Reflector Slate Переключатели Console Debugger](images/widget_reflector_console_debugger.png)
+Хорошая новость в том, что вы можете включить эти переключатели в Widget Reflector, поэтому вам не нужно вводить разные команды отладки. ![Widget Reflector Slate Переключатели Console Debugger](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/widget_reflector_console_debugger.png)
 
 Ниже приведен список каждой консольной команды Slate Debugger:
 
@@ -1062,19 +1345,19 @@ Slate Console Debugger — это список консольных команд
     - `SlateDebugger.InvalidationRoot.ToggleLegend`: Переключить для отображения цветовой легенды (color legend).
     - `SlateDebugger.InvalidationRoot.ToggleWidgetNameList`: Включить отображение имени invalidation root.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="input-framework-of-unreal-engine"></a>
 
-## 10.0 Фреймворк ввода Unreal Engine (по отношению к UMG/Slate)
+## 10.0 Input Framework в Unreal Engine (то, что связано с UMG/Slate)
 
 <a name="input-flow-of-unreal-engine"></a>
 
 ### 10.1 Поток ввода (Input Flow) Unreal Engine
 
-Общий поток ввода от самого низкого уровня до самого высокого уровня указан ниже в том порядке, в котором ввод направляется для каждого пользователя (каждый этап вызывает (calls) следующий этап потока ввода):
+Это высокоуровневый обзор потока ввода от самого низкого уровня до самого высокого уровня, который приведен ниже в порядке маршрутизации ввода для каждого пользователя (каждый этап вызывает следующий этап потока ввода Unreal Engine):
 
 1. **Engine Heartbeat Tick** `FEngineLoop`: Heartbeat Tick Unreal Engine, который уведомляет SDK платформы о необходимости тикать/обновлять каждый кадр.
-2. **API платформы** `GenericApplication` и `FGenericApplicationMessageHandler`: SDK для Windows/Mac/Xbox/Playstation/и т. д., который создает Slate Application при инициализации и отправляет в него ввод для каждого кадра для каждого пользователя.
+2. **Platform's API**`GenericApplication` &amp; `FGenericApplicationMessageHandler`: SDK для Windows/Mac/Xbox/Playstation/etc, который создает Slate Application при инициализации движка и посылает ему входные данные каждый кадр для каждого пользователя.
 3. **Slate Application** `FSlateApplication`: Обрабатывает перенаправление ввода между Input Processors, Slate UI и игровым движком, чтобы код игры получал этот ввод.
 4. **Input Processors** *необязательные* `IInputProcessor`: Это объекты C++, которые можно динамически добавлять/удалять из списка Input Pre Processors в Slate Applications и получать ввод раньше, чем что-либо еще, и контролируют, ввод используется или продолжат двигаться вниз по иерархии. Рекомендуется сделать свой кастомный для своего проекта, потому что он дает вам полный контроль над вашим вводом до того, как его получит что-либо еще в движке, в движке даже есть пример, сделанный Epic, под названием **AnalogCursor**! Он также будет получать ввод, даже если вы используете только Input Mode UI Onlu и получаете ввод в редакторе!
 5. **Slate UI Elements** `SWidget`: Любые находящиеся в фокусе элементы UI на экране, которые должны получать ввод и могут использовать этот ввод.
@@ -1084,7 +1367,7 @@ Slate Console Debugger — это список консольных команд
 8. **Ввод игрока** `UPlayerInput`: Объект ввода игрока, который есть у Player Controllers для маршрутизации ввода к Pawns и другим объектам, которые находятся в его Input Stack.
 9. **Input Component** `UInputComponent`: Это широко используемый метод получения ввода для игрового кода, который также можно найти в официальной документации Epic, это объект, который есть в каждом Actor, который связывается с Input Stack от Player Controller для получения ввода, который направляется через движок, чтобы игровой код его слушал и получал ввод.
 
-![Схема потока ввода (Input Flow)](images/input_flow_diagram.png)<br> *Схема потока ввода (Input Flow)*
+![Схема потока ввода (Input Flow)](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/input_flow_diagram.png)<br> *Схема потока ввода (Input Flow)*
 
 <a name="input-components"></a>
 
@@ -1095,7 +1378,7 @@ Input Components — это `UActorComponent`, которые присутств
 > - `APlayerController`:: Управляет построением Input Stack и управляет порядком и приоритетами.
 > - `UPlayerInput`:: Обрабатывает broadcasting этих delegate функций и определяет, используется ли binding или нет.
 >
-> Вот фактический порядок операций для Input Components в каждом кадре.
+> Вот фактический порядок операций для input components в каждом кадре. *Диаграмма ниже*
 >
 > 1. [`APlayerController::TickPlayerInput`]
 >     1. [`UPlayerInput::Tick`]
@@ -1121,7 +1404,7 @@ Input Components — это `UActorComponent`, которые присутств
 >         3. Сбрасывает Input Stack для следующего кадра.
 >     5. [`APlayerController::ProcessForceFeedbackAndHaptics`]
 
-@TODO *[Превратить порядок операций input components в картинку, чтобы визуально объяснить порядок операций]*
+![Порядок операций входного компонента](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/input_component_order_operations.png) <br> *Порядок операций для того, как Input отмечается и обрабатывается на уровнях, начиная с `TickPlayerInput` внутри `APlayerController`*
 
 У Input Components также может быть стек приоритетов, чтобы входные данные могли потребляться акторами с более высоким приоритетом.<br> Стек приоритетов для Input Components выглядит следующим образом (сначала наивысший приоритет):
 
@@ -1131,7 +1414,7 @@ Input Components — это `UActorComponent`, которые присутств
 3. Логика уровня
 4. Pawns
 
-![Стек Input Components](images/input_component_stack.png)<br> *Стек Input Components, любезно предоставленный [документацией Epic](https://docs.unrealengine.com/5.0/en-US/input/)*
+![Стек Input Components](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/input_component_stack.png)<br> *Стек Input Components, любезно предоставленный [документацией Epic](https://docs.unrealengine.com/5.0/en-US/input/)*
 
 <a name="input-event-types"></a>
 
@@ -1185,9 +1468,13 @@ Input Components — это `UActorComponent`, которые присутств
 
 В **WidgetBlueprintLibrary** есть 3 функции для выбора так называемого режима ввода или **Input Mode** в Player Controllers, три состояния объясняют, что на самом деле происходит во входном потоке по отношению к шагу 6; Game Viewport Client. Важно понимать, что специального Input Mode нет, но есть ярлыки для изменения значений в Game Viewport Client через Player Controller.
 
+Любые изменения, сделанные для ввода значений режимов, будут сохраняться между путешествиями по уровню/карте, независимо от того, использовали ли вы для их изменения стандартные функции Unreal Engine или изменили эти значения вручную в Game Viewport Client.
+
 - **Input Mode UI Only**: В основном говорит Game Viewport Client игнорировать ввод, поэтому любой ввод, который получает Game Viewport Client, отбрасываются, поэтому ввод не направляется на более поздние шаги в потоке ввода И отпускает мышь, чтобы вы могли кликать во вьюпорте (или за пределами вьюпорта, если это разрешает **Mouse Lock Mode**).
 - **Input Mode Game Only**: Сообщает Game Viewport Client, что он может получать ввод, поэтому, когда Game Viewport Client получает этот ввод, он должным образом перенаправляются на более поздние этапы потока ввода, и блокирует мышь, чтобы нельзя было кликать во вьюпорте.
 - **Input Mode Game &amp; UI**: Сообщает Game Viewport Client, что он может получать ввод И отпускает мышь, чтобы вы могли кликать во вьюпорте (или за пределами вьюпорта, если это разрешает **Mouse Lock Mode**).
+
+[](https://youtu.be/ktIDz1wCe0Y)![Input Modes Video Example](https://github.com/YawLighthouse/UMG-Slate-Compendium/blob/main/video_thumbnails/input_modes_video_thumbnail.png?raw=true)
 
 Mouse Lock Mode `EMouseLockMode` — это то, как курсор мыши блокируется (значит, курсор не может выйти за границы) во вьюпорте в зависимости от режима, в котором он находится:
 
@@ -1198,9 +1485,7 @@ Mouse Lock Mode `EMouseLockMode` — это то, как курсор мыши �
 
 > Я хочу указать, что режим блокировки мыши предназначен для каждого вьюпорта, что считается в split screen для вьюпорта каждого игрока, в то время как окно будет учитывать целое окно из всех вьюпортов.
 
-@TODO *[Вставить картинку, наглядно объясняющую, какие значения изменены во вьюпорте игры]*
-
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="unreals-focusing-system"></a>
 
 ## 11.0 Система фокусировки Unreal
@@ -1209,7 +1494,7 @@ Mouse Lock Mode `EMouseLockMode` — это то, как курсор мыши �
 
 Несколько Slate Users могут фокусироваться на одном и том же виджете, но пользователь не может фокусироваться на двух виджетах одновременно (для этого вам потребуется создать эту функциональность самостоятельно, но в этот момент вы, вероятно, боретесь с ней, а не работаете с ней и экономите время на управлении обоими виджетами игры, создавая свою пользовательскую систему фокусировки).
 
-User Focus отслеживается **Slate Application** с использованием целочисленного индекса для каждого **Slate User** и пути фокуса виджета, для которого в данный момент находится **Slate Widget**, на котором фокусируется пользователь, это локальные пользователи в этом приложении с учетом игроков в split screen.
+Фокус пользователя отслеживается приложением **Slate Application** с помощью целочисленного индекса для каждого **пользователя Slate User** и пути фокуса виджета **Slate Widget**, на котором пользователь фокусируется в данный момент, это локальные пользователи в этом приложении для учета игроков с разделенным экраном. Фокус будет сохраняться между перемещениями по уровню/карте, поэтому хорошей практикой является его сброс путем отправки фокуса обратно в область просмотра игры.
 
 Система фокусировки Unreal Engine состоит из 4 ключевых элементов:
 
@@ -1228,13 +1513,13 @@ User Focus отслеживается **Slate Application** с использо�
 
 Сетка проверки попадания (hit test grid) — это по сути то, как обрабатывается навигация, а это способствует тому, к какому виджету переходить для каждого использования (поэтому у каждого пользователя есть своя собственная hit test grid), навигация рассчитывается только в направлении, указанном вдоль сетки (при разрешении 128, и его нет причин менять, поскольку проверяется, находится ли виджет в пределах этой равномерно распределенной сетки по прямой линии), состоящей из сталкивающихся ограничивающих рамок (bounding boxes) каждого выбранного виджета (таким образом, здесь вступают в игру desired size и геометрия), а эта сетка заполняется на основе конкретных виджетов, которые выбрали эту hit test grid.
 
-![Первый пример Hit Test Grid](images/hittest_grid_1.png) | ![Второй пример Hit Test Grid](images/hittest_grid_2.png)
+![Первый пример Hit Test Grid](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/hittest_grid_1.png) | ![Пример Hit Test Grid 2](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/hittest_grid_2.png)
 :-: | :-:
 
 
 *В этом примере мы показываем, к каким кнопкам мы можем перейти при нажатии направления навигации. Кнопка Button 2 в этом случае всегда будет переходить к ближайшему виджету, потому что она может перейти к любому нижестоящему виджету.*
 
-![Отладочный вид Navigation Grid](images/nav_grid_debug.png)<br> *Вот как на самом деле выглядит Navigation Grid в примере при использовании консольной команды `Slate.HitTestGridDebugging 1`.*
+![Отладочный вид Navigation Grid](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/nav_grid_debug.png)<br> *Вот как на самом деле выглядит Navigation Grid в примере при использовании консольной команды `Slate.HitTestGridDebugging 1`.*
 
 Когда происходит **Navigation Genesis**, по сути получаются ячейки, в которых находится текущий focused виджет, а затем, основываясь на направлении навигации, hit test делает проверку по прямой линии, чтобы найти фокусируемый виджет, просматривая каждую ячейку, чтобы увидеть, есть ли bounding box виджета внутри неё и запуская серию серии проверок в указанном порядке, если они не проходят эти проверки, мы возвращаем для неё результат отладки и пропускаем её:
 
@@ -1252,8 +1537,8 @@ User Focus отслеживается **Slate Application** с использо�
 
 *Прокрутите вправо до заголовочного файла -&gt;*
 
-<table> <tr> <td style="text-align: center;">Файл кода (.cpp)</td>  <td style="text-align: center;">Файл заголовка (.h)</td> </tr>
-<comment data-md-type="comment"></comment> <td> ```c++ void AMyPlayerController::BeginPlay() {   Super::BeginPlay();  <p data-md-type="paragraph">// Valid check that slate application initialized if(FSlateApplication::IsInitialized()) { // Depending on your version of Unreal Engine, // you may need to just do "FSlateApplication::Get().FocusChangingDelegate" instead of using a function to get it</p> <pre data-md-type="block_code" data-md-language="">// Bind for when focus changes, if you're having issues with this then I recommend learning about Unreal's delegate framework
+
+<table> <tr> <td style="text-align: center;">Файл кода (.cpp)</td>  <td style="text-align: center;">Файл заголовка (.h)</td> </tr> <comment data-md-type="comment"></comment> <td> ```c++ void AMyPlayerController::BeginPlay() {   Super::BeginPlay();  <p data-md-type="paragraph">// Valid check that slate application initialized if(FSlateApplication::IsInitialized()) { // Depending on your version of Unreal Engine, // you may need to just do "FSlateApplication::Get().FocusChangingDelegate" instead of using a function to get it</p> <pre data-md-type="block_code" data-md-language="">// Bind for when focus changes, if you're having issues with this then I recommend learning about Unreal's delegate framework
 // or looking at the slate application's header and source file regarding the focus changing delegate
 FSlateApplication::Get().OnFocusChanging().AddUObject(this, &amp;AMyPlayerController::FocusChanged);
 </pre> <p data-md-type="paragraph">}<br> }</p> <p data-md-type="paragraph">void AMyPlayerController::FocusChanged(const FFocusEvent&amp; FocusEvent, const FWeakWidgetPath&amp; OldFocusedWidgetPath, const TSharedPtr<swidget data-md-type="raw_html">&amp; OldFocusedWidget, const FWidgetPath&amp; NewFocusedWidgetPath, const TSharedPtr<swidget data-md-type="raw_html">&amp; NewFocusedWidget) { // Check if this player controller has a valid local player object yet if(!IsValid(GetLocalPlayer())) { // If we don't have a valid local player object then don't continue because we're not done setting up the player controller return; } // Check if the player that changed focus is ourselves if(GetLocalPlayer()-&gt;GetControllerId() != FocusEvent.GetUser()) { // If self didn't do this focus change, then don't continue return; } // Do stuff }</swidget></swidget></p> <pre data-md-type="block_code" data-md-language="">&lt;/td&gt;
@@ -1264,11 +1549,9 @@ class MYGAME_API AMyPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 protected:
-
   // AActor interface
   virtual void BeginPlay() override;
   // ~AActor interface
-
   /**
    * Occurs when a Slate User changes widget focus.
    * @param FocusEvent The type of focus event that occured.
@@ -1283,8 +1566,7 @@ protected:
     const FWidgetPath&amp; NewFocusedWidgetPath,
     const TSharedPtr&lt;SWidget&gt;&amp; NewFocusedWidget);
 };
-</pre> </td>
-<div data-md-type="block_html"></div> </table>
+</pre> </td> <div data-md-type="block_html"></div> </table>
 
 <a name="navigation-genesis"></a>
 
@@ -1296,12 +1578,14 @@ protected:
 - **Контроллер**: Событие навигации было вызвано вводом с геймпада.
 - **Пользователь**: событие навигации — это событие, сгенерированное пользователем, которое было вызвано игровым кодом, виджетами и т. д.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="split-screen"></a>
 
 ## 12.0 Split Screen
 
-Split screen работает там, где у есть **Game Layer Manager**, который управляет slate widget вьюпорта, каким игроком используется этот slate widget и как формировать этот slate widget. Game Layer Manager создается игровым движком при инициализации внутри `GameEngine.cpp` (`UGameEngine`) и в `PlayLevel.cpp` (`UEditorEngine`) с использованием жестко запрограммированного класса, поэтому для создания собственного потребуется изменить исходный код движка (Epic, если вы видите это, пожалуйста, измените это на настраиваемый класс, который можно указать в настройках проекта, вы настроили его для клиента Game Viewport, так что полпути позади!).
+Split Screen работает, когда у него есть **Game Layer Manager**, который управляет slate widget вьюпорта, тем, какой игрок использует этот slate widget и как формировать этот slate widget. Game layer manager инстансируется игровым движком при инициализации внутри `GameEngine.cpp`(`UGameEngine`) и в `PlayLevel. cpp`(`UEditorEngine`) используется hard coded класс, поэтому для создания собственного потребуется модифицировать исходный код движка в `UGameEngine::CreateGameViewportWidget` &amp; `UEditorEngine:: GeneratePIEViewportWindow` (Epic, если вы видите это, пожалуйста, измените это на настраиваемый класс, который можно указать в настройках проекта, у вас он настроен для Game Viewport Client, а это уже половина пути!).
+
+> Одним из возможных путей, в зависимости от вашего use case, может быть вызов `UGameViewportClient::SetGameLayerManager`, но имейте в виду, что это может иметь последующие эффекты и может потребовать некоторых обходных путей из непереключаемого кода движка.
 
 При выводе виджета на экран у вас есть два варианта:
 
@@ -1312,7 +1596,7 @@ Split screen работает там, где у есть **Game Layer Manager**,
 
 ### 12.1 Game Layer Manager
 
-Game Layer Manager — это интерфейс, который содержит базовую информацию для получения геометрии вьюпорта, получения локального игрока, использующего этот виджет, добавления слоев виджетов (не рекомендуется, если вы не знаете, что делаете), который содержит все slate widgets, которые были добавлены к этому конкретному вьюпорту, а также для хранения фактического slate widget игрового вьюпорта. Game Layer Manager находится в `SGameLayerManager.h/cpp`, а вы можете найти интерфейс (`IGameLayerManager`) и составной виджет, который представляет собой `SGameLayerManager`, занимающийся отображением виджета игрового вьюпорта с использованием простого макета прямоугольника, который извлекается из клиента игрового вьюпорта. `SGameLayerManager` также направляет изменения масштаба DPI и для масштабирования вьюпорта на основе значения масштаба DPI, включая все его слои виджетов.
+Game Layer Manager - это интерфейс, который содержит основную информацию для получения геометрии вьюпорта, получения локального игрока, использующего этот виджет, добавления слоев виджетов (не рекомендуется, если вы не знаете, что делаете), который содержит все slate widgets, добавленные в данный конкретный вьюпорт, и для хранения собственно slate widget игрового вьюпорта. Менеджер игрового слоя находится в `SGameLayerManager.h/cpp` и содержит интерфейс (`IGameLayerManager`) и составной виджет `SGameLayerManager`, который управляет отображением виджета игрового вьюпорта (также полезен как базовый пример реализации интерфейса), используя простой макет прямоугольника, получаемый от клиента игрового вьюпорта. `SGameLayerManager` также направляет изменения масштаба DPI и для масштабирования области просмотра на основе значения масштаба DPI, включая все слои виджета.
 
 <a name="viewport-layout"></a>
 
@@ -1320,7 +1604,7 @@ Game Layer Manager — это интерфейс, который содержи�
 
 По умолчанию layout-дизайн представляет собой прямоугольник, который настраивается с помощью размера X/Y и положения X/Y на экране в соотношении 0-1 для его центра. Это устанавливается в `UGameViewportClient` по умолчанию. Если вы хотите создать свои собственные формы вьюпорта; вам нужно будет создать свой собственный класс Game Layer Manager, чтобы он вычислил пользовательскую форму и применил ее к виджету вьюпорта.
 
-@TODO *[Вставить диаграмму, показывающую, как Game Layer Framework работает с split screen-вьюпортами]*
+![Game Viewport Layer Framework](https://github.com/YawLighthouse/UMG-Slate-Compendium/raw/main/images/game_layer_general.png) <br> *Это общий обзор работы менеджера игровых слоев с некоторым визуальным объяснением того, как Slate Application взаимодействует с этими системами.*
 
 <a name="local-players"></a>
 
@@ -1344,120 +1628,10 @@ Local Players могут узнать, какой Gamepad ID они исполь
 
 > Почему это Controller ID, а не Gamepad ID? Я, честно говоря, знаю, надеюсь, Epic исправит этот naming convention, потому что можно перепутать Player Controller, а не о геймпаде как контроллере (честно говоря, можно назвать это геймпадом и на 100% устранить путаницу). Комментарии к коду также чётко это не объясняют, потому что ссылаются на него как на физический ControllerID, который опять же можно спутать с Player Controller.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
-<a name="links"></a>
-
-## 13.0 Ссылки
-
-Вот список (начиная со ссылок по теме Epic, а затем ссылок на сообщество в произвольном порядке) важных и полезных источников информации о Slate и UMG в Unreal Engine.
-
-Некоторые ссылки могут иметь описание того, что это такое, чтобы было понятно, почему эта ссылка добавлена, или любую другую информацию, которую я рекомендую проверить.
-
-<table id="Primary">
-  <tr> <!--- Create the table and start a new vertical line --->
-    <theader><td style="text-align: center;"><b>Ссылка на сайт</b></td></theader>
-    <theader><td style="text-align: center;">
-<b>Заметки</b>
-  </td></theader>
-</tr>
-  <tr> <!--- End the horizontal line start a new vertical line --->
-    <td><a href="https://docs.unrealengine.com/latest/INT/ProgrammingAndScripting/Slate/" target="_blank" rel="noopener noreferrer">Официальная документация по Slate Framework</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/InteractiveExperiences/UMG/" target="_blank" rel="noopener noreferrer">Официальная документация по UMG</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/optimization-guidelines-for-umg-in-unreal-engine/" target="_blank" rel="noopener noreferrer">Официальная документация с рекомендациями по оптимизации для Slate и UMG</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/invalidation-in-slate-and-umg-for-unreal-engine/" target="_blank" rel="noopener noreferrer">Официальная документация по инвалидации в Slate и UMG</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/smart-pointers-in-unreal-engine/" target="_blank" rel="noopener noreferrer">Официальная документация по Epic Smart Pointers Framework</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/ProgrammingAndScripting/Slate/Widgets/" target="_blank" rel="noopener noreferrer">Официальная документация по примерам виджетов Slate</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/input/" target="_blank" rel="noopener noreferrer">Официальная документация по Input Components</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/InteractiveExperiences/UMG/UserGuide/UMGRichTextBlock/" target="_blank" rel="noopener noreferrer">Официальная документация по Rich Text</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://dev.epicgames.com/community/learning/courses/7M1/accessible-design-with-unreal-engine/yGwl/accessible-design-in-unreal-engine-overview" target="_blank" rel="noopener noreferrer">Одобренный Epic курс по доступному дизайну</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://forums.unrealengine.com/t/what-are-slate-units/310703" target="_blank" rel="noopener noreferrer">AnswerHub от Epic объясняет Slate Units</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/console-slate-debugger-in-unreal-engine/" target="_blank" rel="noopener noreferrer">Официальная документация по Console Slate Debugger</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://docs.unrealengine.com/latest/INT/using-the-slate-widget-reflector-in-unreal-engine/" target="_blank" rel="noopener noreferrer">Официальная документация по Widget Reflector</a></td>
-  </tr>
-  <tr>
-    <td>
-<a href="https://forums.unrealengine.com/t/smeshwidget-hardware-instanced-slate-meshes-thread/58020/5" target="_blank" rel="noopener noreferrer">Тред на форуме о SMeshWidget</a>(Тред на форуме)</td>
-    <td>В треде на форуме говорится о SMeshWidget и есть старый пример использования UE4 от Ника Дарнелла для рендеринга частиц в UMG/Slate. <a href="https://github.com/dantreble/MeshWidgetExample" target="_blank" rel="noopener noreferrer">Дэн Требл любезно превратил пример проекта в репозиторий Github.</a>
-</td>
-  </tr>
-  <tr>
-    <td>
-<a href="https://youtu.be/OyY3OYbNK7s" target="_blank" rel="noopener noreferrer">Оптимизация и создание UI для AAA-игр</a> (видео на YouTube)</td>
-    <td>Кэри Хиклинг проходит через части Unreal Frame, отвечающие за UI, обеспечивая глубокое погружение в различные компоненты UI и объясняя, что происходит в каждой части.</td>
-  </tr>
-  <tr>
-    <td>
-<a href="https://github.com/YawLighthouse/UMG-Slate-ExampleProject" target="_blank" rel="noopener noreferrer">Мой пример проекта UMG/Slate</a> (репозиторий Github)</td>
-    <td>Мой собственный пример проекта UMG/Slate, в котором я переделал виджет Border и прокомментировал весь код с пояснениями того, что происходит. <i>Если он устарел, пожалуйста, оставьте issue в github-репозитории, в котором говорится, что он устарел, чтобы я мог отследить его и правильно обновить.</i>
-</td>
-  </tr>
-  <tr>
-    <td><a href="https://joyrok.com/BLOG" target="_blank" rel="noopener noreferrer">Сайт JoyRok</a></td>
-    <td>Технический художник со статьями про техарт в UMG</td>
-  </tr>
-  <tr>
-    <td><a href="https://benui.ca/" target="_blank" rel="noopener noreferrer">Сайт Ben UI</a></td>
-    <td>UI Engineer со статьями про UMG/Slate.</td>
-  </tr>
-  <tr>
-    <td><a href="https://codekitten.me/" target="_blank" rel="noopener noreferrer">Сайт Алессы "CodeKitten" Бейкер</a></td>
-    <td>Технический художник со статьями про Unreal Engine Slate Editor и Slate.</td>
-  </tr>
-  <tr>
-    <td><a href="https://lxjk.github.io/2019/10/01/How-to-Make-Tools-in-U-E.html" target="_blank" rel="noopener noreferrer">Блог Эрика Чжана о создании инструментов в UE4</a></td>
-    <td>Статья в техническом блоге, объясняющая основные аспекты создания инструментов в редакторе. <i>Хотя, конечно, это для UE4, те же правила/принципы всё ещё применяются.</i>
-</td>
-  </tr>
-  <tr>
-    <td>
-<a href="https://github.com/sinbad/StevesUEHelpers" target="_blank" rel="noopener noreferrer">Плагин UE Helpers от  Steve Streeting</a> (репозиторий Github)</td>
-    <td>Очень полезный плагин для Unreal Engine, отличный пример для создания пользовательских Rich Text Decorator.<li> Пример проекта плагина <a href="https://github.com/sinbad/StevesUEExamples" target="_blank" rel="noopener noreferrer">Steve's UE Helpers</a> (репозиторий Github): пример проекта с использованием плагина.</li>
-</td>
-  </tr>
-  <tr>
-    <td><a href="https://www.youtube.com/c/AlexForsythe/" target="_blank" rel="noopener noreferrer">Youtube-канал Алекса Форсайта</a></td>
-    <td>Чрезвычайно информативные видео об изучении и понимании Unreal Engine и о том, как тот устроен от низкого уровня до высокого уровня понимания.<li> <a href="https://youtu.be/IaU2Hue-ApI" target="_blank" rel="noopener noreferrer">"Игровая среда Unreal Engine: от int main () до BeginPlay"</a> (видео на YouTube)</li>
-</td>
-  </tr>
-  <tr>
-    <td>
-<a href="https://youtu.be/MV-uXsM2o0k" target="_blank" rel="noopener noreferrer">"Понимание Input Stack Unreal #NotGDC"</a> (видео на YouTube)</td>
-    <td>Видео NotGDC, которое я сделал на <a href="https://t.co/SS05uQxGW0" target="_blank" rel="noopener noreferrer">сервере Ben UI в Discord</a>, рассказывающее о Input Stack в Unreal Engine (это было до того, как был выпущен Компендиум UMG/Slate).</td>
-  </tr>
-  <tr>
-    <td><a href="https://unrealengineresources.com/" target="_blank" rel="noopener noreferrer">Веб-сайт Unreal Resources Эльхусина Мехника</a></td>
-    <td>Очень полезный веб-сайт с бесплатными образцами проектов/плагинов/инструментов.<li> <a href="https://github.com/HoussineMehnik/UE4-MeshSwapperPlugin" target="_blank" rel="noopener noreferrer">Плагин Mesh Swapper</a> (репозиторий Github): пример плагина, который расширяет возможности редактора.</li>
-<li> <a href="https://github.com/HoussineMehnik/UE4-VectorShapeWidgetPlugin" target="_blank" rel="noopener noreferrer">Плагин виджета векторной формы</a> (репозиторий Github): пример плагина для создания своего Slate Widget, который можно использовать в UMG.</li>
-</td>
-  </tr>
-</table>
-
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**
 <a name="important-file-names"></a>
 
-## 14.0 Имена важных файлов
+## 13.0 Имена важных файлов
 
 Вот список (в произвольном порядке) важных/полезных файлов C++ в Unreal Engine, на которые рекомендуется обратить внимание, некоторые из них могут даже не упоминаться в этом сборнике.
 
@@ -1471,10 +1645,13 @@ Local Players могут узнать, какой Gamepad ID они исполь
 `FHittestGrid`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Input/FHittestGrid/) | HittestGrid.h | HittestGrid.cpp |
 `SWidget`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Widgets/SWidget/) | SWidget.h | SWidget.cpp |
 `UWidget`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/UMG/Components/UWidget/) | Widget.h | Widget.cpp |
+[Несколько] | DeclarativeSyntaxSupport.h | [Нет] | Содержит все макросы декларативного синтаксиса для использования Slate, такие как SNew, SLATE_ARGUMENT и т.д. Чрезвычайно важный файл для изучения.
 `SUserWidget`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Widgets/SUserWidget/) | SUserWidget.h | SUserWidget.cpp |
 `UUserWidget`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/UMG/Blueprint/UUserWidget/) | UserWidget.h | UserWidget.cpp |
 `FNavigationConfig`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/Slate/Framework/Application/FNavigationConfig/) | NavigationConfig.h | NavigationConfig.cpp | Здесь находится большинство типов, связанных с навигацией, включая структуры и перечисления.
 [Несколько] | SlateEnums.h | [Нет] | Здесь находится большинство типов Enum, связанных с Slate.
+`TAttribute`<br>[Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/Core/Misc/TAttribute/) | Attribute.h | [Нет] |
+`TSlateAttribute`<br>[Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Widgets/TSlateAttribute_FText_EInvalidat-/) | SWidget.h и SlateAttribute.h |  | Хотя это объявлено в `SWidget.h`, на самом деле это объясняется в `SlateAttribute.h`
 [Несколько] | InputCoreTypes.h | InputCoreTypes.cpp | Именно здесь находится большинство типов, связанных с вводом, включая структуры и перечисления.
 `FInputEvent`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/SlateCore/Input/FInputEvent/) | Events.h | Events.cpp | Здесь находится иерархия типов `FInputEvent`.
 `SGameLayerManager`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Slate/SGameLayerManager/) | SGameLayerManager.h | SGameLayerManager .cpp |
@@ -1490,4 +1667,4 @@ Local Players могут узнать, какой Gamepad ID они исполь
 `UWidgetBlueprintLibrary`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/UMG/Blueprint/UWidgetBlueprintLibrary/) | WidgetBlueprintLibrary.h | WidgetBlueprintLibrary.cpp | На заметку, имя сценария также пишется как "WidgetLibrary" на случай, если у вас возникнут проблемы с его поиском.
 `UUserinterfaceSettings`<br> [Документация](https://docs.unrealengine.com/latest/INT/API/Runtime/Engine/Engine/UUserInterfaceSettings/) | Пользовательский интерфейсSettings.h | UserinterfaceSettings.cpp | Здесь также объявляется правило фокуса рендеринга и несколько других типов данных, которые вы найдете в этих настройках.
 
-**[<span>⬆</span> Наверх](#table-of-contents)**
+**[<span>⬆</span> Вернуться в начало](#table-of-contents)**

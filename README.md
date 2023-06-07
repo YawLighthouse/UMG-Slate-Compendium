@@ -660,7 +660,7 @@ private:
 
 Slate Events are basically delegates in SWidgets for binding on widget creation, you would declare your delegate in C++ with this macro in the Arguments range macro declaration. 
 
-- `SLATE_EVENT`: Adds event handler support for this widget with a specific member variable, this exposes delegates for binding on creation. Expects that the widget has a delegate fo the `EventDelegateType` that is named the same as the event's name that was inputted in.
+- `SLATE_EVENT`: Adds event handler support for this widget with a specific member variable, this exposes delegates for binding on creation. Expects that the widget has a delegate of the `EventDelegateType` that is named the same as the event's name that was inputted in.
 
 Here is an example widget that is using the event macro for when it is hovered.
 ```c++
