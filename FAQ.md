@@ -25,6 +25,8 @@ Languages the Compendium is currently localized in(including how many translator
    - 1 Translator
 - Russian
    - 1 Translator
+- Chinese
+   - 1 Translator
 
 <a name="questions"></a>
 ## Questions
