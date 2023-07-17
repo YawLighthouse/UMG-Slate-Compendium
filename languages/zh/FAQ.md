@@ -26,7 +26,7 @@
     - 1 名翻译
 - 俄语
     - 1 名翻译
-- Chinese
+- 中文
     - 1 名翻译
 
 <a name="questions"></a>
