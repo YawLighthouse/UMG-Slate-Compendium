@@ -6,7 +6,7 @@ Localized via [GitLocalize](https://gitlocalize.com/) (Please read the [FAQ](FAQ
 <a name="document-version"></a>
 ###### Document Version
 <!---Major.Minor.Patch--->
-*0.6.0*
+*0.7.0*
 
 <!--- 
 Section naming:
@@ -49,13 +49,24 @@ HTML Notes:
 - <ul><li></li></ul> for non-ordered lists.
 - <ol><li></li></ol> for ordered numbered lists.
 
+For Unicode Symbol Decimal Code's: https://www.codetable.net/
+<span>[DECIMAL CODE HERE]</span>
+
+
 --->
+
+---
 
 <a name="repo-page-links"></a>
 ## Repository Page Links
 
 > - [FAQ Page](FAQ.md)
 > - [External Links Page](EXTERNAL_LINKS.md)
+> 
+> ### Sub-Page Links
+> - [Text Widget Overview](pages/text_widgets/text_widget_overview.md)
+
+---
 
 <a name="table-of-contents"></a>
 ## Table of Contents
@@ -110,6 +121,8 @@ HTML Notes:
 >    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12.3 [Local Players](#local-players) \
 >    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12.3.1 [Gamepad ID(Controller ID)](#gamepad-id) \
 > 13.0 [Important File Names](#important-file-names)
+
+---
 
 <a name="introduction"></a>
 ## 1.0 Introduction
@@ -217,7 +230,7 @@ Invalidating the desired size of multiple widgets by animating a large amount of
 - In current versions of Unreal Engine UMG widgets do not switch to volatile when animating.
 
 Why should I use volatile?
-> Honestly its not the answer everytime, what happens when you animate a UMG widget or change its visual state it will invalidate the widget for this frame and re-cache its new state until it is invalided again later on. 
+> Honestly it's not the answer everytime, what happens when you animate a UMG widget or change its visual state it will invalidate the widget for this frame and re-cache its new state until it is invalided again later on. 
 > Setting it to volatile will not invalidate or cache the widget, it goes through a separate code path for volatile widgets which is a case-by-case basis of improving performance.
 > Some avenues to use volatile for is by turning it on for a period of time and then turning it off when you no longer need it to be volatile.
 - Some reminders about using volatile:
@@ -926,6 +939,10 @@ virtual void UUserWidget::NativeOnRemovedFromFocusPath(const FFocusEvent& InFocu
 <a name="common-widgets"></a>
 ## 6.0 Common Widgets
 
+> More detailed explanations of these widgets was split into multiple pages to make it easier to learn and understand:
+> - [Text Widgets Overview Page](pages/text_widgets/text_widget_overview.md)
+>   - [Text Block](pages/text_widgets/text_block_widget.md)
+
 There is a large amount of commonly used widgets in Unreal Engine, at its basic core elements. \
 Most/All of your UI that used UMG/Slate will probably be built from a combination of these widgets:
 
@@ -1351,7 +1368,7 @@ and can be used in both editor and packaged development builds(including console
 <a name="debug-console-commands"></a>
 ### 9.1 Debug Console Commands
 
-[Official Documentation for Console Slate Debugger](https://docs.unrealengine.com/latest/INT/console-slate-debugger-in-unreal-engine/)(Also located in [External Links Page](EXTERNAL_LINKS.md)).
+[Official Documentation for Console Slate Debugger](https://docs.unrealengine.com/latest/INT/console-slate-debugger-in-unreal-engine/)(Also linked in [External Links Page](EXTERNAL_LINKS.md)).
 
 - Please refer to the [Slate Console Debugger Console Commands](#slate-console-debugger) section for Slate Debugger specific console commands.
 - `Slate.HitTestGridDebugging [0/1]`: Flag for showing UMG/Slate focusing hit test grid.
@@ -1372,6 +1389,7 @@ and can be used in both editor and packaged development builds(including console
 - `Slate.Transform.FullscreenMouseInput [0/1]`: Default is `true`. Set true to transform mouse input to account for viewport stretching at fullscreen resolutions not natively supported by the monitor.
 - `Slate.EnableTooltips [0/1]`: Default is `true` if the platform needs UI tooltips, defaults to `false` if otherwise. Whether to allow tooltips to spawn at all.
 - `Slate.TriggerInvalidate`: Triggers a global invalidate of all widgets. Does not run on Shipping Builds.
+- `Slate.ShowTextDebugging [0/1]`: Show debugging painting for text rendering. Does not run on Shipping Builds.
 
 <a name="widget-reflector"></a>
 ### 9.2 Widget Reflector
