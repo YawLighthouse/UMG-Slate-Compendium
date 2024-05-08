@@ -7,11 +7,15 @@ All source code referenced in the compendium is from the launcher and Epic's pub
 this can be a time consuming process BUT it helps avoid an legal issues that the document may incur.
 Pull Requests from the Community are not subject to this rule and can immediately be merged into the public repository if its approved.*
 
+---
+
 <a name="repo-page-links"></a>
 ## Repository Page Links
 
 > - [Main Compendium Page](README.md)
 > - [External Links Page](EXTERNAL_LINKS.md)
+
+---
 
 <a name="translation-localization-faq"></a>
 ## Translation/Localization FAQ

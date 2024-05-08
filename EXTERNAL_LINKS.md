@@ -3,6 +3,8 @@
 
 Localized via [GitLocalize](https://gitlocalize.com/) (Please read the [FAQ](FAQ.md) page about becoming a translator!)
 
+---
+
 <a name="repo-page-links"></a>
 ## Repository Page Links
 
@@ -15,6 +17,9 @@ Starting with Epic related links then community links that are in no particular 
 Some links might have a description of what it is to help understand why this link is included,
 or any other information that is recommended looking at after going to that link.
 
+There is also a sample project that is used in relation to this compendium linked here: \
+[Unreal Engine template project for the UMG/Slate Compendium](https://github.com/YawLighthouse/UMG-Slate-Compendium-UE-Project)
+
 <!--- 
 Here is some example HTML code to save time by copy and pasting:
 
@@ -23,11 +28,15 @@ LINK:
 
 --->
 
+---
+
 <a name="table-of-contents"></a>
 ## Table of Contents
 
 > - [Epic Related Links](#epic-related-links)
 > - [Community Related Links](#community-related-links)
+
+---
 
 <a name="epic-related-links"></a>
 ### Epic Related Links
@@ -209,10 +218,10 @@ Here is a list of community related links in no particular order(other than base
   </tr>
   <tr>
     <td>
-        <a href="https://github.com/Cidolfas/UnrealTestProgram" target="_blank" rel="noopener noreferrer">Alex Swaim's Example Unreal Standalone Utility Program</a>(like the Epic Games Launcher)
+        <a href="https://github.com/Cidolfas/UnrealTestProgram" target="_blank" rel="noopener noreferrer">Alex Swaim's Example Slate Standalone Program</a>(like the Epic Games Launcher)
     </td>
     <td>
-        A fantastic example project that shows how to build a standalone program that involves creating a Slate window. Like if you were building a windows application with Slate.
+        A fantastic example project that shows how to build a standalone program that involves creating a Slate window. Like if you were building a windows application with Slate. Also known as "UnrealTestProgram".
     </td>
   </tr>
   <tr>
@@ -228,7 +237,7 @@ Here is a list of community related links in no particular order(other than base
         <a href="https://github.com/engelmanna/UMG3DTransform" target="_blank" rel="noopener noreferrer">Alex Engelmann's UMG 3D Transformation Material Example Project</a>
     </td>
     <td>
-        An example project for showing how to pan a UMG widget around via the material's ScreenPosition input to simulate 3D transforms. Most of this was written in HLSL as a heads up.
+        An example project for showing how to pan a UMG widget around via the material's ScreenPosition input to simulate 3D transforms. Most of this was written in HLSL.
         <a href="https://youtu.be/Rqgipoc6PYE" target="_blank" rel="noopener noreferrer">YouTube video showing the resulted effect</a>
     </td>
   </tr>
@@ -246,6 +255,17 @@ Here is a list of community related links in no particular order(other than base
     </td>
     <td>
         A blog post for explaining a good way of using data bindings and TAttribute with UMG in Unreal Engine.
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <a href="https://jiahaoli.org/" target="_blank" rel="noopener noreferrer">Jiahao Li's Blog</a>
+    </td>
+    <td>
+        This person's blog contains a lot of Unreal Engine posts regarding niche topics, two of which are on how to make a 
+        <a href="https://jiahaoli.org/blog/2023/03/01/using-slate-for-ui-development-and-editor2-simple-slate-standalone-program/" target="_blank" rel="noopener noreferrer">Simple Standalone Slate Program</a>, 
+        and how to duplicate the "BlankProgram" within the engine and use it for Slate development(
+        <a href="https://jiahaoli.org/blog/2023/03/01/using-slate-for-ui-development-and-editor1-introduction-to-slate/" target="_blank" rel="noopener noreferrer">LINK</a>).
     </td>
   </tr>
 </table>
