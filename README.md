@@ -135,6 +135,9 @@ that can be improved upon because this is meant to help the community!
 Please refer to the [FAQ Page](FAQ.md)(also linked at the top of the document) 
 if you have further questions regarding the document(or anything relating to the document).
 
+There is also a sample project that is used in relation to this compendium linked here: \
+[Unreal Engine template project for the UMG/Slate Compendium](https://github.com/YawLighthouse/UMG-Slate-Compendium-UE-Project)
+
 > An important note about skill level in programming and how its used in this
 > document: usually when somebody refers to a concept as *“high level”* they
 > mean its very complicated and requires a high skill level or a lot of

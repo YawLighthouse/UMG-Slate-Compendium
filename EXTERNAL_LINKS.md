@@ -17,6 +17,9 @@ Starting with Epic related links then community links that are in no particular 
 Some links might have a description of what it is to help understand why this link is included,
 or any other information that is recommended looking at after going to that link.
 
+There is also a sample project that is used in relation to this compendium linked here: \
+[Unreal Engine template project for the UMG/Slate Compendium](https://github.com/YawLighthouse/UMG-Slate-Compendium-UE-Project)
+
 <!--- 
 Here is some example HTML code to save time by copy and pasting:
 
